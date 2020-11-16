@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac0b5542-6bdb-41f5-bd50-014350b5a8e6" name="Default Changelist" comment="" />
+    <list default="true" id="ac0b5542-6bdb-41f5-bd50-014350b5a8e6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/collabTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/collabTest.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +15,9 @@
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1kMmIqk6JHtyyrxLOwymexSbDqR" />
   <component name="ProjectViewState">
@@ -36,16 +41,32 @@
       <option name="presentableId" value="Default" />
       <updated>1605518757294</updated>
       <workItem from="1605518758343" duration="1616000" />
+      <workItem from="1605521186497" duration="119000" />
     </task>
+    <task id="LOCAL−00001" summary="test">
+      <created>1605522805560</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1605522805561</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
   <component name="WindowStateProjectService">
     <state x="207" y="174" key="FileChooserDialogImpl" timestamp="1605519521626">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="207" y="174" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1605519521626" />
+    <state x="586" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605523029690">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="586" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.864@0.0.1536.864" timestamp="1605523029690" />
   </component>
 </project>
