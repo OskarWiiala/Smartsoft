@@ -1,2 +1,5 @@
-"testtext"
-'RikoteeBranch1 added'
+//TESTTEXT
+
+console.log('Git test');
+
+//stuff added
