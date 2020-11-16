@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac0b5542-6bdb-41f5-bd50-014350b5a8e6" name="Default Changelist" comment="" />
+    <list default="true" id="ac0b5542-6bdb-41f5-bd50-014350b5a8e6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/collabTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/collabTest.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +15,9 @@
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1kMmIqk6JHtyyrxLOwymexSbDqR" />
   <component name="ProjectViewState">
@@ -36,6 +41,7 @@
       <option name="presentableId" value="Default" />
       <updated>1605518757294</updated>
       <workItem from="1605518758343" duration="1616000" />
+      <workItem from="1605521186497" duration="119000" />
     </task>
     <servers />
   </component>
