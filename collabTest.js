@@ -1,2 +1,2 @@
 "testtext"
-console.log('Git test');
+'RikoteeBranch1 added'
