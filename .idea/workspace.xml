@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac0b5542-6bdb-41f5-bd50-014350b5a8e6" name="Default Changelist" comment="" />
+    <list default="true" id="ac0b5542-6bdb-41f5-bd50-014350b5a8e6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collabTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/collabTest.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +16,14 @@
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1kMmIqk6JHtyyrxLOwymexSbDqR" />
   <component name="ProjectViewState">
@@ -36,6 +47,7 @@
       <option name="presentableId" value="Default" />
       <updated>1605518757294</updated>
       <workItem from="1605518758343" duration="1616000" />
+      <workItem from="1605520396229" duration="687000" />
     </task>
     <servers />
   </component>
@@ -47,5 +59,9 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="207" y="174" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1605519521626" />
+    <state x="564" y="334" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1605520955435">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="564" y="334" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1536.864@0.0.1536.864" timestamp="1605520955435" />
   </component>
 </project>
