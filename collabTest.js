@@ -1,2 +1,2 @@
 "testtext"
-'RikoteeBranc1 added'
+console.log('Git test');
