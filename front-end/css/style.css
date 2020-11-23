@@ -22,7 +22,7 @@
     flex-wrap: nowrap;
 }
 
-.child1 {
+.userCards {
     flex: 1;
     background-color: brown;
     display: flex;
@@ -30,7 +30,7 @@
     align-items: center;
 }
 
-.child2 {
+.topRow {
     flex: 1;
     background-color: burlywood;
     display: flex;
