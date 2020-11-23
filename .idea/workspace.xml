@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac0b5542-6bdb-41f5-bd50-014350b5a8e6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controllers/userController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/db.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/userModel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/userRoute.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/imageMeta.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +47,7 @@
       <updated>1605518757294</updated>
       <workItem from="1605518758343" duration="1616000" />
       <workItem from="1605521186497" duration="119000" />
-      <workItem from="1606134686967" duration="2552000" />
+      <workItem from="1606134686967" duration="2687000" />
     </task>
     <task id="LOCAL−00001" summary="test">
       <created>1605522805560</created>
