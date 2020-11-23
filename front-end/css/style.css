@@ -7,26 +7,29 @@
 
     .top {
         flex-direction: column;
+        height: 40vh;
     }
 
-    .Logo {
-        height: 17vh;
+
+    .cardArea1 {
+
     }
 
-    .TagLine {
-        height: 17vh;
+    .cardArea2 {
+
     }
 
-    .Login {
-        height: 17vh;
+    .cardArea3 {
+
     }
 
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 600px) {
     .userCards {
         flex-direction: row;
         height: 70vh;
+        justify-content: space-evenly;
     }
 
     .top {
@@ -34,6 +37,19 @@
         flex-wrap: nowrap;
         height: 17vh;
     }
+
+    .cardArea1 {
+        width: 500px;
+    }
+
+    .cardArea2 {
+        width: 500px;
+    }
+
+    .cardArea3 {
+        width: 500px;
+    }
+
 }
 
 
@@ -62,11 +78,9 @@
     flex: 1;
     background-color: #dbb0b0;
     display: flex;
-    justify-content: space-evenly;
 }
 
 .cardArea1 {
-    width: 500px;
     height: 600px;
     background-color: #e981e9;
     flex: 1;
@@ -75,7 +89,6 @@
 }
 
 .cardArea2 {
-    width: 500px;
     height: 600px;
     background-color: #dd81dd;
     flex: 1;
@@ -84,7 +97,6 @@
 }
 
 .cardArea3 {
-    width: 500px;
     height: 600px;
     background-color: #c36cc3;
     flex: 1;
@@ -95,6 +107,7 @@
 .Logo {
     background-color: #54b5b5;
     flex: 1;
+
 }
 
 .TagLine {
