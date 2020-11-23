@@ -1,8 +1,26 @@
-@media (max-width: 1000px) {
+@media (max-width: 600px) {
     .userCards {
         flex-direction: column;
+        flex-wrap: wrap;
         height: 180vh;
     }
+
+    .top {
+        flex-direction: column;
+    }
+
+    .Logo {
+        height: 17vh;
+    }
+
+    .TagLine {
+        height: 17vh;
+    }
+
+    .Login {
+        height: 17vh;
+    }
+
 }
 
 @media (min-width: 1000px) {
@@ -10,7 +28,14 @@
         flex-direction: row;
         height: 70vh;
     }
+
+    .top {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        height: 17vh;
+    }
 }
+
 
 * {
     margin: 0;
@@ -19,12 +44,9 @@
 }
 
 .top {
-    height: 17vh;
     background: grey;
     position: relative;
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
 }
 
 .content {
@@ -40,6 +62,7 @@
     flex: 1;
     background-color: #dbb0b0;
     display: flex;
+    justify-content: space-evenly;
 }
 
 .cardArea1 {
@@ -69,13 +92,6 @@
     flex-direction: row;
 }
 
-.topRow {
-    flex: 1;
-    background-color: burlywood;
-    display: flex;
-    flex-direction: row;
-}
-
 .Logo {
     background-color: darkcyan;
     flex: 1;
@@ -98,4 +114,12 @@
     width: 300px;
     margin: auto;
     box-shadow: black 10px 10px 10px;
+}
+
+.googleFontText {
+    font-size: x-large;
+    font-family: "Architects Daughter", serif;
+    text-align: center;
+    text-transform: uppercase;
+    color: #454545;
 }
