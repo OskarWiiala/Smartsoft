@@ -39,7 +39,7 @@
 .content {
     display: flex;
     flex-wrap: wrap;
-    background-color: #cf6cd6;
+    background-color: #cedffa;
     justify-content: space-evenly;
     align-items: center;
 }
@@ -55,7 +55,7 @@
 }
 
 .Logo {
-    background-color: #54b5b5;
+    background-color: lightgoldenrodyellow;
     flex: 1;
     display: flex;
     justify-content: center;
@@ -70,14 +70,14 @@
 }
 
 .TagLine {
-    background-color: #62bebe;
+    background-color: lightgoldenrodyellow;
     flex: 1;
     justify-content: center;
     align-items: center;
 }
 
 .Login {
-    background-color: #5fcfcf;
+    background-color: lightgoldenrodyellow;
     flex: 1;
     display: flex;
     justify-content: center;
