@@ -1,0 +1,65 @@
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin:0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: moccasin;
+}
+
+.container1 {
+    background-color: sandybrown;
+    width: 100%;
+    height: auto;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: left;
+}
+
+.header1 {
+    display: flex;
+    justify-content: center;
+}
+
+.header {
+    background-color: sandybrown;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+a:link, a:visited {
+    text-decoration:none;
+    color:brown;
+    font-weight:bold;
+}
+
+a:hover {
+    color:black;
+}
+
+nav ul {
+    list-style-type:none;
+    padding:0;
+}
+nav li {
+    display:inline;
+    float:left;
+}
+nav a:link, nav a:visited {
+    background-color:saddlebrown;
+    color:white;
+    display:block;
+    width:160px;
+    text-align:center;
+    padding: 10px 0;
+}
+nav a:hover {
+    background-color:black;
+}
