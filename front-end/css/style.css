@@ -42,6 +42,10 @@
         height: 17vh;
     }
 
+    .TagLine {
+        display: flex;
+    }
+
     .cardArea1 {
         width: 500px;
     }
@@ -120,17 +124,31 @@
 .Logo {
     background-color: #54b5b5;
     flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+#logoPic {
+    padding-top: 10px;
+    padding-left: 2px;
+    border: 0;
+    float: left;
 }
 
 .TagLine {
     background-color: #62bebe;
     flex: 1;
+    justify-content: center;
+    align-items: center;
 }
 
 .Login {
     background-color: #5fcfcf;
     flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
