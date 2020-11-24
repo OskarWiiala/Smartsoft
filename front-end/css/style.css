@@ -78,6 +78,15 @@
     flex-wrap: nowrap;
 }
 
+.middle {
+    flex: 1;
+    background-image: linear-gradient(180deg, #ae9d7c, white);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 5vh;
+}
+
 .userCards {
     flex: 1;
     background-color: #dbb0b0;
