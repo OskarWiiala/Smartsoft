@@ -26,14 +26,19 @@
         <form id="login-form" class="light-border">
             <div>
                 <label>Email:</label>
-                <input class="light-border" type="text" name="username"/>
+                <label>
+                    <input class="loginInput" type="text" name="username"/>
+                </label>
             </div>
             <div>
                 <label>Password:</label>
-                <input class="light-border" type="password" name="password"/>
+                <label>
+                    <input class="loginInput" type="password" name="password" pattern="(?=.*[A-Z]).{8,}"
+                           placeholder="Password" required>
+                </label>
             </div>
             <div>
-                <button class="light-border" type="submit">Log In</button>
+                <button class="submitButton submitButton2" type="submit">Log In</button>
             </div>
         </form>
     </div>
@@ -42,17 +47,23 @@
 <div class="middle">
 
     <label>Search:</label>
-    <input class="searchInput" type="text" name="Search"/>
+    <label>
+        <input class="searchInput" type="text" name="Search"/>
+    </label>
     <input class="submitButton submitButton2" type="submit" value="Add new post">
-    <input class="submitButton submitButton2" type="submit" value="submit button">
     <input class="submitButton submitButton2" type="submit" value="submit button">
 
 </div>
 
 <div class="content">
-            <div class="card">user content</div>
-            <div class="card">user content</div>
-            <div class="card">user content</div>
+
+    // temporary test content!
+    <div class="card">user content 1</div>
+    <div class="card">user content 2</div>
+    <div class="card">user content 3</div>
+    <div class="card">user content 4</div>
+    <div class="card">user content 5</div>
+    <div class="card">user content 6</div>
 </div>
 
 </body>
