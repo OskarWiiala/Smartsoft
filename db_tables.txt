@@ -1,0 +1,36 @@
+CREATE TABLE `ss_food_post` (
+  `food_post_id` int(11) NOT NULL,
+  `user` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `text` text NOT NULL,
+  `filename` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+INSERT INTO `ss_food_post` (`food_post_id`, `user`, `title`, `text`, `filename`) VALUES
+(1, 1, 'Eating a good lunch', 'This is a very good hamburger', 'http://placekitten.com/400/300'),
+(2, 2, 'Making a sandwich', 'This is a ham sandwich', 'http://placekitten.com/400/302');
+
+CREATE TABLE `ss_user` (
+  `user_id` int(11) NOT NULL,
+  `username` text NOT NULL,
+  `email` text NOT NULL,
+  `password` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+INSERT INTO `ss_user` (`user_id`, `username`, `email`, `password`) VALUES
+(1, 'Test User 1', 'testuser1@metropolia.fi', '1234'),
+(2, 'Test User 2', 'testuser2@metropolia.fi', 'qwer');
+
+
+ALTER TABLE `ss_food_post`
+  ADD PRIMARY KEY (`food_post_id`);
+
+ALTER TABLE `ss_user`
+  ADD PRIMARY KEY (`user_id`);
+
+
+ALTER TABLE `ss_food_post`
+  MODIFY `food_post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+ALTER TABLE `ss_user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
