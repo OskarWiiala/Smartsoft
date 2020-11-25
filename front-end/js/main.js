@@ -15,26 +15,20 @@ const createFoodPostCards = (recipes) => {
     img.alt = foodPost.name;
     img.classList.add('resp');
 
-    const figure = document.createElement('figure').appendChild(img);
+    // const figure = document.createElement('figure').appendChild(img);
 
     const h2 = document.createElement('h2');
-    h2.innerHTML = foodPost.name;
+    h2.innerHTML = foodPost.title;
 
     const p1 = document.createElement('p');
     p1.innerHTML = `Recipe: ${foodPost.text}`;
-
-    const p2 = document.createElement('p');
-    p2.innerHTML = `Weight: ${foodPost.weight}kg`;
-
-
 
     const card = document.createElement('card');
     card.classList.add('roundEdge');
 
     card.appendChild(h2);
-    card.appendChild(figure);
+    // card.appendChild(figure);
     card.appendChild(p1);
-    card.appendChild(p2);
     ul.appendChild(card);
   });
 };
