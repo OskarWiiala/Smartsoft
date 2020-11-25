@@ -28,7 +28,7 @@ const getFoodPost = async (id) => {
   }
 };
 
-const insertFoodPost = async (req, coords) => {
+const insertFoodPost = async (req) => {
   try {
     const [rows] = await promisePool.execute(
         'INSERT INTO ss_food_post (user, title, text, filename) VALUES (?, ?, ?, ?);',

@@ -8,11 +8,9 @@ const router = express.Router();
 router.get('/', userController.user_list_get);
 router.post('/',
     [
-      // body('name', 'minimum length 3 characters').isLength({min: 3}),
+      body('username', 'minimum length 3 characters').isLength({min: 3}),
       body('email', 'is not valid email').isEmail(),
-      // body('passwd', 'minimum length 8 characters, at least one capital letter').matches('(?=.*[A-Z]).{8,}'),
-      body('passwd', 'minimum length 3 characters').isLength({min: 3}),
-
+      body('password', 'minimum length 3 characters').isLength({min: 3}),
     ],
     userController.user_create);
 

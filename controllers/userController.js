@@ -34,11 +34,9 @@ const user_update = async (req, res) => {
 };
 
 const user_delete = async (req, res) => {
-  res.send('deleted...');
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({errors: errors.array()});
-  }
+  console.log('userController user_delete', req.body);
+  const user = await userModel.deleteUser(id);
+  res.send(`deleted... ${user}`);
 };
 
 module.exports = {
@@ -46,5 +44,5 @@ module.exports = {
   user_get_by_id,
   user_create,
   user_update,
-  user_delete,
+  user_delete
 };
