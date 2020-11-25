@@ -42,7 +42,7 @@ const createFoodPostCards = (recipes) => {
 // AJAX call
 const getFoodPost = async () => {
   try {
-    const response = await fetch(url + '/cat');
+    const response = await fetch(url + '/foodPost');
     const recipes = await response.json();
     createFoodPostCards(recipes);
   }
