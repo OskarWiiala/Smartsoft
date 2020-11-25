@@ -11,18 +11,23 @@ const authRoute = require('./routes/authRoute');
 const app = express();
 const port = 3000;
 
+// temporary !
+const testRoute = require('./routes/testRoute');
+
 app.use(cors());
 
-app.use(express.json()); // for parsing application/json
-app.use(express.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
+// app.use(express.json()); // for parsing application/json
+// app.use(express.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
 
 app.use(express.static('uploads'));
-app.use('/thumbnails', express.static('thumbnails'));
+// app.use('/thumbnails', express.static('thumbnails'));
 
 // routes
 app.use('/', rootRoute);
-app.use('/auth', authRoute);
-app.use('/foodPost', passport.authenticate('jwt', {session: false}), foodPostRoute);
-app.use('/user', passport.authenticate('jwt', {session: false}), userRoute);
+// app.use('/auth', authRoute);
+// app.use('/foodPost', passport.authenticate('jwt', {session: false}), foodPostRoute);
+// app.use('/user', passport.authenticate('jwt', {session: false}), userRoute);
+
+app.use('/foodPost', foodPostRoute);
 
 app.listen(port, () => console.log(`Smartsoft web app listening on port ${port}!`));
