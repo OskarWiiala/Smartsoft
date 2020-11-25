@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/OskarWiiala/Smartsoft#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "expres": "0.0.5",

@@ -21,7 +21,7 @@ const createFoodPostCards = (recipes) => {
     h2.innerHTML = foodPost.name;
 
     const p1 = document.createElement('p');
-    p1.innerHTML = `Age: ${foodPost.age}`;
+    p1.innerHTML = `Recipe: ${foodPost.text}`;
 
     const p2 = document.createElement('p');
     p2.innerHTML = `Weight: ${foodPost.weight}kg`;
