@@ -105,3 +105,27 @@
     margin-right: 20px;
     margin-left: 20px;
 }
+
+.roundEdge {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+card {
+    background-color: white;
+    height: 400px;
+    width: 300px;
+    margin: 50px;
+    box-shadow: black 10px 10px 10px;
+    padding-top: 100px;
+}
