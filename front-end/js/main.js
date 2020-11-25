@@ -26,9 +26,6 @@ const createFoodPostCards = (recipes) => {
     const p2 = document.createElement('p');
     p2.innerHTML = `Weight: ${foodPost.weight}kg`;
 
-    const p3 = document.createElement('p');
-    p3.innerHTML = `Owner: ${foodPost.ownername}`;
-
 
 
     const card = document.createElement('card');
@@ -38,7 +35,6 @@ const createFoodPostCards = (recipes) => {
     card.appendChild(figure);
     card.appendChild(p1);
     card.appendChild(p2);
-    card.appendChild(p3);
     ul.appendChild(card);
   });
 };
@@ -47,11 +43,12 @@ const createFoodPostCards = (recipes) => {
 const getFoodPost = async () => {
   try {
     const response = await fetch(url + '/cat');
-    const cats = await response.json();
-    createFoodPostCards(cats);
+    const recipes = await response.json();
+    createFoodPostCards(recipes);
   }
   catch (e) {
     console.log(e.message);
   }
 };
 getFoodPost();
+
