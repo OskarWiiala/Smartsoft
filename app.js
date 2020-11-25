@@ -11,8 +11,7 @@ const authRoute = require('./routes/authRoute');
 const app = express();
 const port = 3000;
 
-// temporary !
-const testRoute = require('./routes/testRoute');
+
 
 app.use(cors());
 
