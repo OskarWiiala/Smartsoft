@@ -12,10 +12,10 @@ const createFoodPostCards = (recipes) => {
     // create li with DOM methods
     const img = document.createElement('img');
     img.src = url + '/' + foodPost.filename;
-    img.alt = foodPost.name;
+    img.alt = foodPost.title;
     img.classList.add('resp');
 
-    // const figure = document.createElement('figure').appendChild(img);
+    const figure = document.createElement('figure').appendChild(img);
 
     const h2 = document.createElement('h2');
     h2.innerHTML = foodPost.title;
@@ -27,7 +27,7 @@ const createFoodPostCards = (recipes) => {
     card.classList.add('roundEdge');
 
     card.appendChild(h2);
-    // card.appendChild(figure);
+    card.appendChild(figure);
     card.appendChild(p1);
     ul.appendChild(card);
   });
