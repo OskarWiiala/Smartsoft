@@ -58,28 +58,9 @@ const createFoodPostCards = (recipes) => {
 };
 
 // AJAX call
-// const getFoodPost = async () => {
-//   try {
-//     const response = await fetch(url + '/foodPost');
-//     const recipes = await response.json();
-//     createFoodPostCards(recipes);
-//   }
-//   catch (e) {
-//     console.log(e.message);
-//   }
-// };
-// getFoodPost();
-
-
 const getFoodPost = async () => {
-  console.log('getFoodPost token ', sessionStorage.getItem('token'));
   try {
-    const options = {
-      headers: {
-        'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-      },
-    };
-    const response = await fetch(url + '/foodPost', options);
+    const response = await fetch(url + '/foodPost');
     const recipes = await response.json();
     createFoodPostCards(recipes);
   }
@@ -87,7 +68,26 @@ const getFoodPost = async () => {
     console.log(e.message);
   }
 };
-getFoodPost()
+getFoodPost();
+
+
+// const getFoodPost = async () => {
+//   console.log('getFoodPost token ', sessionStorage.getItem('token'));
+//   try {
+//     const options = {
+//       headers: {
+//         'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+//       },
+//     };
+//     const response = await fetch(url + '/foodPost', options);
+//     const recipes = await response.json();
+//     createFoodPostCards(recipes);
+//   }
+//   catch (e) {
+//     console.log(e.message);
+//   }
+// };
+// getFoodPost()
 
 // login
 loginForm.addEventListener('submit', async (evt) => {
@@ -113,7 +113,7 @@ loginForm.addEventListener('submit', async (evt) => {
     // loginWrapper.style.display = 'none';
     loginForm.style.display = "none";
     // main.style.display = 'block';
-    userInfo.innerHTML = `Hello ${json.user.name}`;
+    userInfo.innerHTML = `Hello ${json.user.username}`;
     document.getElementById("log-out").style.display = 'block';
     getFoodPost();
   }
@@ -145,8 +145,8 @@ logOut.addEventListener('click', async (evt) => {
   }
 });
 
-// when app starts, check if token exists and hide login form, show logout button and main content, get cats and users
-if (sessionStorage.getItem('token')) {
-  logOut.style.display = 'block';
-  getFoodPost()
-}
+// // when app starts, check if token exists and hide login form, show logout button and main content, get cats and users
+// if (sessionStorage.getItem('token')) {
+//   logOut.style.display = 'block';
+//   getFoodPost()
+// }
