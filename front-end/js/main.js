@@ -57,7 +57,7 @@ const createFoodPostCards = (recipes) => {
   });
 };
 
-// // AJAX call
+// AJAX call
 // const getFoodPost = async () => {
 //   try {
 //     const response = await fetch(url + '/foodPost');
@@ -72,7 +72,7 @@ const createFoodPostCards = (recipes) => {
 
 
 const getFoodPost = async () => {
-  console.log('getCat token ', sessionStorage.getItem('token'));
+  console.log('getFoodPost token ', sessionStorage.getItem('token'));
   try {
     const options = {
       headers: {
@@ -87,7 +87,7 @@ const getFoodPost = async () => {
     console.log(e.message);
   }
 };
-
+getFoodPost()
 
 // login
 loginForm.addEventListener('submit', async (evt) => {
@@ -145,3 +145,8 @@ logOut.addEventListener('click', async (evt) => {
   }
 });
 
+// when app starts, check if token exists and hide login form, show logout button and main content, get cats and users
+if (sessionStorage.getItem('token')) {
+  logOut.style.display = 'block';
+  getFoodPost()
+}
