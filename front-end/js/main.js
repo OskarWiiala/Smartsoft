@@ -58,28 +58,9 @@ const createFoodPostCards = (recipes) => {
 };
 
 // AJAX call
-const getFoodPost = async () => {
-  try {
-    const response = await fetch(url + '/foodPost');
-    const recipes = await response.json();
-    createFoodPostCards(recipes);
-  }
-  catch (e) {
-    console.log(e.message);
-  }
-};
-getFoodPost();
-
-
 // const getFoodPost = async () => {
-//   console.log('getFoodPost token ', sessionStorage.getItem('token'));
 //   try {
-//     const options = {
-//       headers: {
-//         'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-//       },
-//     };
-//     const response = await fetch(url + '/foodPost', options);
+//     const response = await fetch(url + '/foodPost');
 //     const recipes = await response.json();
 //     createFoodPostCards(recipes);
 //   }
@@ -87,7 +68,26 @@ getFoodPost();
 //     console.log(e.message);
 //   }
 // };
-// getFoodPost()
+// getFoodPost();
+
+
+const getFoodPost = async () => {
+  console.log('getFoodPost token ', sessionStorage.getItem('token'));
+  try {
+    const options = {
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    };
+    const response = await fetch(url + '/foodPost', options);
+    const recipes = await response.json();
+    createFoodPostCards(recipes);
+  }
+  catch (e) {
+    console.log(e.message);
+  }
+};
+getFoodPost()
 
 // login
 loginForm.addEventListener('submit', async (evt) => {
