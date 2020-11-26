@@ -2,27 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Foodrecipes</title>
-    <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+    <title>Project Visual test</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Architects Daughter' rel='stylesheet'>
+
 </head>
 <body>
-<div class="container1">
-    <h1 class="header1">Foodrecipes</h1>
-<header class="header">
-    <nav>
-        <ul>
-            <li><img class="logo" src="./img/burger.png" alt="lol"></li>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="sign-in.html">Sign in</a></li>
-            <li><a href="profile.html">Profile</a></li>
+<div class="top">
+    <div class="Logo">
+        <div id="logoPic">
+            <img src="testLogo.png" alt="logo">
+        </div>
+    </div>
 
-        </ul>
-    </nav>
-</header>
+    <div class="TagLine">
+        <div class="googleFontText">
+            <h1>Tag Area</h1>
+        </div>
+    </div>
+
+    <div class="Login">
+        <form id="login-form" class="light-border">
+            <div>
+                <label>Email:</label>
+                <label>
+                    <input class="loginInput" type="text" name="username"/>
+                </label>
+            </div>
+            <div>
+                <label>Password:</label>
+                <label>
+                    <input class="loginInput" type="password" name="password" pattern="(?=.*[A-Z]).{8,}"
+                           placeholder="Password" required>
+                </label>
+            </div>
+            <div>
+                <button class="submitButton submitButton2" type="submit">Log In</button>
+            </div>
+        </form>
+    </div>
 </div>
 
+<div class="middle">
 
+    <label>Search:</label>
+    <label>
+        <input class="searchInput" type="text" name="Search"/>
+    </label>
+    <input class="submitButton submitButton2" type="submit" value="Add new post">
+    <input class="submitButton submitButton2" type="submit" value="submit button">
 
-<script src="main.js"></script>
+</div>
+
+<div class="content">
+
+    <ul>
+        <!-- js creates list here -->
+    </ul>
+
+</div>
+
 </body>
 </html>
+
+<script src="./js/main.js"></script>
