@@ -15,7 +15,7 @@ const createFoodPostCards = (recipes) => {
   recipes.forEach((foodPost) => {
     // create li with DOM methods
     const img = document.createElement('img');
-    img.src = url + '/' + foodPost.filename;
+    img.src = url + '/thumbnails/' + foodPost.filename;
     img.alt = foodPost.title;
     img.classList.add('resp');
 
@@ -57,10 +57,29 @@ const createFoodPostCards = (recipes) => {
   });
 };
 
-// AJAX call
+// // AJAX call
+// const getFoodPost = async () => {
+//   try {
+//     const response = await fetch(url + '/foodPost');
+//     const recipes = await response.json();
+//     createFoodPostCards(recipes);
+//   }
+//   catch (e) {
+//     console.log(e.message);
+//   }
+// };
+// getFoodPost();
+
+
 const getFoodPost = async () => {
+  console.log('getCat token ', sessionStorage.getItem('token'));
   try {
-    const response = await fetch(url + '/foodPost');
+    const options = {
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    };
+    const response = await fetch(url + '/foodPost', options);
     const recipes = await response.json();
     createFoodPostCards(recipes);
   }
@@ -68,21 +87,7 @@ const getFoodPost = async () => {
     console.log(e.message);
   }
 };
-getFoodPost();
 
-// submit add foodPost form
-addForm.addEventListener('submit', async (evt) => {
-  evt.preventDefault();
-  const fd = new FormData(addForm);
-  const fetchOptions = {
-    method: 'POST',
-    body: fd,
-  };
-  const response = await fetch(url + '/foodPost', fetchOptions);
-  const json = await response.json();
-  console.log('add response', json);
-  getFoodPost();
-});
 
 // login
 loginForm.addEventListener('submit', async (evt) => {
