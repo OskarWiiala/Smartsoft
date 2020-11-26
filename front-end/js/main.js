@@ -3,6 +3,7 @@ const url = 'http://localhost:3000'; // change url when uploading to server
 
 // select existing html elements
 const ul = document.querySelector('ul');
+const addForm = document.querySelector('#addFoodPostForm');
 
 // create foodPost cards
 const createFoodPostCards = (recipes) => {
@@ -23,12 +24,32 @@ const createFoodPostCards = (recipes) => {
     const p1 = document.createElement('p');
     p1.innerHTML = `Recipe: ${foodPost.text}`;
 
+    // delete selected foodPost
+    const delButton = document.createElement('button');
+    delButton.innerHTML = 'Delete';
+    delButton.addEventListener('click', async () => {
+      const fetchOptions = {
+        method: 'DELETE',
+      };
+      try {
+        const response = await fetch(url + '/foodPost/' + foodPost.food_post_id, fetchOptions);
+        const json = await response.json();
+        console.log('delete response', json);
+        getFoodPost();
+      }
+      catch (e) {
+        console.log(e.message);
+      }
+    });
+
+
     const card = document.createElement('card');
     card.classList.add('roundEdge');
 
     card.appendChild(h2);
     card.appendChild(figure);
     card.appendChild(p1);
+    card.appendChild(delButton);
     ul.appendChild(card);
   });
 };
@@ -45,4 +66,18 @@ const getFoodPost = async () => {
   }
 };
 getFoodPost();
+
+// submit add foodPost form
+addForm.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+  const fd = new FormData(addForm);
+  const fetchOptions = {
+    method: 'POST',
+    body: fd,
+  };
+  const response = await fetch(url + '/foodPost', fetchOptions);
+  const json = await response.json();
+  console.log('add response', json);
+  getFoodPost();
+});
 
