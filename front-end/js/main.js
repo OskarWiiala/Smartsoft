@@ -134,7 +134,6 @@ logOut.addEventListener('click', async (evt) => {
     loginForm.style.display =  "block";
     logOut.style.display = "none";
     userInfo.innerHTML = ``;
-    console.log('Logged out');
   }
   catch (e) {
     console.log(e.message);
