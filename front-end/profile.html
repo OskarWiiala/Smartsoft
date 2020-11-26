@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Visual test</title>
+    <link rel="stylesheet" href="./css/styleProfile.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Architects Daughter' rel='stylesheet'>
+
+</head>
+<body>
+<div class="top">
+    <div class="Logo">
+        <div id="logoPic">
+            <img src="./testLogo.png" alt="logo">
+        </div>
+    </div>
+
+    <div class="TagLine">
+        <div class="googleFontText">
+            <h1>Tag Area</h1>
+        </div>
+    </div>
+</div>
+
+<div class="middle">
+    <a href="index.html">Home</a>
+</div>
+
+<div class="post-container">
+    <div class="form-wrapper">
+        <h3>Add new food post</h3>
+        <form action="http://localhost:3000/foodPost"
+              method="post"
+              enctype="multipart/form-data"
+              id="addPostForm">
+            <label>
+                <input class="light-border" type="text" name="title" placeholder="Title" required>
+            </label>
+            <label>
+                <input class="light-border" type="text" name="text" placeholder="Text" required>
+            </label>
+            <input class="light-border" type="file" name="post" accept="image/*" placeholder="Choose file">
+            <button class="light-border" type="submit">Upload new post</button>
+        </form>
+    </div>
+</div>
+
+<h3 class="yourposts-header">Your posts:</h3>
+<div class="content">
+
+    <ul>
+        <!-- js creates list here -->
+    </ul>
+
+</div>
+
+</body>
+</html>
+
+<script src="./js/profile.js"></script>

@@ -1,0 +1,179 @@
+@media (max-width: 600px) {
+
+    .top {
+        flex-direction: column;
+        height: 25vh;
+    }
+
+    .TagLine {
+        display: none
+    }
+}
+
+@media (min-width: 600px) {
+
+    .top {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        height: 17vh;
+    }
+
+    .TagLine {
+        display: flex;
+    }
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.top {
+    background: grey;
+    position: relative;
+    display: flex;
+}
+
+.yourposts-header {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+h3 {
+    display: flex;
+    justify-content: center;
+}
+
+.post-container {
+    max-width: 100em;
+    margin: auto;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+}
+
+.form-wrapper {
+    width: 33%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 1em;
+    box-sizing: border-box;
+    background-color: #c8f7fa;
+}
+
+/*Changes the background color of "choose file" to white*/
+input[type="file" i] {
+    background-color: white;
+}
+
+.light-border {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+input, button, select {
+    display: inline-block;
+    width: 100%;
+    margin: .5em 0;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #cedffa;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.middle {
+    flex: 1;
+    background-image: linear-gradient(180deg, #ae9d7c, white);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    height: 5vh;
+}
+
+.Logo {
+    background-color: lightgoldenrodyellow;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logoPic {
+    padding-top: 10px;
+    padding-left: 2px;
+    border: 0;
+    float: left;
+}
+
+.TagLine {
+    background-color: lightgoldenrodyellow;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.Login {
+    background-color: lightgoldenrodyellow;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background-color: white;
+    height: 400px;
+    width: 300px;
+    margin: 50px;
+    box-shadow: black 10px 10px 10px;
+    padding-top: 100px;
+}
+
+.googleFontText {
+    font-size: x-large;
+    font-family: "Architects Daughter", serif;
+    text-align: center;
+    text-transform: uppercase;
+    color: #454545;
+}
+
+.submitButton {
+    width: auto;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.roundEdge {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #cedffa;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+card {
+    background-color: white;
+    height: 400px;
+    width: 300px;
+    margin: 50px;
+    box-shadow: black 10px 10px 10px;
+    padding-top: 100px;
+}
