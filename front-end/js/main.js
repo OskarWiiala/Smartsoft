@@ -109,12 +109,9 @@ loginForm.addEventListener('submit', async (evt) => {
   } else {
     // save token
     sessionStorage.setItem('token', json.token);
-    // show/hide forms + cats
-    // loginWrapper.style.display = 'none';
     loginForm.style.display = "none";
-    // main.style.display = 'block';
-    userInfo.innerHTML = `Hello ${json.user.username}`;
-    document.getElementById("log-out").style.display = 'block';
+    logOut.style.display = "block";
+    userInfo.innerHTML = `Logged in ${json.user.username}`;
     getFoodPost();
   }
 });
@@ -134,11 +131,10 @@ logOut.addEventListener('click', async (evt) => {
     // remove token
     sessionStorage.removeItem('token');
     alert('You have logged out');
-    // show/hide forms + cats
-    // loginWrapper.style.display = 'flex';
-    logOut.style.display = 'none';
-    // main.style.display = 'none';
-    document.getElementById("log-out").style.display = "block";
+    loginForm.style.display =  "block";
+    logOut.style.display = "none";
+    userInfo.innerHTML = ``;
+    console.log('Logged out');
   }
   catch (e) {
     console.log(e.message);
