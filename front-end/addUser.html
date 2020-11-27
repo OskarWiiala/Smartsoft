@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf8">
+    <title>Add User</title>
+    <link href="./css/style.css" rel="stylesheet">
+</head>
+<body>
+<h3>Register</h3>
+<form class="roundEdge" id="add-user-form">
+    <input class="roundEdge"
+           type="text"
+           name="username"
+           pattern=".{3,}"
+           placeholder="username"
+           required>
+    <input class="roundEdge" type="email" name="email" placeholder="email" required>
+    <input class="roundEdge" type="password" name="password" pattern="(?=.*[A-Z]).{8,}"
+           placeholder="Password" required>
+    <button class="roundEdge" type="submit">Save</button>
+</form>
+
+<script src="./js/serialize.js"></script>
+<script src="./js/addUser.js"></script>
+</body>
+</html>
+
