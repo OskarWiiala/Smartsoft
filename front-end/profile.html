@@ -28,6 +28,9 @@
     <form action="index.html" id="HomePage" style="display: block;">
         <button class="submitButton submitButton2" type="submit">Home</button>
     </form>
+    <form id="displayAddPostButton" style="display: block;">
+        <button class="submitButton submitButton2" type="submit">Create new post</button>
+    </form>
 </div>
 
 <div class="post-container">
@@ -44,7 +47,11 @@
                 <input class="light-border" type="text" name="text" placeholder="Text" required>
             </label>
             <input class="light-border" type="file" name="post" accept="image/*" placeholder="Choose file">
-            <button class="light-border" type="submit">Upload new post</button>
+            <button id="uploadButton" class="light-border" type="submit">Upload</button>
+<!--            <button id="cancel-post" class="light-border" type="button">Cancel</button>-->
+        </form>
+        <form id="cancel-form" style="display: flex">
+            <button class="cancel-post" type="submit">Cancel</button>
         </form>
     </div>
 </div>

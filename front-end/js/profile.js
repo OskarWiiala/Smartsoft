@@ -7,6 +7,9 @@ const addForm = document.querySelector('#addFoodPostForm');
 const loginForm = document.querySelector('#login-form');
 const logOut = document.querySelector('#log-out');
 const userInfo = document.querySelector('#user-info');
+const addPost = document.querySelector('#displayAddPostButton');
+const postContainer = document.querySelector('.post-container')
+const cancelPost = document.querySelector('.cancel-post');
 
 const createFoodPostCards = (recipes) => {
   // clear ul
@@ -72,3 +75,19 @@ const getFoodPost = async () => {
   }
 };
 getFoodPost()
+
+addPost.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+  postContainer.style.display = "flex";
+  addPost.style.display = "none";
+});
+
+cancelPost.addEventListener('button', async (evt) => {
+  evt.preventDefault();
+  postContainer.style.display = "none";
+  addPost.style.display = "block";
+});
+
+
+
+
