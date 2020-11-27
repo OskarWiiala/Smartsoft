@@ -23,7 +23,7 @@ app.use('/thumbnails', express.static('thumbnails'));
 // routes
 app.use('/', rootRoute);
 app.use('/auth', authRoute);
-app.use('/foodPost', passport.authenticate('jwt', {session: false}), foodPostRoute);
+app.use('/foodPost', foodPostRoute);
 app.use('/user', passport.authenticate('jwt', {session: false}), userRoute);
 
 
