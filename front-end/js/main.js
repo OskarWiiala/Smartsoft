@@ -7,6 +7,7 @@ const addForm = document.querySelector('#addFoodPostForm');
 const loginForm = document.querySelector('#login-form');
 const logOut = document.querySelector('#log-out');
 const userInfo = document.querySelector('#user-info');
+const ProfilePge = document.querySelector('#profilePage');
 
 // create foodPost cards
 const createFoodPostCards = (recipes) => {
@@ -111,6 +112,7 @@ loginForm.addEventListener('submit', async (evt) => {
     sessionStorage.setItem('token', json.token);
     loginForm.style.display = "none";
     logOut.style.display = "block";
+    ProfilePge.style.display = "block";
     userInfo.innerHTML = `Logged in ${json.user.username}`;
     getFoodPost();
   }
@@ -139,6 +141,7 @@ logOut.addEventListener('click', async (evt) => {
     console.log(e.message);
   }
 });
+
 
 // // when app starts, check if token exists and hide login form, show logout button and main content, get cats and users
 // if (sessionStorage.getItem('token')) {
