@@ -30,6 +30,11 @@
     box-sizing: border-box;
 }
 
+.sticky-div {
+    position: sticky;
+    top: 0;
+}
+
 .top {
     background: grey;
     position: relative;
@@ -79,7 +84,8 @@ h3 {
 }
 
 .form-wrapper {
-    width: 33%;
+    height: auto;
+    width: 300px;
     border-radius: 8px;
     border: 1px solid #ccc;
     padding: 1em;
@@ -113,6 +119,10 @@ input, button, select {
     align-items: center;
 }
 
+.filler {
+    height: 50000px;
+}
+
 .middle {
     flex: 1;
     background-image: linear-gradient(180deg, #ae9d7c, white);
@@ -121,6 +131,7 @@ input, button, select {
     justify-content: flex-end;
     align-items: center;
     height: 5vh;
+    position: relative;
 }
 
 .Logo {

@@ -9,6 +9,7 @@ const logOut = document.querySelector('#log-out');
 const userInfo = document.querySelector('#user-info');
 const ProfilePge = document.querySelector('#profilePage');
 
+
 // create foodPost cards
 const createFoodPostCards = (recipes) => {
   // clear ul
