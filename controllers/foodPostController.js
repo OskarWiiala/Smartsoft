@@ -39,10 +39,6 @@ const foodPost_create = async (req, res) => {
     return res.status(400).json({errors: errors.array()});
   }
 
-  const coords = await getCoordinates(req.file.path);
-  console.log('coords', coords);
-  req.body.coords = coords;
-
   const id = await foodPostModel.insertFoodPost(req);
   const foodPost = await foodPostModel.getFoodPost(id);
   res.send(foodPost);

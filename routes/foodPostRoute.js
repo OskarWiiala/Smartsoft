@@ -36,7 +36,7 @@ router.post('/',
       body('user', 'required').isLength({min: 1}).isNumeric(),
       body('title', 'cannot be empty').isLength({min: 1}),
       body('text', 'cannot be empty').isLength({min: 1}),
-      body('image', 'not an image').contains('image'),
+      body('type', 'not an image').contains('image'),
     ],
     foodPostController.foodPost_create);
 

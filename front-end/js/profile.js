@@ -10,6 +10,7 @@ const userInfo = document.querySelector('#user-info');
 const addPost = document.querySelector('#displayAddPostButton');
 const postContainer = document.querySelector('.post-container')
 const cancelPost = document.querySelector('.cancel-post');
+const addUser = document.querySelector('.add-user');
 
 const createFoodPostCards = (recipes) => {
   // clear ul
@@ -74,7 +75,7 @@ const getFoodPost = async () => {
     console.log(e.message);
   }
 };
-getFoodPost()
+getFoodPost();
 
 //Used to display post-container when clicking "create new post" button
 addPost.addEventListener('submit', async (evt) => {
@@ -97,6 +98,83 @@ cancelPost.addEventListener('button', async (evt) => {
   addPost.style.display = "block";
 });
 
+// add current user to add foodPost form
+const addUserToFoodPostForm = (user) => {
+  addUser.innerHTML = '';
+  const option = document.createElement('option');
+  option.value = user.user_id;
+  option.innerHTML = user.username;
+  option.classList.add('light-border');
+  addUser.appendChild(option);
+};
 
+// submit add foodPost form
+addForm.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+  const fd = new FormData(addForm);
+  const fetchOptions = {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+    },
+    body: fd,
+  };
+  const response = await fetch(url + '/foodPost', fetchOptions);
+  const json = await response.json();
+  console.log('add response', json);
+  postContainer.style.display = "none";
+  addPost.style.display = "block";
+  await getFoodPost();
+});
 
+// login
+loginForm.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+  const data = serializeJson(loginForm);
+  const fetchOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  };
 
+  const response = await fetch(url + '/auth/login', fetchOptions);
+  const json = await response.json();
+  console.log('login response', json);
+  if (!json.user) {
+    alert(json.message);
+  } else {
+    // save token
+    sessionStorage.setItem('token', json.token);
+    loginForm.style.display = "none";
+    logOut.style.display = "block";
+    userInfo.innerHTML = `Logged in ${json.user.username}`;
+    addUserToFoodPostForm(json.user);
+  }
+});
+
+// logout
+logOut.addEventListener('click', async (evt) => {
+  evt.preventDefault();
+  try {
+    const options = {
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    };
+    const response = await fetch(url + '/auth/logout', options);
+    const json = await response.json();
+    console.log(json);
+    // remove token
+    sessionStorage.removeItem('token');
+    alert('You have logged out');
+    loginForm.style.display =  "block";
+    logOut.style.display = "none";
+    userInfo.innerHTML = ``;
+    addUser.innerHTML = '';
+  }
+  catch (e) {
+    console.log(e.message);
+  }
+});
