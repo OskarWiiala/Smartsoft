@@ -126,6 +126,8 @@ logOut.addEventListener('click', async (evt) => {
     loginForm.style.display = 'block';
     logOut.style.display = 'none';
     userInfo.innerHTML = ``;
+    ProfilePge.style.display = 'none';
+    addPost.style.display = 'none';
   } catch (e) {
     console.log(e.message);
   }
