@@ -99,13 +99,8 @@ cancelPost.addEventListener('button', async (evt) => {
 });
 
 // add current user to add foodPost form
-const addUserToFoodPostForm = (user) => {
-  addUser.innerHTML = '';
-  const option = document.createElement('option');
-  option.value = user.user_id;
-  option.innerHTML = user.username;
-  option.classList.add('light-border');
-  addUser.appendChild(option);
+const addUserToAddFoodPostForm = (user) => {
+  addUser.value = user.user_id;
 };
 
 // submit add foodPost form
@@ -150,7 +145,7 @@ loginForm.addEventListener('submit', async (evt) => {
     loginForm.style.display = "none";
     logOut.style.display = "block";
     userInfo.innerHTML = `Logged in ${json.user.username}`;
-    addUserToFoodPostForm(json.user);
+    addUserToAddFoodPostForm(json.user);
   }
 });
 
@@ -172,7 +167,7 @@ logOut.addEventListener('click', async (evt) => {
     loginForm.style.display =  "block";
     logOut.style.display = "none";
     userInfo.innerHTML = ``;
-    addUser.innerHTML = '';
+    addUser.value = '';
   }
   catch (e) {
     console.log(e.message);
