@@ -50,7 +50,7 @@
                 <button class="submitButton submitButton2" type="submit">Log out</button>
             </form>
 
-            <form action="profile.html" id="profilePage" style="display: none;">
+            <form id="profilePage" style="display: none;">
                 <button class="submitButton submitButton2" type="submit">My profile</button>
             </form>
 
@@ -68,7 +68,12 @@
         <form id="addUserPage">
             <button class="submitButton submitButton2" type="submit">create new user</button>
         </form>
-
+        <form action="index.html" id="HomePage" style="display: none;">
+            <button class="submitButton submitButton2" type="submit">Home</button>
+        </form>
+        <form id="displayAddPostButton" style="display: none;">
+            <button class="submitButton submitButton2" type="submit">Create new post</button>
+        </form>
     </div>
 </div>
 
@@ -86,6 +91,30 @@
                placeholder="Password" required>
         <button class="roundEdge" type="submit">Save</button>
     </form>
+
+    <div class="post-container" style="display: none;">
+        <div class="form-wrapper">
+            <h3>Add new food post</h3>
+            <form action="http://localhost:3000/foodPost"
+                  method="post"
+                  enctype="multipart/form-data"
+                  id="addFoodPostForm" style="display: none">
+                <input class="light-border add-user" type="number" name="user" placeholder="User" required>
+                <label>
+                    <input class="light-border" type="text" name="title" placeholder="Title" required>
+                </label>
+                <label>
+                    <input class="light-border" type="text" name="text" placeholder="Text" required>
+                    <!--                <textarea rows="4" cols="50" name="comment">Enter text here...</textarea>-->
+                </label>
+                <input class="light-border" type="file" name="foodPost" accept="image/*" placeholder="Choose an image file">
+                <button id="uploadButton" class="light-border" type="submit">Upload</button>
+            </form>
+            <form id="cancel-form" style="display: flex">
+                <button class="cancel-post" type="submit">Cancel</button>
+            </form>
+        </div>
+    </div>
 
     <ul>
         <!-- js creates list here -->

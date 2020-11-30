@@ -10,6 +10,11 @@ const userInfo = document.querySelector('#user-info');
 const ProfilePge = document.querySelector('#profilePage');
 const addUserPage = document.querySelector('#addUserPage');
 const addUserForm = document.querySelector('#add-user-form');
+const addPost = document.querySelector('#displayAddPostButton');
+const postContainer = document.querySelector('.post-container')
+const cancelPost = document.querySelector('.cancel-post');
+const addUser = document.querySelector('.add-user');
+const upLoadB = document.querySelector('#uploadButton');
 
 // create foodPost cards
 const createFoodPostCards = (recipes) => {
@@ -97,6 +102,7 @@ loginForm.addEventListener('submit', async (evt) => {
     loginForm.style.display = 'none';
     logOut.style.display = 'block';
     ProfilePge.style.display = 'block';
+    addUserPage.style.display = 'none';
     userInfo.innerHTML = `Logged in ${json.user.username}`;
     getFoodPost();
   }
@@ -155,4 +161,56 @@ addUserForm.addEventListener('submit', async (evt) => {
   sessionStorage.setItem('token', json.token);
   addUserForm.style.display = 'none';
 
+});
+
+ProfilePge.addEventListener('click', async (evt) => {
+  evt.preventDefault();
+  addPost.style.display = 'block';
+  cancelPost.style.display = 'block';
+  addForm.style.display = 'block';
+});
+
+//Used to display post-container when clicking "create new post" button
+addPost.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+  postContainer.style.display = "flex";
+  addPost.style.display = "none";
+
+  //This scrolls the page to the top
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+});
+
+//Used to hide post-container when clicking "cancel" button in the "add new food post" card
+cancelPost.addEventListener('button', async (evt) => {
+  evt.preventDefault();
+  postContainer.style.display = "none";
+  addPost.style.display = "block";
+});
+
+// add current user to add foodPost form
+const addUserToAddFoodPostForm = (user) => {
+  addUser.value = user.user_id;
+};
+
+// submit add foodPost form
+addForm.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+  const fd = new FormData(addForm);
+  const fetchOptions = {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+    },
+    body: fd,
+  };
+  const response = await fetch(url + '/foodPost', fetchOptions);
+  const json = await response.json();
+  console.log('add response', json);
+  postContainer.style.display = "none";
+  addPost.style.display = "block";
+  await getFoodPost();
 });
