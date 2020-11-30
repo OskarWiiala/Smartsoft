@@ -10,77 +10,90 @@
 </head>
 <body>
 <div class="sticky-div">
-<div class="top">
-    <div class="Logo">
-        <div id="logoPic">
-            <img src="testLogo.png" alt="logo">
+    <div class="top">
+        <div class="Logo">
+            <div id="logoPic">
+                <img src="testLogo.png" alt="logo">
+            </div>
         </div>
-    </div>
 
-    <div class="TagLine">
-        <div class="googleFontText">
-            <h1>Tag Area</h1>
+        <div class="TagLine">
+            <div class="googleFontText">
+                <h1>Tag Area</h1>
+            </div>
         </div>
+
+        <div class="Login">
+            <form id="login-form" class="light-border">
+                <div>
+                    <label>Email:</label>
+                    <label>
+                        <input class="loginInput" type="text" name="username"/>
+                    </label>
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <label>
+                        <input class="loginInput" type="password" name="password"
+                               placeholder="Password" required>
+                    </label>
+                </div>
+                <div>
+                    <button class="submitButton submitButton2" type="submit">Log In</button>
+
+                </div>
+
+            </form>
+            <p id="user-info"></p>
+            <form id="log-out" style="display: none;">
+
+                <button class="submitButton submitButton2" type="submit">Log out</button>
+            </form>
+
+            <form action="profile.html" id="profilePage" style="display: none;">
+                <button class="submitButton submitButton2" type="submit">My profile</button>
+            </form>
+
+        </div>
+
     </div>
 
-    <div class="Login">
-        <form id="login-form" class="light-border">
-            <div>
-                <label>Email:</label>
-                <label>
-                    <input class="loginInput" type="text" name="username"/>
-                </label>
-            </div>
-            <div>
-                <label>Password:</label>
-                <label>
-                    <input class="loginInput" type="password" name="password"
-                           placeholder="Password" required>
-                </label>
-            </div>
-            <div>
-                <button class="submitButton submitButton2" type="submit">Log In</button>
+    <div class="middle">
 
-            </div>
+        <label>
+            <input class="searchInput" type="text" name="Search"/>
+            <button id="myButton" class="float-left submit-button">Search</button>
+        </label>
 
-        </form>
-        <p id="user-info"></p>
-        <form id="log-out" style="display: none;">
-
-            <button class="submitButton submitButton2" type="submit">Log out</button>
-        </form>
-
-        <form action="profile.html" id="profilePage" style="display: none;">
-            <button class="submitButton submitButton2" type="submit">My profile</button>
+        <form id="addUserPage">
+            <button class="submitButton submitButton2" type="submit">create new user</button>
         </form>
 
     </div>
-
-</div>
-
-<div class="middle">
-
-    <label>
-        <input class="searchInput" type="text" name="Search"/>
-        <button id="myButton" class="float-left submit-button" >Search</button>
-    </label>
-
-    <form action="addUser.html" id="addUserPage" >
-        <button class="submitButton submitButton2" type="submit">create new user</button>
-    </form>
-
-</div>
 </div>
 
 <div class="content">
+
+    <form class="roundEdge" id="add-user-form" style="display: none;">
+        <input class="roundEdge"
+               type="text"
+               name="username"
+               pattern=".{3,}"
+               placeholder="username"
+               required>
+        <input class="roundEdge" type="email" name="email" placeholder="email" required>
+        <input class="roundEdge" type="password" name="password" pattern="(?=.*[A-Z]).{8,}"
+               placeholder="Password" required>
+        <button class="roundEdge" type="submit">Save</button>
+    </form>
 
     <ul>
         <!-- js creates list here -->
     </ul>
 
-<!--    temporary test content!-->
+    <!--    temporary test content!-->
 
-<!--    <div class="card">user content 2</div>-->
+    <!--    <div class="card">user content 2</div>-->
 </div>
 
 <div class="filler"></div>

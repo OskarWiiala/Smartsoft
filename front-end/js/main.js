@@ -8,7 +8,8 @@ const loginForm = document.querySelector('#login-form');
 const logOut = document.querySelector('#log-out');
 const userInfo = document.querySelector('#user-info');
 const ProfilePge = document.querySelector('#profilePage');
-
+const addUserPage = document.querySelector('#addUserPage');
+const addUserForm = document.querySelector('#add-user-form');
 
 // create foodPost cards
 const createFoodPostCards = (recipes) => {
@@ -37,41 +38,24 @@ const createFoodPostCards = (recipes) => {
         method: 'DELETE',
       };
       try {
-        const response = await fetch(url + '/foodPost/' + foodPost.food_post_id, fetchOptions);
+        const response = await fetch(url + '/foodPost/' + foodPost.food_post_id,
+            fetchOptions);
         const json = await response.json();
         console.log('delete response', json);
         getFoodPost();
-      }
-      catch (e) {
+      } catch (e) {
         console.log(e.message);
       }
     });
 
-
     const card = document.createElement('card');
     card.classList.add('roundEdge');
-
     card.appendChild(h2);
     card.appendChild(figure);
     card.appendChild(p1);
-    card.appendChild(delButton);
     ul.appendChild(card);
   });
 };
-
-// AJAX call
-// const getFoodPost = async () => {
-//   try {
-//     const response = await fetch(url + '/foodPost');
-//     const recipes = await response.json();
-//     createFoodPostCards(recipes);
-//   }
-//   catch (e) {
-//     console.log(e.message);
-//   }
-// };
-// getFoodPost();
-
 
 const getFoodPost = async () => {
   console.log('getFoodPost token ', sessionStorage.getItem('token'));
@@ -84,12 +68,11 @@ const getFoodPost = async () => {
     const response = await fetch(url + '/foodPost', options);
     const recipes = await response.json();
     createFoodPostCards(recipes);
-  }
-  catch (e) {
+  } catch (e) {
     console.log(e.message);
   }
 };
-getFoodPost()
+getFoodPost();
 
 // login
 loginForm.addEventListener('submit', async (evt) => {
@@ -111,9 +94,9 @@ loginForm.addEventListener('submit', async (evt) => {
   } else {
     // save token
     sessionStorage.setItem('token', json.token);
-    loginForm.style.display = "none";
-    logOut.style.display = "block";
-    ProfilePge.style.display = "block";
+    loginForm.style.display = 'none';
+    logOut.style.display = 'block';
+    ProfilePge.style.display = 'block';
     userInfo.innerHTML = `Logged in ${json.user.username}`;
     getFoodPost();
   }
@@ -134,18 +117,42 @@ logOut.addEventListener('click', async (evt) => {
     // remove token
     sessionStorage.removeItem('token');
     alert('You have logged out');
-    loginForm.style.display =  "block";
-    logOut.style.display = "none";
+    loginForm.style.display = 'block';
+    logOut.style.display = 'none';
     userInfo.innerHTML = ``;
-  }
-  catch (e) {
+  } catch (e) {
     console.log(e.message);
   }
 });
-
 
 // // when app starts, check if token exists and hide login form, show logout button and main content, get cats and users
 // if (sessionStorage.getItem('token')) {
 //   logOut.style.display = 'block';
 //   getFoodPost()
 // }
+
+addUserPage.addEventListener('click', async (evt) => {
+  evt.preventDefault();
+  addUserForm.style.display = 'block';
+
+});
+
+// submit register form
+addUserForm.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+  const data = serializeJson(addUserForm);
+  const fetchOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  };
+  const response = await fetch(url + '/auth/register', fetchOptions);
+  const json = await response.json();
+  console.log('user add response', json);
+  // save token
+  sessionStorage.setItem('token', json.token);
+  addUserForm.style.display = 'none';
+
+});
