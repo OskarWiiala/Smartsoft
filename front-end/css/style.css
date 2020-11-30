@@ -30,6 +30,11 @@
     box-sizing: border-box;
 }
 
+.sticky-div {
+    position: sticky;
+    top: 0;
+}
+
 .top {
     background: grey;
     position: relative;
@@ -119,6 +124,10 @@ ul {
     background-color: #cedffa;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.filler {
+    height: 5000px;
 }
 
 card {

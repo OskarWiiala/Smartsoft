@@ -76,12 +76,21 @@ const getFoodPost = async () => {
 };
 getFoodPost()
 
+//Used to display post-container when clicking "create new post" button
 addPost.addEventListener('submit', async (evt) => {
   evt.preventDefault();
   postContainer.style.display = "flex";
   addPost.style.display = "none";
+
+  //This scrolls the page to the top
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
 });
 
+//Used to hide post-container when clicking "cancel" button in the "add new food post" card
 cancelPost.addEventListener('button', async (evt) => {
   evt.preventDefault();
   postContainer.style.display = "none";
