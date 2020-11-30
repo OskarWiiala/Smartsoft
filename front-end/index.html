@@ -9,6 +9,7 @@
 
 </head>
 <body>
+<div class="sticky-div">
 <div class="top">
     <div class="Logo">
         <div id="logoPic">
@@ -44,23 +45,31 @@
 
         </form>
         <p id="user-info"></p>
-        <form id="log-out">
+        <form id="log-out" style="display: none;">
 
             <button class="submitButton submitButton2" type="submit">Log out</button>
         </form>
+
+        <form action="profile.html" id="profilePage" style="display: none;">
+            <button class="submitButton submitButton2" type="submit">My profile</button>
+        </form>
+
     </div>
 
 </div>
 
 <div class="middle">
 
-    <label>Search:</label>
     <label>
         <input class="searchInput" type="text" name="Search"/>
+        <button id="myButton" class="float-left submit-button" >Search</button>
     </label>
-    <input class="submitButton submitButton2" type="submit" value="Add new post">
-    <input class="submitButton submitButton2" type="submit" value="submit button">
 
+    <form action="addUser.html" id="addUserPage" >
+        <button class="submitButton submitButton2" type="submit">create new user</button>
+    </form>
+
+</div>
 </div>
 
 <div class="content">
@@ -72,8 +81,9 @@
 <!--    temporary test content!-->
 
 <!--    <div class="card">user content 2</div>-->
-
 </div>
+
+<div class="filler"></div>
 <script src="./js/serialize.js"></script>
 <script src="./js/main.js"></script>
 </body>

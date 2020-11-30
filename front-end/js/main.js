@@ -7,6 +7,8 @@ const addForm = document.querySelector('#addFoodPostForm');
 const loginForm = document.querySelector('#login-form');
 const logOut = document.querySelector('#log-out');
 const userInfo = document.querySelector('#user-info');
+const ProfilePge = document.querySelector('#profilePage');
+
 
 // create foodPost cards
 const createFoodPostCards = (recipes) => {
@@ -58,28 +60,9 @@ const createFoodPostCards = (recipes) => {
 };
 
 // AJAX call
-const getFoodPost = async () => {
-  try {
-    const response = await fetch(url + '/foodPost');
-    const recipes = await response.json();
-    createFoodPostCards(recipes);
-  }
-  catch (e) {
-    console.log(e.message);
-  }
-};
-getFoodPost();
-
-
 // const getFoodPost = async () => {
-//   console.log('getFoodPost token ', sessionStorage.getItem('token'));
 //   try {
-//     const options = {
-//       headers: {
-//         'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-//       },
-//     };
-//     const response = await fetch(url + '/foodPost', options);
+//     const response = await fetch(url + '/foodPost');
 //     const recipes = await response.json();
 //     createFoodPostCards(recipes);
 //   }
@@ -87,7 +70,26 @@ getFoodPost();
 //     console.log(e.message);
 //   }
 // };
-// getFoodPost()
+// getFoodPost();
+
+
+const getFoodPost = async () => {
+  console.log('getFoodPost token ', sessionStorage.getItem('token'));
+  try {
+    const options = {
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    };
+    const response = await fetch(url + '/foodPost', options);
+    const recipes = await response.json();
+    createFoodPostCards(recipes);
+  }
+  catch (e) {
+    console.log(e.message);
+  }
+};
+getFoodPost()
 
 // login
 loginForm.addEventListener('submit', async (evt) => {
@@ -109,12 +111,10 @@ loginForm.addEventListener('submit', async (evt) => {
   } else {
     // save token
     sessionStorage.setItem('token', json.token);
-    // show/hide forms + cats
-    // loginWrapper.style.display = 'none';
     loginForm.style.display = "none";
-    // main.style.display = 'block';
-    userInfo.innerHTML = `Hello ${json.user.username}`;
-    document.getElementById("log-out").style.display = 'block';
+    logOut.style.display = "block";
+    ProfilePge.style.display = "block";
+    userInfo.innerHTML = `Logged in ${json.user.username}`;
     getFoodPost();
   }
 });
@@ -134,16 +134,15 @@ logOut.addEventListener('click', async (evt) => {
     // remove token
     sessionStorage.removeItem('token');
     alert('You have logged out');
-    // show/hide forms + cats
-    // loginWrapper.style.display = 'flex';
-    logOut.style.display = 'none';
-    // main.style.display = 'none';
-    document.getElementById("log-out").style.display = "block";
+    loginForm.style.display =  "block";
+    logOut.style.display = "none";
+    userInfo.innerHTML = ``;
   }
   catch (e) {
     console.log(e.message);
   }
 });
+
 
 // // when app starts, check if token exists and hide login form, show logout button and main content, get cats and users
 // if (sessionStorage.getItem('token')) {
