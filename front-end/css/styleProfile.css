@@ -30,6 +30,11 @@
     box-sizing: border-box;
 }
 
+.sticky-div {
+    position: sticky;
+    top: 0;
+}
+
 .top {
     background: grey;
     position: relative;
@@ -40,7 +45,8 @@
     display: flex;
     justify-content: center;
     margin-top: 50px;
-    margin-bottom: 20px;
+    background-image: linear-gradient(180deg, #8ab7ff, #cedffa);
+    height: 5vh;
 }
 
 h3 {
@@ -52,12 +58,34 @@ h3 {
     max-width: 100em;
     margin: auto;
     padding: 1em;
+    display: none;
+    justify-content: center;
+}
+
+#uploadButton {
+    border: 2px solid green;
+    background-color: #66ff7a;
+    font-weight: bolder;
+}
+
+#cancel-form {
     display: flex;
     justify-content: center;
 }
 
+.cancel-post {
+    height: auto;
+    padding: 1em;
+    justify-content: center;
+    border-color: red;
+    background-color: #ff6666;
+    font-weight: bolder;
+    border-radius: 8px;
+}
+
 .form-wrapper {
-    width: 33%;
+    height: auto;
+    width: 300px;
     border-radius: 8px;
     border: 1px solid #ccc;
     padding: 1em;
@@ -91,6 +119,10 @@ input, button, select {
     align-items: center;
 }
 
+.filler {
+    height: 50000px;
+}
+
 .middle {
     flex: 1;
     background-image: linear-gradient(180deg, #ae9d7c, white);
@@ -99,6 +131,7 @@ input, button, select {
     justify-content: flex-end;
     align-items: center;
     height: 5vh;
+    position: relative;
 }
 
 .Logo {

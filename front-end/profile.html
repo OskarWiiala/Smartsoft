@@ -9,22 +9,30 @@
 
 </head>
 <body>
-<div class="top">
-    <div class="Logo">
-        <div id="logoPic">
-            <img src="./testLogo.png" alt="logo">
+<div class="sticky-div">
+    <div class="top">
+        <div class="Logo">
+            <div id="logoPic">
+                <img src="./testLogo.png" alt="logo">
+            </div>
+        </div>
+
+        <div class="TagLine">
+            <div class="googleFontText">
+                <h1>Tag Area</h1>
+            </div>
         </div>
     </div>
 
-    <div class="TagLine">
-        <div class="googleFontText">
-            <h1>Tag Area</h1>
-        </div>
+    <div class="middle">
+        <!--    <a href="index.html">Home</a>-->
+        <form action="index.html" id="HomePage" style="display: block;">
+            <button class="submitButton submitButton2" type="submit">Home</button>
+        </form>
+        <form id="displayAddPostButton" style="display: block;">
+            <button class="submitButton submitButton2" type="submit">Create new post</button>
+        </form>
     </div>
-</div>
-
-<div class="middle">
-    <a href="index.html">Home</a>
 </div>
 
 <div class="post-container">
@@ -39,9 +47,13 @@
             </label>
             <label>
                 <input class="light-border" type="text" name="text" placeholder="Text" required>
+                <!--                <textarea rows="4" cols="50" name="comment">Enter text here...</textarea>-->
             </label>
             <input class="light-border" type="file" name="post" accept="image/*" placeholder="Choose file">
-            <button class="light-border" type="submit">Upload new post</button>
+            <button id="uploadButton" class="light-border" type="submit">Upload</button>
+        </form>
+        <form id="cancel-form" style="display: flex">
+            <button class="cancel-post" type="submit">Cancel</button>
         </form>
     </div>
 </div>
@@ -55,7 +67,10 @@
 
 </div>
 
+<div class="filler"></div>
+
+<script src="./js/serialize.js"></script>
+<script src="./js/profile.js"></script>
 </body>
 </html>
 
-<script src="./js/profile.js"></script>
