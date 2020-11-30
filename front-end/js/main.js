@@ -100,6 +100,7 @@ loginForm.addEventListener('submit', async (evt) => {
     userInfo.innerHTML = `Logged in ${json.user.username}`;
     getFoodPost();
   }
+  loginForm.reset();
 });
 
 // logout
@@ -154,5 +155,5 @@ addUserForm.addEventListener('submit', async (evt) => {
   // save token
   sessionStorage.setItem('token', json.token);
   addUserForm.style.display = 'none';
-
+  addUserForm.reset();
 });
