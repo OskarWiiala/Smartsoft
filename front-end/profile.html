@@ -23,6 +23,34 @@
     </div>
 </div>
 
+<div class="Login">
+    <form id="login-form" class="light-border">
+        <div>
+            <label>Email:</label>
+            <label>
+                <input class="loginInput" type="text" name="username"/>
+            </label>
+        </div>
+        <div>
+            <label>Password:</label>
+            <label>
+                <input class="loginInput" type="password" name="password"
+                       placeholder="Password" required>
+            </label>
+        </div>
+        <div>
+            <button class="submitButton submitButton2" type="submit">Log In</button>
+
+        </div>
+
+    </form>
+    <p id="user-info"></p>
+    <form id="log-out" style="display: none;">
+
+        <button class="submitButton submitButton2" type="submit">Log out</button>
+    </form>
+</div>
+
 <div class="middle">
 <!--    <a href="index.html">Home</a>-->
     <form action="index.html" id="HomePage" style="display: block;">
@@ -39,14 +67,15 @@
         <form action="http://localhost:3000/foodPost"
               method="post"
               enctype="multipart/form-data"
-              id="addPostForm">
+              id="addFoodPostForm">
+            <select class="light-border add-user" name="user" style="display: none" required></select>
             <label>
                 <input class="light-border" type="text" name="title" placeholder="Title" required>
             </label>
             <label>
                 <input class="light-border" type="text" name="text" placeholder="Text" required>
             </label>
-            <input class="light-border" type="file" name="post" accept="image/*" placeholder="Choose file">
+            <input class="light-border" type="file" name="foodPost" accept="image/*" placeholder="Choose an image file">
             <button id="uploadButton" class="light-border" type="submit">Upload</button>
 <!--            <button id="cancel-post" class="light-border" type="button">Cancel</button>-->
         </form>
