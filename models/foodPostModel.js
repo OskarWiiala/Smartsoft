@@ -69,7 +69,7 @@ const updateFoodPostLikes = async (req) => {
   try {
     console.log(req.body);
     const [rows] = await promisePool.execute(
-        'UPDATE ss_rating SET likes = ?, dislikes = ? WHERE fk_food_post_id = ?;',
+        'UPDATE ss_rating SET likes = ?, dislikes = ? FROM ss_rating, ss_food_post WHERE ss_rating.fk_food_post_id = ss_food_post.food_post_id;',
         [
           req.body.likes,
           req.body.dislikes,
