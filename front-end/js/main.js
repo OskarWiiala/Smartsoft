@@ -189,7 +189,7 @@ ProfilePge.addEventListener('click', async (evt) => {
   evt.preventDefault();
   addPost.style.display = 'block';
   cancelPost.style.display = 'block';
-  addForm.style.display = 'block';
+  // addForm.style.display = 'flex';
 });
 
 //Used to display post-container when clicking "create new post" button

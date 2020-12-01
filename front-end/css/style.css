@@ -152,12 +152,42 @@ h3 {
     justify-content: center;
 }
 
+#newPostTitle, #newPostText, #newPostFile, #uploadButton, .cancel-post {
+    display: inline-block;
+    width: 100%;
+    margin: .5em 0;
+}
+
+#newPostCheckbox {
+    display: inline-block;
+    margin: 10px;
+}
+
+#newPostCheckboxLabel {
+    font-size: large;
+    font-family: Verdana;
+}
+
 .post-container {
     max-width: 100em;
     margin: auto;
     padding: 1em;
     display: none;
     justify-content: center;
+}
+
+.form-wrapper {
+    height: auto;
+    width: 300px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 1em;
+    box-sizing: border-box;
+    background-color: #c8f7fa;
+}
+
+input[type=checkbox] {
+    transform: scale(2);
 }
 
 #uploadButton {
