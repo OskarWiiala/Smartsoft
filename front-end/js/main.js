@@ -10,6 +10,13 @@ const userInfo = document.querySelector('#user-info');
 const ProfilePge = document.querySelector('#profilePage');
 const addUserPage = document.querySelector('#addUserPage');
 const addUserForm = document.querySelector('#add-user-form');
+const addPost = document.querySelector('#displayAddPostButton');
+const postContainer = document.querySelector('.post-container')
+const cancelPost = document.querySelector('.cancel-post');
+const addUser = document.querySelector('.add-user');
+const upLoadB = document.querySelector('#uploadButton');
+
+let loggedInUserId = null;
 
 // create foodPost cards
 const createFoodPostCards = (recipes) => {
@@ -30,30 +37,38 @@ const createFoodPostCards = (recipes) => {
     const p1 = document.createElement('p');
     p1.innerHTML = `Recipe: ${foodPost.text}`;
 
-    // delete selected foodPost
-    const delButton = document.createElement('button');
-    delButton.innerHTML = 'Delete';
-    delButton.addEventListener('click', async () => {
-      const fetchOptions = {
-        method: 'DELETE',
-      };
-      try {
-        const response = await fetch(url + '/foodPost/' + foodPost.food_post_id,
-            fetchOptions);
-        const json = await response.json();
-        console.log('delete response', json);
-        getFoodPost();
-      } catch (e) {
-        console.log(e.message);
-      }
-    });
-
     const card = document.createElement('card');
     card.classList.add('roundEdge');
     card.appendChild(h2);
     card.appendChild(figure);
     card.appendChild(p1);
     ul.appendChild(card);
+
+    // if the logged in user id matches the foodPost user id, the delete button will be created
+    if (loggedInUserId === foodPost.user) {
+      // delete selected foodPost
+      const delButton = document.createElement('button');
+      delButton.innerHTML = 'Delete';
+
+      delButton.addEventListener('click', async () => {
+        const fetchOptions = {
+          method: 'DELETE',
+          headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+          },
+        };
+        try {
+          const response = await fetch(url + '/foodPost/' + foodPost.food_post_id,
+              fetchOptions);
+          const json = await response.json();
+          console.log('delete response', json);
+          getFoodPost();
+        } catch (e) {
+          console.log(e.message);
+        }
+      });
+      card.appendChild(delButton);
+    }
   });
 };
 
@@ -97,8 +112,12 @@ loginForm.addEventListener('submit', async (evt) => {
     loginForm.style.display = 'none';
     logOut.style.display = 'block';
     ProfilePge.style.display = 'block';
+    addUserPage.style.display = 'none';
     userInfo.innerHTML = `Logged in ${json.user.username}`;
-    getFoodPost();
+    // add user id (hidden) to the add foodPost form
+    addUser.value = json.user.user_id;
+    loggedInUserId = json.user.user_id;
+    await getFoodPost();
   }
   loginForm.reset();
 });
@@ -121,6 +140,10 @@ logOut.addEventListener('click', async (evt) => {
     loginForm.style.display = 'block';
     logOut.style.display = 'none';
     userInfo.innerHTML = ``;
+    ProfilePge.style.display = 'none';
+    addPost.style.display = 'none';
+    addUserPage.style.display = 'block';
+    loggedInUserId = null;
   } catch (e) {
     console.log(e.message);
   }
@@ -156,4 +179,52 @@ addUserForm.addEventListener('submit', async (evt) => {
   sessionStorage.setItem('token', json.token);
   addUserForm.style.display = 'none';
   addUserForm.reset();
+});
+
+ProfilePge.addEventListener('click', async (evt) => {
+  evt.preventDefault();
+  addPost.style.display = 'block';
+  cancelPost.style.display = 'block';
+  // addForm.style.display = 'flex';
+});
+
+//Used to display post-container when clicking "create new post" button
+addPost.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+  postContainer.style.display = "flex";
+  addPost.style.display = "none";
+
+  //This scrolls the page to the top
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+});
+
+//Used to hide post-container when clicking "cancel" button in the "add new food post" card
+cancelPost.addEventListener('click', async (evt) => {
+  evt.preventDefault();
+  postContainer.style.display = "none";
+  addPost.style.display = "block";
+});
+
+// submit add foodPost form
+addForm.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+  const fd = new FormData(addForm);
+  const fetchOptions = {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+    },
+    body: fd,
+  };
+  const response = await fetch(url + '/foodPost', fetchOptions);
+  const json = await response.json();
+  console.log('add response', json);
+  postContainer.style.display = "none";
+  addPost.style.display = "block";
+  await getFoodPost();
+  addForm.reset();
 });
