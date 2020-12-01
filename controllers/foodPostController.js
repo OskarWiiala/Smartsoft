@@ -18,6 +18,12 @@ const foodPost_get_by_id = async (req, res) => {
   res.json(foodPost);
 };
 
+const foodPostLikes_get_by_id = async (req, res) => {
+  console.log('foodPostController: http get foodPostLikes with path param', req.params);
+  const foodPost = await foodPostModel.getFoodPost(req.params.id);
+  res.json(foodPostLikes);
+};
+
 const make_thumbnail = async(req, res, next) => {
   try {
     const ready = await makeThumbnail({width: 160, height: 160}, req.file.path,
@@ -61,7 +67,7 @@ const foodPostLikes_update = async (req, res) => {
     return res.status(400).json({errors: errors.array()});
   }
   const updateOk = await foodPostModel.updateFoodPostLikes(req);
-  res.json(`{message: "likes updated... ${updateOk}"}`);
+  res.json(`{message: "likes updated... ${likeUpdateOk}"}`);
 };
 
 const foodPost_delete = async (req, res) => {
@@ -78,5 +84,6 @@ module.exports = {
   foodPost_update,
   foodPost_delete,
   make_thumbnail,
-  foodPostLikes_update
+  foodPostLikes_update,
+  foodPostLikes_get_by_id
 };

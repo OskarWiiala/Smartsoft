@@ -41,6 +41,7 @@ router.post('/',
     foodPostController.foodPost_create);
 
 router.get('/:id', foodPostController.foodPost_get_by_id);
+router.get('/:id', foodPostController.foodPostLikes_get_by_id);
 router.put('/',
     passport.authenticate('jwt', {session: false}),
     [
@@ -48,6 +49,7 @@ router.put('/',
       body('text', 'cannot be empty').isLength({min: 1}),
     ],
     foodPostController.foodPost_update);
+
 router.delete('/:id',
     passport.authenticate('jwt', {session: false}),
     foodPostController.foodPost_delete);
