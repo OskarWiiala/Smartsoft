@@ -16,6 +16,8 @@ const cancelPost = document.querySelector('.cancel-post');
 const addUser = document.querySelector('.add-user');
 const upLoadB = document.querySelector('#uploadButton');
 
+let loggedInUserId = null;
+
 // create foodPost cards
 const createFoodPostCards = (recipes) => {
   // clear ul
@@ -35,31 +37,38 @@ const createFoodPostCards = (recipes) => {
     const p1 = document.createElement('p');
     p1.innerHTML = `Recipe: ${foodPost.text}`;
 
-    // delete selected foodPost
-    const delButton = document.createElement('button');
-    delButton.innerHTML = 'Delete';
-    delButton.addEventListener('click', async () => {
-      const fetchOptions = {
-        method: 'DELETE',
-      };
-      try {
-        const response = await fetch(url + '/foodPost/' + foodPost.food_post_id,
-            fetchOptions);
-        const json = await response.json();
-        console.log('delete response', json);
-        getFoodPost();
-      } catch (e) {
-        console.log(e.message);
-      }
-    });
-
     const card = document.createElement('card');
     card.classList.add('roundEdge');
     card.appendChild(h2);
     card.appendChild(figure);
     card.appendChild(p1);
-    card.appendChild(delButton).style.display = 'none';
     ul.appendChild(card);
+
+    // if the logged in user id matches the foodPost user id, the delete button will be created
+    if (loggedInUserId === foodPost.user) {
+      // delete selected foodPost
+      const delButton = document.createElement('button');
+      delButton.innerHTML = 'Delete';
+
+      delButton.addEventListener('click', async () => {
+        const fetchOptions = {
+          method: 'DELETE',
+          headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+          },
+        };
+        try {
+          const response = await fetch(url + '/foodPost/' + foodPost.food_post_id,
+              fetchOptions);
+          const json = await response.json();
+          console.log('delete response', json);
+          getFoodPost();
+        } catch (e) {
+          console.log(e.message);
+        }
+      });
+      card.appendChild(delButton);
+    }
   });
 };
 
@@ -105,9 +114,12 @@ loginForm.addEventListener('submit', async (evt) => {
     ProfilePge.style.display = 'block';
     addUserPage.style.display = 'none';
     userInfo.innerHTML = `Logged in ${json.user.username}`;
+    // add user id (hidden) to the add foodPost form
     addUser.value = json.user.user_id;
-    getFoodPost();
+    loggedInUserId = json.user.user_id;
+    await getFoodPost();
   }
+  loginForm.reset();
 });
 
 // logout
@@ -131,6 +143,7 @@ logOut.addEventListener('click', async (evt) => {
     ProfilePge.style.display = 'none';
     addPost.style.display = 'none';
     addUserPage.style.display = 'block';
+    loggedInUserId = null;
   } catch (e) {
     console.log(e.message);
   }
@@ -165,7 +178,7 @@ addUserForm.addEventListener('submit', async (evt) => {
   // save token
   sessionStorage.setItem('token', json.token);
   addUserForm.style.display = 'none';
-
+  addUserForm.reset();
 });
 
 ProfilePge.addEventListener('click', async (evt) => {
@@ -196,11 +209,6 @@ cancelPost.addEventListener('click', async (evt) => {
   addPost.style.display = "block";
 });
 
-// add current user to add foodPost form
-const addUserToAddFoodPostForm = (user) => {
-  addUser.value = user.user_id;
-};
-
 // submit add foodPost form
 addForm.addEventListener('submit', async (evt) => {
   evt.preventDefault();
@@ -218,4 +226,5 @@ addForm.addEventListener('submit', async (evt) => {
   postContainer.style.display = "none";
   addPost.style.display = "block";
   await getFoodPost();
+  addForm.reset();
 });
