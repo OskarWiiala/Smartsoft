@@ -158,6 +158,12 @@ h3 {
     margin: .5em 0;
 }
 
+#addUserUsername, #addUserEmail, #addUserPassword, #addUserButton, #addUserCancel {
+    display: inline-block;
+    width: 100%;
+    margin: .5em 0;
+}
+
 #newPostCheckbox {
     display: inline-block;
     margin: 10px;
@@ -166,6 +172,14 @@ h3 {
 #newPostCheckboxLabel {
     font-size: large;
     font-family: Verdana;
+}
+
+.add-user-form-container {
+    max-width: 100em;
+    margin: auto;
+    padding: 1em;
+    display: none;
+    justify-content: center;
 }
 
 .post-container {
@@ -186,11 +200,16 @@ h3 {
     background-color: #c8f7fa;
 }
 
+/*This simply changes the background color of the create user from*/
+#form-wrapper-add-user {
+    background-color: #ffc966;
+}
+
 input[type=checkbox] {
     transform: scale(2);
 }
 
-#uploadButton {
+#uploadButton, #addUserButton {
     border: 2px solid green;
     background-color: #66ff7a;
     font-weight: bolder;
@@ -201,7 +220,7 @@ input[type=checkbox] {
     justify-content: center;
 }
 
-.cancel-post {
+.cancel-post, #addUserCancel {
     height: auto;
     padding: 1em;
     justify-content: center;

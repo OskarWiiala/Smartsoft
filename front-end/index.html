@@ -77,14 +77,36 @@
     </div>
 </div>
 
+<div class="add-user-form-container" style="display: none">
+    <div id="form-wrapper-add-user" class="form-wrapper">
+        <form id="add-user-form">
+            <input id="addUserUsername"
+                   class="light-border"
+                   type="text"
+                   name="username"
+                   pattern=".{3,}"
+                   placeholder="username"
+                   required>
+            <input id="addUserEmail" class="light-border" type="email" name="email" placeholder="email" required>
+            <input id="addUserPassword" class="light-border" type="password" name="password" pattern="(?=.*[A-Z]).{8,}"
+                   placeholder="Password" required>
+            <button id="addUserButton" class="light-border" type="submit">Save</button>
+        </form>
+        <form id="form-addUserCancel" style="display: flex">
+            <button id="addUserCancel" class="light-border" type="submit">Cancel</button>
+        </form>
+    </div>
+</div>
+
 <div class="post-container" style="display: none;">
     <div class="form-wrapper">
         <h3>Add new food post</h3>
         <form action="http://localhost:3000/foodPost"
               method="post"
               enctype="multipart/form-data"
-              id="addFoodPostForm" >
-            <input class="light-border add-user" type="number" name="user" placeholder="User" style="display: none" required>
+              id="addFoodPostForm">
+            <input class="light-border add-user" type="number" name="user" placeholder="User" style="display: none"
+                   required>
             <label>
                 <input id="newPostTitle" class="light-border" type="text" name="title" placeholder="Title" required>
             </label>
@@ -92,13 +114,11 @@
                 <input id="newPostText" class="light-border" type="text" name="text" placeholder="Text" required>
                 <!--                <textarea rows="4" cols="50" name="comment">Enter text here...</textarea>-->
             </label>
-            <input id="newPostFile" class="light-border" type="file" name="foodPost" accept="image/*" placeholder="Choose an image file">
+            <input id="newPostFile" class="light-border" type="file" name="foodPost" accept="image/*"
+                   placeholder="Choose an image file">
             <input id="newPostCheckbox" type="checkbox" name="status" value="private">
             <label id="newPostCheckboxLabel" for="newPostCheckbox">private</label>
             <button id="uploadButton" class="light-border" type="submit">Upload</button>
-
-
-
         </form>
         <form id="cancel-form" style="display: flex">
             <button class="cancel-post" type="submit">Cancel</button>
@@ -108,19 +128,18 @@
 
 <div class="content">
 
-    <form class="roundEdge" id="add-user-form" style="display: none;">
-        <input class="roundEdge"
-               type="text"
-               name="username"
-               pattern=".{3,}"
-               placeholder="username"
-               required>
-        <input class="roundEdge" type="email" name="email" placeholder="email" required>
-        <input class="roundEdge" type="password" name="password" pattern="(?=.*[A-Z]).{8,}"
-               placeholder="Password" required>
-        <button class="roundEdge" type="submit">Save</button>
-    </form>
-
+    <!--    <form class="roundEdge" id="add-user-form" style="display: none;">-->
+    <!--        <input class="roundEdge"-->
+    <!--               type="text"-->
+    <!--               name="username"-->
+    <!--               pattern=".{3,}"-->
+    <!--               placeholder="username"-->
+    <!--               required>-->
+    <!--        <input class="roundEdge" type="email" name="email" placeholder="email" required>-->
+    <!--        <input class="roundEdge" type="password" name="password" pattern="(?=.*[A-Z]).{8,}"-->
+    <!--               placeholder="Password" required>-->
+    <!--        <button class="roundEdge" type="submit">Save</button>-->
+    <!--    </form>-->
 
 
     <ul>

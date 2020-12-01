@@ -11,7 +11,9 @@ const ProfilePge = document.querySelector('#profilePage');
 const addUserPage = document.querySelector('#addUserPage');
 const addUserForm = document.querySelector('#add-user-form');
 const addPost = document.querySelector('#displayAddPostButton');
-const postContainer = document.querySelector('.post-container')
+const addUserContainer = document.querySelector('.add-user-form-container');
+const cancelUser = document.querySelector('#addUserCancel');
+const postContainer = document.querySelector('.post-container');
 const cancelPost = document.querySelector('.cancel-post');
 const addUser = document.querySelector('.add-user');
 const upLoadB = document.querySelector('#uploadButton');
@@ -155,10 +157,26 @@ logOut.addEventListener('click', async (evt) => {
 //   getFoodPost()
 // }
 
+//When non-logged in user clicks on "create new user", the form for submitting new users shows up
 addUserPage.addEventListener('click', async (evt) => {
   evt.preventDefault();
-  addUserForm.style.display = 'block';
+  addUserContainer.style.display = 'flex';
+  addUserPage.style.display = 'none';
 
+  //This scrolls the page to the top
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+});
+
+//Used to hide add-user-form-container when clicking "cancel" button in the "add new food post" card
+cancelUser.addEventListener('click', async (evt) => {
+  evt.preventDefault();
+  addUserContainer.style.display = "none";
+  addUserPage.style.display = "block";
+  addUserForm.reset();
 });
 
 // submit register form
@@ -177,7 +195,8 @@ addUserForm.addEventListener('submit', async (evt) => {
   console.log('user add response', json);
   // save token
   sessionStorage.setItem('token', json.token);
-  addUserForm.style.display = 'none';
+  addUserContainer.style.display = 'none';
+  addUserPage.style.display = 'block';
   addUserForm.reset();
 });
 
@@ -207,6 +226,7 @@ cancelPost.addEventListener('click', async (evt) => {
   evt.preventDefault();
   postContainer.style.display = "none";
   addPost.style.display = "block";
+  addForm.reset();
 });
 
 // submit add foodPost form
