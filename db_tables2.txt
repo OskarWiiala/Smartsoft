@@ -39,3 +39,9 @@ CREATE TABLE ss_rating (
 
 INSERT INTO ss_rating(fk_food_post_id, likes, dislikes) VALUES
 (1, 0, 0), (2, 0, 0), (3, 0, 0), (4, 0, 0);
+
+Alter table ss_rating
+MODIFY likes int(100) NOT NULL DEFAULT 0;
+
+Alter table ss_rating
+MODIFY dislikes int(100) NOT NULL DEFAULT 0;
