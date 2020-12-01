@@ -1,3 +1,6 @@
+DROP TABLE ss_food_post;
+DROP TABLE ss_user;
+
 CREATE TABLE `ss_food_post` (
   `food_post_id` int(11) NOT NULL,
   `user` int(11) NOT NULL,
@@ -18,8 +21,8 @@ CREATE TABLE `ss_user` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `ss_user` (`user_id`, `username`, `email`, `password`) VALUES
-(1, 'Test User 1', 'testuser1@metropolia.fi', '1234'),
-(2, 'Test User 2', 'testuser2@metropolia.fi', 'qwer');
+(1, 'Test User 1', 'testuser1@metropolia.fi', '$2a$10$5RzpyimIeuzNqW7G8seBiOzBiWBvrSWroDomxMa0HzU6K2ddSgixS'),
+(2, 'Test User 2', 'testuser2@metropolia.fi', '$2a$10$H7bXhRqd68DjwFIVkw3G1OpfIdRWIRb735GvvzCBeuMhac/ZniGba');
 
 
 ALTER TABLE `ss_food_post`

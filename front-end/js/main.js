@@ -16,6 +16,7 @@ const cancelPost = document.querySelector('.cancel-post');
 const addUser = document.querySelector('.add-user');
 const upLoadB = document.querySelector('#uploadButton');
 
+
 // create foodPost cards
 const createFoodPostCards = (recipes) => {
   // clear ul
@@ -53,11 +54,30 @@ const createFoodPostCards = (recipes) => {
       }
     });
 
+    // give like to foodPost
+    const likeButton = document.createElement('button');
+    likeButton.innerHTML = 'GiveLike';
+    likeButton.addEventListener('click', async () => {
+      const fetchOptions = {
+        method: 'UPDATE',
+      };
+      try {
+        const response = await fetch(url + '/foodPost/' + foodPost.food_post_id,
+            fetchOptions);
+        const json = await response.json();
+        console.log('like response', json);
+        getFoodPost();
+      } catch (e) {
+        console.log(e.message);
+      }
+    });
+
     const card = document.createElement('card');
     card.classList.add('roundEdge');
     card.appendChild(h2);
     card.appendChild(figure);
     card.appendChild(p1);
+    card.appendChild(likeButton);
     card.appendChild(delButton).style.display = 'none';
     ul.appendChild(card);
   });

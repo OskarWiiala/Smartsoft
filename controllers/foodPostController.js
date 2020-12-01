@@ -54,6 +54,16 @@ const foodPost_update = async (req, res) => {
   res.json(`{message: "updated... ${updateOk}"}`);
 };
 
+const foodPostLikes_update = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log('validation', errors.array());
+    return res.status(400).json({errors: errors.array()});
+  }
+  const updateOk = await foodPostModel.updateFoodPostLikes(req);
+  res.json(`{message: "likes updated... ${updateOk}"}`);
+};
+
 const foodPost_delete = async (req, res) => {
   console.log('foodPostController: http delete foodPost with path param', req.params);
   const foodPost = await  foodPostModel.deleteFoodPost(req.params.id);
@@ -67,5 +77,6 @@ module.exports = {
   foodPost_create,
   foodPost_update,
   foodPost_delete,
-  make_thumbnail
+  make_thumbnail,
+  foodPostLikes_update
 };

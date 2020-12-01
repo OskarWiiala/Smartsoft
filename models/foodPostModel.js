@@ -65,6 +65,24 @@ const updateFoodPost = async (req) => {
   }
 };
 
+const updateFoodPostLikes = async (req) => {
+  try {
+    console.log(req.body);
+    const [rows] = await promisePool.execute(
+        'UPDATE ss_rating SET likes = ?, dislikes = ? WHERE fk_food_post_id = ?;',
+        [
+          req.body.likes,
+          req.body.dislikes,
+          req.body.id
+        ]);
+    console.log('foodPostModel likes update:', rows);
+    return rows.affectedRows === 1;
+  }
+  catch (e) {
+    return false;
+  }
+};
+
 const deleteFoodPost = async (id) => {
   try {
     console.log('deleteFoodPost', id);
@@ -82,5 +100,6 @@ module.exports = {
   getFoodPost,
   insertFoodPost,
   updateFoodPost,
-  deleteFoodPost
+  deleteFoodPost,
+  updateFoodPostLikes
 };

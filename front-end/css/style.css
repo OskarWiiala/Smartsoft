@@ -202,5 +202,21 @@ input[type="file" i] {
 }
 
 .filler {
-    height: 5000px;
+    height: 5px;
+}
+
+
+.fa {
+    font-size: 50px;
+    cursor: pointer;
+    user-select: none;
+}
+.fa-thumbs-up {
+    color: blue;
+}
+.fa-thumbs-down {
+    color: red;
+}
+.fa:hover {
+    transform: scale(2);
 }
