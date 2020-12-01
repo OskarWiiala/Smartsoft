@@ -12,11 +12,6 @@ const foodPost_list_get = async (req, res) => {
   res.json(foodPosts);
 };
 
-const foodPostLikes_list_get = async (req, res) => {
-  const foodPostLikes = await foodPostModel.getAllFoodPostLikes();
-  res.json(foodPostLikes);
-};
-
 const foodPost_get_by_id = async (req, res) => {
   console.log('foodPostController: http get foodPost with path param', req.params);
   const foodPost = await foodPostModel.getFoodPost(req.params.id);
@@ -92,5 +87,4 @@ module.exports = {
   make_thumbnail,
   foodPostLikes_update,
   foodPostLike_get_by_id,
-  foodPostLikes_list_get
 };

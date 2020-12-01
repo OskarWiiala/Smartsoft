@@ -17,17 +17,6 @@ LEFT JOIN ss_rating ON food_post_id = fk_food_post_id;`);
   }
 };
 
-const getAllFoodPostLikes = async () => {
-  try {
-    const [rows] = await promisePool
-    .execute(`SELECT * FROM ss_rating`);
-    return rows;
-  }
-  catch (e) {
-    console.error('foodPostModel:', e.message);
-  }
-};
-
 const getFoodPost = async (id) => {
   try {
     console.log('foodPostModel getFoodPost', id);
@@ -130,5 +119,4 @@ module.exports = {
   deleteFoodPost,
   updateFoodPostLikes,
   getFoodPostLike,
-  getAllFoodPostLikes
 };
