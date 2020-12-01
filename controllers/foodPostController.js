@@ -18,10 +18,10 @@ const foodPost_get_by_id = async (req, res) => {
   res.json(foodPost);
 };
 
-const foodPostLikes_get_by_id = async (req, res) => {
+const foodPostLike_get_by_id = async (req, res) => {
   console.log('foodPostController: http get foodPostLikes with path param', req.params);
-  const foodPost = await foodPostModel.getFoodPost(req.params.id);
-  res.json(foodPostLikes);
+  const foodPostLike = await foodPostModel.getFoodPostLike(req.params.id);
+  res.json(foodPostLike);
 };
 
 const make_thumbnail = async(req, res, next) => {
@@ -47,7 +47,9 @@ const foodPost_create = async (req, res) => {
 
   const id = await foodPostModel.insertFoodPost(req);
   const foodPost = await foodPostModel.getFoodPost(id);
+  const foodPostLike = await foodPostModel.getFoodPostLike(id);
   res.send(foodPost);
+  res.send(foodPostLike);
 };
 
 const foodPost_update = async (req, res) => {
@@ -66,7 +68,7 @@ const foodPostLikes_update = async (req, res) => {
     console.log('validation', errors.array());
     return res.status(400).json({errors: errors.array()});
   }
-  const updateOk = await foodPostModel.updateFoodPostLikes(req);
+  const likeUpdateOk = await foodPostModel.updateFoodPostLikes(req);
   res.json(`{message: "likes updated... ${likeUpdateOk}"}`);
 };
 
@@ -85,5 +87,5 @@ module.exports = {
   foodPost_delete,
   make_thumbnail,
   foodPostLikes_update,
-  foodPostLikes_get_by_id
+  foodPostLike_get_by_id
 };
