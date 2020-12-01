@@ -58,6 +58,7 @@ const createFoodPostCards = (recipes) => {
     card.appendChild(h2);
     card.appendChild(figure);
     card.appendChild(p1);
+    card.appendChild(delButton).style.display = 'none';
     ul.appendChild(card);
   });
 };
