@@ -172,7 +172,7 @@ ProfilePge.addEventListener('click', async (evt) => {
   evt.preventDefault();
   addPost.style.display = 'block';
   cancelPost.style.display = 'block';
-  addForm.style.display = 'block';
+  // addForm.style.display = 'flex';
 });
 
 //Used to display post-container when clicking "create new post" button
@@ -190,7 +190,7 @@ addPost.addEventListener('submit', async (evt) => {
 });
 
 //Used to hide post-container when clicking "cancel" button in the "add new food post" card
-cancelPost.addEventListener('button', async (evt) => {
+cancelPost.addEventListener('click', async (evt) => {
   evt.preventDefault();
   postContainer.style.display = "none";
   addPost.style.display = "block";
