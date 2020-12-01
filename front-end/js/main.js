@@ -104,6 +104,7 @@ loginForm.addEventListener('submit', async (evt) => {
     ProfilePge.style.display = 'block';
     addUserPage.style.display = 'none';
     userInfo.innerHTML = `Logged in ${json.user.username}`;
+    addUser.value = json.user.user_id;
     getFoodPost();
   }
 });
