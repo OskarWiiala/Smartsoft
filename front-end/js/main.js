@@ -40,7 +40,10 @@ const createFoodPostCards = (recipes) => {
     p1.innerHTML = `Recipe: ${foodPost.text}`;
 
     const likes = document.createElement('likes');
-    likes.innerHTML = `Likes: ${foodPost.user}`;
+    likes.innerHTML = `Likes: ${foodPost.likes}`;
+
+    const dislikes = document.createElement('likes');
+    dislikes.innerHTML = `Dislikes: ${foodPost.dislikes}`;
 
     const card = document.createElement('card');
     card.classList.add('roundEdge');
@@ -48,6 +51,7 @@ const createFoodPostCards = (recipes) => {
     card.appendChild(figure);
     card.appendChild(p1);
     card.appendChild(likes);
+    card.appendChild(dislikes);
     ul.appendChild(card);
 
     // if the logged in user id matches the foodPost user id, the delete button will be created

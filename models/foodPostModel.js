@@ -6,8 +6,21 @@ const promisePool = pool.promise();
 const getAllFoodPosts = async () => {
   try {
     const [rows] = await promisePool
-    .execute(`SELECT food_post_id, user, title, text, filename, user_id, username
-                  FROM ss_food_post LEFT JOIN ss_user ON user = user_id`);
+    .execute(`SELECT food_post_id, user, title, text, filename, user_id, username, likes, dislikes
+FROM ss_food_post
+LEFT JOIN ss_user ON user = user_id
+LEFT JOIN ss_rating ON food_post_id = fk_food_post_id;`);
+    return rows;
+  }
+  catch (e) {
+    console.error('foodPostModel:', e.message);
+  }
+};
+
+const getAllFoodPostLikes = async () => {
+  try {
+    const [rows] = await promisePool
+    .execute(`SELECT * FROM ss_rating`);
     return rows;
   }
   catch (e) {
@@ -60,6 +73,7 @@ const insertFoodPost = async (req) => {
   }
 };
 
+
 const updateFoodPost = async (req) => {
   try {
     console.log(req.body);
@@ -82,7 +96,7 @@ const updateFoodPostLikes = async (req) => {
   try {
     console.log(req.body);
     const [rows] = await promisePool.execute(
-        'UPDATE ss_rating SET likes = ?, dislikes = ? FROM ss_rating, ss_food_post WHERE ss_rating.fk_food_post_id = ss_food_post.food_post_id;',
+        'UPDATE ss_rating SET likes = ?, dislikes = ? WHERE fk_food_post_id = ?;',
         [
           req.body.likes,
           req.body.dislikes,
@@ -115,5 +129,6 @@ module.exports = {
   updateFoodPost,
   deleteFoodPost,
   updateFoodPostLikes,
-  getFoodPostLike
+  getFoodPostLike,
+  getAllFoodPostLikes
 };
