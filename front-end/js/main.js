@@ -17,8 +17,12 @@ const postContainer = document.querySelector('.post-container');
 const cancelPost = document.querySelector('.cancel-post');
 const addUser = document.querySelector('.add-user');
 const upLoadB = document.querySelector('#uploadButton');
+const iconU = document.querySelector('.fa-thumbs-up');
+const iconD = document.querySelector('.fa-thumbs-down');
 
 let loggedInUserId = null;
+
+
 
 // create foodPost cards
 const createFoodPostCards = (recipes) => {
@@ -77,8 +81,20 @@ const createFoodPostCards = (recipes) => {
           console.log(e.message);
         }
       });
+
+      // give like to selected foodPost
+      const likeButton = document.createElement('button');
+      likeButton.innerHTML = 'Like';
+
+      likeButton.addEventListener('click', async () => {
+
+
+
+      });
+      card.appendChild(likeButton);
       card.appendChild(delButton);
     }
+
   });
 };
 
