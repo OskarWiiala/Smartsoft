@@ -20,8 +20,9 @@ const upLoadB = document.querySelector('#uploadButton');
 const modifyFoodPostForm = document.querySelector('#modifyFoodPostForm');
 const modifyContainer = document.querySelector('.modify-container');
 const cancelModifyPost = document.querySelector('.cancel-modify-post');
-const iconU = document.querySelector('.fa-thumbs-up');
-const iconD = document.querySelector('.fa-thumbs-down');
+const iconU = document.querySelector('.btnTu');
+const iconD = document.querySelector('.btnTd');
+const ulLikes = document.querySelector('#likes');
 
 let loggedInUserId = null;
 
