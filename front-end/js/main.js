@@ -52,11 +52,16 @@ const createFoodPostCards = (recipes) => {
     const dislikes = document.createElement('likes');
     dislikes.innerHTML = `Dislikes: ${foodPost.dislikes}`;
 
+    const clnU = iconU.cloneNode(true);
+    const clnD = iconD.cloneNode(true);
+
     const card = document.createElement('card');
     card.classList.add('roundEdge');
     card.appendChild(h2);
     card.appendChild(figure);
     card.appendChild(p1);
+    card.appendChild(clnU);
+    card.appendChild(clnD);
     card.appendChild(likes);
     card.appendChild(dislikes);
     ul.appendChild(card);
