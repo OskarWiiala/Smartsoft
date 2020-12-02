@@ -24,12 +24,11 @@ const upLoadB = document.querySelector('#uploadButton');
 const modifyFoodPostForm = document.querySelector('#modifyFoodPostForm');
 const modifyContainer = document.querySelector('.modify-container');
 const cancelModifyPost = document.querySelector('.cancel-modify-post');
-const iconU = document.querySelector('.fa-thumbs-up');
-const iconD = document.querySelector('.fa-thumbs-down');
+const iconU = document.querySelector('.btnTu');
+const iconD = document.querySelector('.btnTd');
+const ulLikes = document.querySelector('#likes');
 
 let loggedInUserId = null;
-
-
 
 // create foodPost cards
 const createFoodPostCards = (recipes) => {
@@ -54,10 +53,10 @@ const createFoodPostCards = (recipes) => {
     p1.innerHTML = `Recipe: ${foodPost.text}`;
 
     const likes = document.createElement('likes');
-    likes.innerHTML = `Likes: ${foodPost.likes}`;
+    likes.innerHTML = `${foodPost.likes}`;
 
-    const dislikes = document.createElement('likes');
-    dislikes.innerHTML = `Dislikes: ${foodPost.dislikes}`;
+    const dislikes = document.createElement('dislikes');
+    dislikes.innerHTML = `${foodPost.dislikes}`;
 
     const clnU = iconU.cloneNode(true);
     const clnD = iconD.cloneNode(true);
@@ -69,8 +68,8 @@ const createFoodPostCards = (recipes) => {
     card.appendChild(figure);
     card.appendChild(p1);
     card.appendChild(clnU);
-    card.appendChild(clnD);
     card.appendChild(likes);
+    card.appendChild(clnD);
     card.appendChild(dislikes);
     ul.appendChild(card);
 
@@ -88,7 +87,8 @@ const createFoodPostCards = (recipes) => {
           },
         };
         try {
-          const response = await fetch(url + '/foodPost/' + foodPost.food_post_id,
+          const response = await fetch(
+              url + '/foodPost/' + foodPost.food_post_id,
               fetchOptions);
           const json = await response.json();
           console.log('delete response', json);
@@ -98,16 +98,6 @@ const createFoodPostCards = (recipes) => {
         }
       });
 
-      // give like to selected foodPost
-      const likeButton = document.createElement('button');
-      likeButton.innerHTML = 'Like';
-
-      likeButton.addEventListener('click', async () => {
-
-
-
-      });
-      card.appendChild(likeButton);
       card.appendChild(delButton);
 
       // modify selected foodPost
@@ -119,7 +109,7 @@ const createFoodPostCards = (recipes) => {
         inputs[0].value = foodPost.title;
         inputs[1].value = foodPost.text;
         inputs[2].value = foodPost.food_post_id;
-        modifyContainer.style.display = "flex";
+        modifyContainer.style.display = 'flex';
 
         //This scrolls the page to the top
         window.scroll({
@@ -214,12 +204,6 @@ logOut.addEventListener('click', async (evt) => {
   }
 });
 
-// // when app starts, check if token exists and hide login form, show logout button and main content, get cats and users
-// if (sessionStorage.getItem('token')) {
-//   logOut.style.display = 'block';
-//   getFoodPost()
-// }
-
 //When non-logged in user clicks on "create new user", the form for submitting new users shows up
 addUserPage.addEventListener('click', async (evt) => {
   evt.preventDefault();
@@ -237,8 +221,8 @@ addUserPage.addEventListener('click', async (evt) => {
 //Used to hide add-user-form-container when clicking "cancel" button in the "add new food post" card
 cancelUser.addEventListener('click', async (evt) => {
   evt.preventDefault();
-  addUserContainer.style.display = "none";
-  addUserPage.style.display = "block";
+  addUserContainer.style.display = 'none';
+  addUserPage.style.display = 'block';
   addUserForm.reset();
 });
 
@@ -282,8 +266,8 @@ ProfilePge.addEventListener('click', async (evt) => {
 //Used to display post-container when clicking "create new post" button in the navigation
 addPost.addEventListener('submit', async (evt) => {
   evt.preventDefault();
-  postContainer.style.display = "flex";
-  addPost.style.display = "none";
+  postContainer.style.display = 'flex';
+  addPost.style.display = 'none';
 
   //This scrolls the page to the top
   window.scroll({
@@ -311,8 +295,8 @@ addLoginFormButton.addEventListener('submit', async (evt) => {
 //Used to hide post-container when clicking "cancel" button in the "add new food post" card
 cancelPost.addEventListener('click', async (evt) => {
   evt.preventDefault();
-  postContainer.style.display = "none";
-  addPost.style.display = "block";
+  postContainer.style.display = 'none';
+  addPost.style.display = 'block';
   addForm.reset();
 });
 
@@ -330,8 +314,8 @@ addForm.addEventListener('submit', async (evt) => {
   const response = await fetch(url + '/foodPost', fetchOptions);
   const json = await response.json();
   console.log('add response', json);
-  postContainer.style.display = "none";
-  addPost.style.display = "block";
+  postContainer.style.display = 'none';
+  addPost.style.display = 'block';
   await getFoodPost();
   addForm.reset();
 });
@@ -351,12 +335,12 @@ modifyFoodPostForm.addEventListener('submit', async (evt) => {
   const response = await fetch(url + '/foodPost', fetchOptions);
   const json = await response.json();
   console.log('modify response', json);
-  modifyContainer.style.display = "none";
+  modifyContainer.style.display = 'none';
   await getFoodPost();
 });
 
 //Used to hide modify-container when clicking "cancel" button in the "modify food post" form
 cancelModifyPost.addEventListener('click', async (evt) => {
   evt.preventDefault();
-  modifyContainer.style.display = "none";
+  modifyContainer.style.display = 'none';
 });
