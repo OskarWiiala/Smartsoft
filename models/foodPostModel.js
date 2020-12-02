@@ -6,7 +6,7 @@ const promisePool = pool.promise();
 const getAllFoodPosts = async () => {
   try {
     const [rows] = await promisePool
-    .execute(`SELECT food_post_id, user, title, text, filename, user_id, username, likes, dislikes
+    .execute(`SELECT food_post_id, user, title, text, filename, ss_food_post.status, user_id, username, likes, dislikes
 FROM ss_food_post
 LEFT JOIN ss_user ON user = user_id
 LEFT JOIN ss_rating ON food_post_id = fk_food_post_id;`);
@@ -21,7 +21,7 @@ const getFoodPost = async (id) => {
   try {
     console.log('foodPostModel getFoodPost', id);
     const [rows] = await promisePool
-    .execute(`SELECT food_post_id, user, title, text, filename, user_id, username
+    .execute(`SELECT food_post_id, user, title, text, filename, ss_food_post.status, user_id, username
                   FROM ss_food_post LEFT JOIN ss_user ON user = user_id WHERE food_post_id = ?`, [id]);
     return rows[0];
   }
@@ -46,12 +46,13 @@ const getFoodPostLike = async (id) => {
 const insertFoodPost = async (req) => {
   try {
     const [rows] = await promisePool.execute(
-        'INSERT INTO ss_food_post (user, title, text, filename) VALUES (?, ?, ?, ?);',
+        'INSERT INTO ss_food_post (user, title, text, filename, status) VALUES (?, ?, ?, ?, ?);',
         [
           req.body.user,
           req.body.title,
           req.body.text,
           req.file.filename,
+          req.body.status,
         ]);
     console.log('foodPostModel insert:', rows);
     return rows.insertId;
@@ -67,10 +68,11 @@ const updateFoodPost = async (req) => {
   try {
     console.log(req.body);
     const [rows] = await promisePool.execute(
-        'UPDATE ss_food_post SET title = ?, text = ? WHERE food_post_id = ?;',
+        'UPDATE ss_food_post SET title = ?, text = ?, status = ? WHERE food_post_id = ?;',
         [
           req.body.title,
           req.body.text,
+          req.body.status,
           req.body.id
         ]);
     console.log('foodPostModel update:', rows);
