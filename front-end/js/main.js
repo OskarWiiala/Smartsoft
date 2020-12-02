@@ -26,7 +26,7 @@ const modifyContainer = document.querySelector('.modify-container');
 const cancelModifyPost = document.querySelector('.cancel-modify-post');
 const iconU = document.querySelector('.btnTu');
 const iconD = document.querySelector('.btnTd');
-const ulLikes = document.querySelector('#likes');
+const addLikesForm = document.querySelector('#add-like-form');
 
 let loggedInUserId = null;
 
@@ -319,6 +319,39 @@ addForm.addEventListener('submit', async (evt) => {
   await getFoodPost();
   addForm.reset();
 });
+
+
+
+
+addLikesForm.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+    const fd = new FormData(addLikesForm);
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+      },
+      body: fd,
+    };
+    const response = await fetch(url + '/rating', fetchOptions);
+    const json = await response.json();
+    console.log('add response', json);
+    await getFoodPost();
+    addLikesForm.reset();
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // submit modify foodPost form
 modifyFoodPostForm.addEventListener('submit', async (evt) => {
