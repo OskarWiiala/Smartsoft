@@ -33,7 +33,7 @@ const getRatingPost = async (id) => {
 const insertRatingPost = async (req) => {
   try {
     const [rows] = await promisePool.execute(
-        'INSERT INTO ss_rating (fk_food_post_id, likes, dislikes) VALUES (?, ?);',
+        'INSERT INTO ss_rating (fk_food_post_id, likes, dislikes) VALUES (?, ?, ?);',
         [
           req.body.fk_food_post_id,
           req.body.likes,
