@@ -205,8 +205,9 @@ logOut.addEventListener('click', async (evt) => {
     ProfilePge.style.display = 'none';
     addPost.style.display = 'none';
     addUserPage.style.display = 'block';
-    addLoginFormButton.style.display = 'block'
+    addLoginFormButton.style.display = 'block';
     postContainer.style.display = 'none';
+    modifyContainer.style.display = 'none';
     loggedInUserId = null;
   } catch (e) {
     console.log(e.message);
