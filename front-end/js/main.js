@@ -323,9 +323,11 @@ addForm.addEventListener('submit', async (evt) => {
 
 
 
+////////////testing
 addLikesForm.addEventListener('submit', async (evt) => {
   evt.preventDefault();
     const fd = new FormData(addLikesForm);
+
     const fetchOptions = {
       method: 'POST',
       headers: {
@@ -335,10 +337,11 @@ addLikesForm.addEventListener('submit', async (evt) => {
     };
     const response = await fetch(url + '/rating', fetchOptions);
     const json = await response.json();
-    console.log('add response', json);
+    console.log('add rating response', json);
     await getFoodPost();
     addLikesForm.reset();
   });
+//////////////////////////////////////////////////////
 
 
 
