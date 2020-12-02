@@ -97,13 +97,28 @@
             <label id="newPostCheckboxLabel" for="newPostCheckbox">private</label>
             <button id="uploadButton" class="light-border" type="submit">Upload</button>
 
-
-
         </form>
         <form id="cancel-form" style="display: flex">
             <button class="cancel-post" type="submit">Cancel</button>
         </form>
     </div>
+</div>
+
+<div class="modify-container" style="display: none;">
+    <div class="form-wrapper">
+        <h3>Modify post</h3>
+        <form id="modifyFoodPostForm" class="light-border">
+            <input class="light-border" type="text" name="title" placeholder="Title" required>
+            <input class="light-border" type="text" name="text" placeholder="Text" required>
+            <input type="hidden" name="id">
+            <button class="light-border" type="submit">Save changes</button>
+        </form>
+
+        <form id="cancel-modify-form" style="display: flex">
+            <button class="cancel-modify-post" type="submit">Cancel</button>
+        </form>
+    </div>
+
 </div>
 
 <div class="content">
