@@ -90,16 +90,6 @@ const createFoodPostCards = (recipes) => {
         }
       });
 
-      // give like to selected foodPost
-      const likeButton = document.createElement('button');
-      likeButton.innerHTML = 'Like';
-
-      likeButton.addEventListener('click', async () => {
-
-
-
-      });
-      card.appendChild(likeButton);
       card.appendChild(delButton);
 
       // modify selected foodPost

@@ -8,6 +8,7 @@ const rootRoute = require('./routes/rootRoute');
 const foodPostRoute = require('./routes/foodPostRoute');
 const userRoute = require('./routes/userRoute');
 const authRoute = require('./routes/authRoute');
+const ratingRoute = require('./routes/ratingRoute');
 const app = express();
 const port = 3000;
 
@@ -24,6 +25,7 @@ app.use('/thumbnails', express.static('thumbnails'));
 app.use('/', rootRoute);
 app.use('/auth', authRoute);
 app.use('/foodPost', foodPostRoute);
+app.use('/rating', ratingRoute);
 app.use('/user', passport.authenticate('jwt', {session: false}), userRoute);
 
 
