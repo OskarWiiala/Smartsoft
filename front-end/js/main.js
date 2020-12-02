@@ -27,6 +27,8 @@ const cancelModifyPost = document.querySelector('.cancel-modify-post');
 const iconU = document.querySelector('.btnTu');
 const iconD = document.querySelector('.btnTd');
 const ulLikes = document.querySelector('#likes');
+const newPostCheckBox = document.querySelector('#newPostCheckbox');
+const modifyPostCheckBox = document.querySelector('#modifyPostCheckbox');
 
 let loggedInUserId = null;
 
@@ -109,6 +111,10 @@ const createFoodPostCards = (recipes) => {
         inputs[0].value = foodPost.title;
         inputs[1].value = foodPost.text;
         inputs[2].value = foodPost.food_post_id;
+        inputs[3].value = foodPost.status;
+        if (foodPost.status === 'private') {
+          modifyPostCheckBox.checked = true;
+        }
         modifyContainer.style.display = 'flex';
 
         //This scrolls the page to the top
@@ -337,10 +343,32 @@ modifyFoodPostForm.addEventListener('submit', async (evt) => {
   console.log('modify response', json);
   modifyContainer.style.display = 'none';
   await getFoodPost();
+  modifyFoodPostForm.reset();
 });
 
 //Used to hide modify-container when clicking "cancel" button in the "modify food post" form
 cancelModifyPost.addEventListener('click', async (evt) => {
   evt.preventDefault();
   modifyContainer.style.display = 'none';
+  modifyFoodPostForm.reset();
+});
+
+// when private checkbox is clicked in add food post form, its value changes
+newPostCheckBox.addEventListener('click', async (evt) => {
+  if (newPostCheckBox.checked) {
+    newPostCheckBox.value = 'private';
+  }
+  else {
+    newPostCheckBox.value = 'public';
+  }
+});
+
+// when private checkbox is clicked in modify food post form, its value changes
+modifyPostCheckBox.addEventListener('click', async (evt) => {
+  if (modifyPostCheckBox.checked) {
+    modifyPostCheckBox.value = 'private';
+  }
+  else {
+    modifyPostCheckBox.value = 'public';
+  }
 });

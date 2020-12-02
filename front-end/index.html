@@ -146,7 +146,7 @@
             </label>
             <input id="newPostFile" class="light-border" type="file" name="foodPost" accept="image/*"
                    placeholder="Choose an image file">
-            <input id="newPostCheckbox" type="checkbox" name="status" value="private">
+            <input id="newPostCheckbox" type="checkbox" name="status" value="public">
             <label id="newPostCheckboxLabel" for="newPostCheckbox">private</label>
             <button id="uploadButton" class="light-border" type="submit">Upload</button>
 
@@ -164,6 +164,8 @@
             <input id="modifyTitle" class="light-border" type="text" name="title" placeholder="Title" required>
             <input id="modifyText" class="light-border" type="text" name="text" placeholder="Text" required>
             <input type="hidden" name="id">
+            <input id="modifyPostCheckbox" type="checkbox" name="status" value="public">
+            <label id="modifyPostCheckboxLabel" for="modifyPostCheckbox">private</label>
             <button id="modifySave" class="light-border" type="submit">Save changes</button>
         </form>
 

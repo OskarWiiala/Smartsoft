@@ -36,6 +36,7 @@ router.post('/',
       body('user', 'required').isLength({min: 1}).isNumeric(),
       body('title', 'cannot be empty').isLength({min: 1}),
       body('text', 'cannot be empty').isLength({min: 1}),
+      body('status', 'cannot be empty').isLength({min: 1}),
       body('type', 'not an image').contains('image'),
     ],
     foodPostController.foodPost_create);
@@ -46,6 +47,7 @@ router.put('/',
     [
       body('title', 'cannot be empty').isLength({min: 1}),
       body('text', 'cannot be empty').isLength({min: 1}),
+      body('status', 'cannot be empty').isLength({min: 1}),
     ],
     foodPostController.foodPost_update);
 
