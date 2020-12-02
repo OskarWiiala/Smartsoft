@@ -40,6 +40,9 @@ const createFoodPostCards = (recipes) => {
 
     const figure = document.createElement('figure').appendChild(img);
 
+    const user = document.createElement('h4');
+    user.innerHTML = foodPost.username;
+
     const h2 = document.createElement('h2');
     h2.innerHTML = foodPost.title;
 
@@ -57,6 +60,7 @@ const createFoodPostCards = (recipes) => {
 
     const card = document.createElement('card');
     card.classList.add('roundEdge');
+    card.appendChild(user);
     card.appendChild(h2);
     card.appendChild(figure);
     card.appendChild(p1);
