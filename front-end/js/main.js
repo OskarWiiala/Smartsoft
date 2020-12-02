@@ -4,15 +4,19 @@ const url = 'http://localhost:3000'; // change url when uploading to server
 // select existing html elements
 const ul = document.querySelector('ul');
 const addForm = document.querySelector('#addFoodPostForm');
+const loginWrapper = document.querySelector('#loginWrapper');
 const loginForm = document.querySelector('#login-form');
 const logOut = document.querySelector('#log-out');
 const userInfo = document.querySelector('#user-info');
 const ProfilePge = document.querySelector('#profilePage');
+const addLoginFormButton = document.querySelector('#addLoginFormButton');
 const addUserPage = document.querySelector('#addUserPage');
 const addUserForm = document.querySelector('#add-user-form');
 const addPost = document.querySelector('#displayAddPostButton');
 const addUserContainer = document.querySelector('.add-user-form-container');
+const loginFormContainer = document.querySelector('.login-form-container');
 const cancelUser = document.querySelector('#addUserCancel');
+const loginCancel = document.querySelector('#loginCancel');
 const postContainer = document.querySelector('.post-container');
 const cancelPost = document.querySelector('.cancel-post');
 const addUser = document.querySelector('.add-user');
@@ -167,7 +171,7 @@ loginForm.addEventListener('submit', async (evt) => {
   } else {
     // save token
     sessionStorage.setItem('token', json.token);
-    loginForm.style.display = 'none';
+    loginFormContainer.style.display = 'none';
     logOut.style.display = 'block';
     ProfilePge.style.display = 'block';
     addUserPage.style.display = 'none';
@@ -195,12 +199,14 @@ logOut.addEventListener('click', async (evt) => {
     // remove token
     sessionStorage.removeItem('token');
     alert('You have logged out');
-    loginForm.style.display = 'block';
+    // loginForm.style.display = 'block';
     logOut.style.display = 'none';
     userInfo.innerHTML = ``;
     ProfilePge.style.display = 'none';
     addPost.style.display = 'none';
     addUserPage.style.display = 'block';
+    addLoginFormButton.style.display = 'block'
+    postContainer.style.display = 'none';
     loggedInUserId = null;
   } catch (e) {
     console.log(e.message);
@@ -235,6 +241,15 @@ cancelUser.addEventListener('click', async (evt) => {
   addUserForm.reset();
 });
 
+//Used to hide login-form-container when clicking "cancel" button in the "Log in" card
+loginCancel.addEventListener('click', async (evt) => {
+  evt.preventDefault();
+  loginFormContainer.style.display = "none";
+  addLoginFormButton.style.display = "block";
+  addUserPage.style.display = 'block';
+  loginForm.reset();
+});
+
 // submit register form
 addUserForm.addEventListener('submit', async (evt) => {
   evt.preventDefault();
@@ -263,11 +278,26 @@ ProfilePge.addEventListener('click', async (evt) => {
   // addForm.style.display = 'flex';
 });
 
-//Used to display post-container when clicking "create new post" button
+//Used to display post-container when clicking "create new post" button in the navigation
 addPost.addEventListener('submit', async (evt) => {
   evt.preventDefault();
   postContainer.style.display = "flex";
   addPost.style.display = "none";
+
+  //This scrolls the page to the top
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+});
+
+//Used to display login-form-container when clicking "Log in" button in the navigation
+addLoginFormButton.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+  loginFormContainer.style.display = "flex";
+  addLoginFormButton.style.display = "none";
+  addUserPage.style.display = 'none';
 
   //This scrolls the page to the top
   window.scroll({

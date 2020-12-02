@@ -23,55 +23,35 @@
                 <h1>Tag Area</h1>
             </div>
         </div>
-
-        <div class="Login">
-            <form id="login-form" class="light-border">
-                <div>
-                    <label>Email:</label>
-                    <label>
-                        <input class="loginInput" type="text" name="username"/>
-                    </label>
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <label>
-                        <input class="loginInput" type="password" name="password"
-                               placeholder="Password" required>
-                    </label>
-                </div>
-                <div>
-                    <button class="submitButton submitButton2" type="submit">Log In</button>
-
-                </div>
-
-            </form>
-            <p id="user-info"></p>
-            <form id="log-out" style="display: none;">
-
-                <button class="submitButton submitButton2" type="submit">Log out</button>
-            </form>
-
-            <form id="profilePage" style="display: none;">
-                <button class="submitButton submitButton2" type="submit">My profile</button>
-            </form>
-
-        </div>
-
     </div>
 
     <div class="middle">
-
+        <p id="user-info"></p>
         <label>
-            <input class="searchInput" type="text" name="Search"/>
+            <input id="mainSearchInputField" class="searchInput" type="text" name="Search"/>
             <button id="myButton" class="float-left submit-button">Search</button>
         </label>
+
+        <form id="addLoginFormButton">
+            <button class="submitButton submitButton2" type="submit">Log in</button>
+        </form>
+
+        <form id="log-out" style="display: none;">
+            <button class="submitButton submitButton2" type="submit">Log out</button>
+        </form>
+
+        <form id="profilePage" style="display: none;">
+            <button class="submitButton submitButton2" type="submit">My profile</button>
+        </form>
 
         <form id="addUserPage">
             <button class="submitButton submitButton2" type="submit">create new user</button>
         </form>
+
         <form action="index.html" id="HomePage" style="display: none;">
             <button class="submitButton submitButton2" type="submit">Home</button>
         </form>
+
         <form id="displayAddPostButton" style="display: none;">
             <button class="submitButton submitButton2" type="submit">Create new post</button>
         </form>
@@ -82,6 +62,40 @@
     <button class="btnTu"><i class="far fa-thumbs-up"></i></button>
     <button class="btnTd"><i class="far fa-thumbs-down"></i></button>
     <button class="btn"><i class="fas fa-thumbs-up"></i></button>
+</div>
+
+<div class="login-form-container" style="display: none">
+    <div id="loginWrapper" class="form-wrapper">
+        <form id="login-form">
+            <div id="loginEmail" class="light-border">
+                <label>Email:</label><br>
+                <label>
+                    <input class="loginInput" type="text" name="username" placeholder="Email" required/>
+                </label>
+            </div>
+            <div id="loginPassword" class="light-border">
+                <label>Password:</label>
+                <label>
+                    <input class="loginInput" type="password" name="password"
+                           placeholder="Password" required>
+                </label>
+            </div>
+            <button id="loginButton" class="light-border" type="submit">Log In</button>
+        </form>
+        <form id="form-loginCancel" style="display: flex">
+        <button id="loginCancel" class="light-border" type="submit">Cancel</button>
+        </form>
+
+<!--        <p id="user-info"></p>-->
+<!--        <form id="log-out" style="display: none;">-->
+
+<!--            <button class="submitButton submitButton2" type="submit">Log out</button>-->
+<!--        </form>-->
+
+<!--        <form id="profilePage" style="display: none;">-->
+<!--            <button class="submitButton submitButton2" type="submit">My profile</button>-->
+<!--        </form>-->
+    </div>
 </div>
 
 
@@ -98,7 +112,7 @@
             <input id="addUserEmail" class="light-border" type="email" name="email" placeholder="email" required>
             <input id="addUserPassword" class="light-border" type="password" name="password" pattern="(?=.*[A-Z]).{8,}"
                    placeholder="Password" required>
-            <button id="addUserButton" class="light-border" type="submit">Save</button>
+            <button id="addUserButton" class="light-border" type="submit">Create user</button>
         </form>
         <form id="form-addUserCancel" style="display: flex">
             <button id="addUserCancel" class="light-border" type="submit">Cancel</button>
@@ -136,13 +150,13 @@
 </div>
 
 <div class="modify-container" style="display: none;">
-    <div class="form-wrapper">
+    <div id="form-wrapper-modify-post" class="form-wrapper">
         <h3>Modify post</h3>
-        <form id="modifyFoodPostForm" class="light-border">
-            <input class="light-border" type="text" name="title" placeholder="Title" required>
-            <input class="light-border" type="text" name="text" placeholder="Text" required>
+        <form id="modifyFoodPostForm">
+            <input id="modifyTitle" class="light-border" type="text" name="title" placeholder="Title" required>
+            <input id="modifyText" class="light-border" type="text" name="text" placeholder="Text" required>
             <input type="hidden" name="id">
-            <button class="light-border" type="submit">Save changes</button>
+            <button id="modifySave" class="light-border" type="submit">Save changes</button>
         </form>
 
         <form id="cancel-modify-form" style="display: flex">

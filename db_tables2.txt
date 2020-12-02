@@ -45,3 +45,9 @@ MODIFY likes int(100) NOT NULL DEFAULT 0;
 
 Alter table ss_rating
 MODIFY dislikes int(100) NOT NULL DEFAULT 0;
+
+ALTER TABLE ss_user
+MODIFY status VARCHAR(15) NOT NULL DEFAULT 'user';
+
+ALTER TABLE ss_food_post
+MODIFY status VARCHAR(15) NOT NULL DEFAULT 'public';
