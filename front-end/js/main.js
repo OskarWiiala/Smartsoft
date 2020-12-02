@@ -17,6 +17,9 @@ const postContainer = document.querySelector('.post-container');
 const cancelPost = document.querySelector('.cancel-post');
 const addUser = document.querySelector('.add-user');
 const upLoadB = document.querySelector('#uploadButton');
+const modifyFoodPostForm = document.querySelector('#modifyFoodPostForm');
+const modifyContainer = document.querySelector('.modify-container');
+const cancelModifyPost = document.querySelector('.cancel-modify-post');
 const iconU = document.querySelector('.fa-thumbs-up');
 const iconD = document.querySelector('.fa-thumbs-down');
 
@@ -58,7 +61,7 @@ const createFoodPostCards = (recipes) => {
     card.appendChild(dislikes);
     ul.appendChild(card);
 
-    // if the logged in user id matches the foodPost user id, the delete button will be created
+    // if the logged in user id matches the foodPost user id, the delete and modify buttons will be created
     if (loggedInUserId === foodPost.user) {
       // delete selected foodPost
       const delButton = document.createElement('button');
@@ -93,6 +96,26 @@ const createFoodPostCards = (recipes) => {
       });
       card.appendChild(likeButton);
       card.appendChild(delButton);
+
+      // modify selected foodPost
+      const modButton = document.createElement('button');
+      modButton.innerHTML = 'Modify';
+
+      modButton.addEventListener('click', () => {
+        const inputs = modifyFoodPostForm.querySelectorAll('input');
+        inputs[0].value = foodPost.title;
+        inputs[1].value = foodPost.text;
+        inputs[2].value = foodPost.food_post_id;
+        modifyContainer.style.display = "flex";
+
+        //This scrolls the page to the top
+        window.scroll({
+          top: 0,
+          left: 0,
+          behavior: 'smooth',
+        });
+      });
+      card.appendChild(modButton);
     }
 
   });
@@ -271,4 +294,29 @@ addForm.addEventListener('submit', async (evt) => {
   addPost.style.display = "block";
   await getFoodPost();
   addForm.reset();
+});
+
+// submit modify foodPost form
+modifyFoodPostForm.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+  const data = serializeJson(modifyFoodPostForm);
+  const fetchOptions = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+    },
+    body: JSON.stringify(data),
+  };
+  const response = await fetch(url + '/foodPost', fetchOptions);
+  const json = await response.json();
+  console.log('modify response', json);
+  modifyContainer.style.display = "none";
+  await getFoodPost();
+});
+
+//Used to hide modify-container when clicking "cancel" button in the "modify food post" form
+cancelModifyPost.addEventListener('click', async (evt) => {
+  evt.preventDefault();
+  modifyContainer.style.display = "none";
 });
