@@ -328,22 +328,15 @@ addForm.addEventListener('submit', async (evt) => {
   console.log('add response', json);
   postContainer.style.display = 'none';
   addPost.style.display = 'block';
-  await addRating();
+  await addRating(json.food_post_id);
   getFoodPost();
   addForm.reset();
 });
 
-
-////////////   testing   ///////////////////////
-
-
-const addRating = async () => {
-  const responseID = await fetch(
-      url + '/foodPost/');
-  const jsonId = await responseID;
+// Creates new ratings row to ss_ratings
+const addRating = async (post_id) => {
   const inputs = addLikesForm.querySelectorAll('input');
-  // inputs[0].value = jsonId.food_post_id;
-  inputs[0].value = 59;
+  inputs[0].value = post_id;
   const fd = new FormData(addLikesForm);
   const fetchOptions = {
     method: 'POST',
@@ -356,23 +349,6 @@ const addRating = async () => {
   const json = await response;
   console.log('add rating response', json);
 };
-
-
-
-//////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // submit modify foodPost form
 modifyFoodPostForm.addEventListener('submit', async (evt) => {
