@@ -18,7 +18,7 @@ LEFT JOIN ss_rating ON food_post_id = fk_food_post_id;`);
 const getRatingPost = async (id) => {
   try {
     console.log('ratingModel getRatingPost', id);
-    const [rows] = await promisePool.execute(`SELECT fk_food_post_id, likes, dislikes
+    const [rows] = await promisePool.execute(`SELECT id, fk_food_post_id, likes, dislikes
                   FROM ss_rating LEFT JOIN ss_food_post ON fk_food_post_id = food_post_id WHERE fk_food_post_id = ?`,
         [id]);
     return rows[0];

@@ -125,46 +125,18 @@ const createFoodPostCards = (recipes) => {
       TESTButton.innerHTML = 'TEST';
       TESTButton.classList.add('cardButton');
 
+
       TESTButton.addEventListener('click', async (evt) => {
-        try {
-          const response = await fetch(
-              url + '/foodPost/' + foodPost.food_post_id);
-          const json = await response.json();
-          console.log('test button response', json);
-        } catch (e) {
-          console.log(e.message);
-        }
-        getRating(foodPost.food_post_id);
-      });
 
-
-
-      const getRating = async (post_id) => {
-        const response = await fetch(
-            url + '/rating/' + post_id);
-        const json = await response.json();
-        console.log('get rating response', json);
-        const likes = json.likes;
-        const dislikes = json.dislikes;
-        const postId = json.fk_food_post_id;
-        console.log('get rating response Likes: ', likes);
-        console.log('get rating response Dislikes: ', dislikes);
-        const addLike = likes + 1;
-        modifyRating(postId, addLike, dislikes);
-      };
-
-
-
-      const modifyRating = async (postId, likes, dislikes) => {
-        console.log('modify rating func', postId, likes, dislikes);
+        const addLike = foodPost.likes + 1;
 
         const inputs = addLikesForm.querySelectorAll('input');
-        inputs[0].value = postId;
-        inputs[1].value = likes;
-        inputs[2].value = dislikes;
+        inputs[0].value = foodPost.food_post_id;
+        inputs[1].value = addLike;
+        inputs[2].value = foodPost.dislikes;
 
         const data = serializeJson(addLikesForm);
-        console.log('modify rating func all', data);
+        console.log('modify rating func after add', data);
 
 
         const fetchOptions = {
@@ -180,10 +152,15 @@ const createFoodPostCards = (recipes) => {
         console.log('add 1 like rating response', json);
         await getFoodPost();
         addLikesForm.reset();
-      };
+      });
+
 
 
       card.appendChild(TESTButton);
+
+
+
+
 
 //////////////////////test
 
