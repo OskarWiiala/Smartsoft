@@ -64,6 +64,12 @@ const createFoodPostCards = (recipes) => {
     const clnU = iconU.cloneNode(true);
     const clnD = iconD.cloneNode(true);
 
+
+    const TESTButton = document.createElement('button');
+    TESTButton.innerHTML = 'TEST';
+
+
+
     const card = document.createElement('card');
     card.classList.add('roundEdge');
     card.appendChild(user);
@@ -74,6 +80,7 @@ const createFoodPostCards = (recipes) => {
     card.appendChild(likes);
     card.appendChild(clnD);
     card.appendChild(dislikes);
+    card.appendChild(TESTButton);
     ul.appendChild(card);
 
     // if the logged in user id matches the foodPost user id, the delete and modify buttons will be created
@@ -102,6 +109,75 @@ const createFoodPostCards = (recipes) => {
       });
 
       card.appendChild(delButton);
+
+
+
+////////////////////////testing////////////////
+
+
+
+      TESTButton.addEventListener('click', async (evt) => {
+        try {
+          const response = await fetch(
+              url + '/foodPost/' + foodPost.food_post_id);
+          const json = await response.json();
+          console.log('test button response', json);
+        } catch (e) {
+          console.log(e.message);
+        }
+        getRating(foodPost.food_post_id);
+      });
+
+
+
+      const getRating = async (post_id) => {
+        const response = await fetch(
+            url + '/rating/' + post_id);
+        const json = await response.json();
+        console.log('get rating response', json);
+        const likes = json.likes;
+        const dislikes = json.dislikes;
+        const postId = json.fk_food_post_id;
+        console.log('get rating response Likes: ', likes);
+        console.log('get rating response Dislikes: ', dislikes);
+        const addLike = likes + 1;
+        modifyRating(postId, addLike, dislikes);
+      };
+
+
+
+      const modifyRating = async (postId, likes, dislikes) => {
+        console.log('modify rating func', postId, likes, dislikes);
+
+        const inputs = addLikesForm.querySelectorAll('input');
+        inputs[0].value = postId;
+        inputs[1].value = likes;
+        inputs[2].value = dislikes;
+
+        const data = serializeJson(addLikesForm);
+        console.log('modify rating func all', data);
+
+
+        const fetchOptions = {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+          },
+          body: JSON.stringify(data),
+        };
+        const response = await fetch(url + '/rating', fetchOptions);
+        const json = await response;
+        console.log('add 1 like rating response', json);
+        await getFoodPost();
+        addLikesForm.reset();
+      };
+
+
+
+
+//////////////////////test
+
 
       // modify selected foodPost
       const modButton = document.createElement('button');
@@ -387,23 +463,4 @@ modifyPostCheckBox.addEventListener('click', async (evt) => {
   }
 });
 
-////////////////////////testing////////////////
-
-const testbu = document.querySelector('#test');
-
-const getRating = async (post_id) => {
-  const response = await fetch(
-      url + '/rating/' + post_id);
-  const json = await response.json();
-  console.log('get rating response', json);
-};
-
-
-// submit modify foodPost form
-testbu.addEventListener('click', async (evt) => {
-  evt.preventDefault();
-
-getRating(1);
-  console.log('toimii');
-});
 

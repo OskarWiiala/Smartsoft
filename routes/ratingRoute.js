@@ -41,6 +41,7 @@ router.get('/:id', ratingController.ratingPost_get_by_id);
 router.put('/',
     passport.authenticate('jwt', {session: false}),
     [
+      body('fk_food_post_id', 'cannot be empty').isNumeric,
       body('likes', 'cannot be empty').isNumeric,
       body('dislikes', 'cannot be empty').isNumeric,
     ],
