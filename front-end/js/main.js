@@ -70,8 +70,7 @@ const createFoodPostCards = (recipes) => {
     const clnD = iconD.cloneNode(true);
 
 
-    const TESTButton = document.createElement('button');
-    TESTButton.innerHTML = 'TEST';
+
 
 
 
@@ -85,7 +84,6 @@ const createFoodPostCards = (recipes) => {
     card.appendChild(likes);
     card.appendChild(clnD);
     card.appendChild(dislikes);
-    card.appendChild(TESTButton);
     ul.appendChild(card);
 
     // if the logged in user id matches the foodPost user id, the delete and modify buttons will be created
@@ -121,6 +119,11 @@ const createFoodPostCards = (recipes) => {
 ////////////////////////testing////////////////
 
 
+
+
+      const TESTButton = document.createElement('button');
+      TESTButton.innerHTML = 'TEST';
+      TESTButton.classList.add('cardButton');
 
       TESTButton.addEventListener('click', async (evt) => {
         try {
@@ -180,7 +183,7 @@ const createFoodPostCards = (recipes) => {
       };
 
 
-
+      card.appendChild(TESTButton);
 
 //////////////////////test
 
