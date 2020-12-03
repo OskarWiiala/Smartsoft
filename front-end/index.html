@@ -144,11 +144,11 @@
                 <input id="newPostTitle" class="light-border" type="text" name="title" placeholder="Title" required>
             </label>
             <label>
-                <input id="newPostText" class="light-border" type="text" name="text" placeholder="Text" required>
+                <textarea id="newPostText" class="light-border"  name="text" placeholder="Recipe" required></textarea>
                 <!--                <textarea rows="4" cols="50" name="comment">Enter text here...</textarea>-->
             </label>
             <input id="newPostFile" class="light-border" type="file" name="foodPost" accept="image/*"
-                   placeholder="Choose an image file">
+                   placeholder="Choose an image file" required>
             <input id="newPostCheckbox" type="checkbox" name="status" value="private">
             <label id="newPostCheckboxLabel" for="newPostCheckbox">private</label>
             <button id="uploadButton" class="light-border" type="submit">Upload</button>
@@ -165,7 +165,7 @@
         <h3>Modify post</h3>
         <form id="modifyFoodPostForm">
             <input id="modifyTitle" class="light-border" type="text" name="title" placeholder="Title" required>
-            <input id="modifyText" class="light-border" type="text" name="text" placeholder="Text" required>
+            <textarea id="modifyText" class="light-border"  name="text" placeholder="Recipe" required></textarea>
             <input type="hidden" name="id">
             <input id="modifyPostCheckbox" type="checkbox" name="status" value="public">
             <label id="modifyPostCheckboxLabel" for="modifyPostCheckbox">private</label>

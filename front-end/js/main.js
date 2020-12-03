@@ -23,6 +23,7 @@ const addUser = document.querySelector('.add-user');
 const upLoadB = document.querySelector('#uploadButton');
 const modifyFoodPostForm = document.querySelector('#modifyFoodPostForm');
 const modifyContainer = document.querySelector('.modify-container');
+const modifyTextarea = document.querySelector('#modifyText');
 const cancelModifyPost = document.querySelector('.cancel-modify-post');
 const iconU = document.querySelector('.btnTu');
 const iconD = document.querySelector('.btnTd');
@@ -48,12 +49,16 @@ const createFoodPostCards = (recipes) => {
 
     const user = document.createElement('h4');
     user.innerHTML = foodPost.username;
+    user.classList.add('cardUserHeader');
 
     const h2 = document.createElement('h2');
     h2.innerHTML = foodPost.title;
+    h2.classList.add('cardh2');
 
-    const p1 = document.createElement('p');
+    const p1 = document.createElement('textarea');
     p1.innerHTML = `Recipe: ${foodPost.text}`;
+    p1.classList.add('cardRecipe');
+    p1.readOnly = true;
 
     const likes = document.createElement('likes');
     likes.innerHTML = `${foodPost.likes}`;
@@ -88,6 +93,7 @@ const createFoodPostCards = (recipes) => {
       // delete selected foodPost
       const delButton = document.createElement('button');
       delButton.innerHTML = 'Delete';
+      delButton.classList.add('cardButton');
 
       delButton.addEventListener('click', async () => {
         const fetchOptions = {
@@ -182,13 +188,15 @@ const createFoodPostCards = (recipes) => {
       // modify selected foodPost
       const modButton = document.createElement('button');
       modButton.innerHTML = 'Modify';
+      modButton.classList.add('cardButton');
 
       modButton.addEventListener('click', () => {
         const inputs = modifyFoodPostForm.querySelectorAll('input');
         inputs[0].value = foodPost.title;
-        inputs[1].value = foodPost.text;
-        inputs[2].value = foodPost.food_post_id;
-        inputs[3].value = foodPost.status;
+        // inputs[1].value = foodPost.text;
+        modifyTextarea.innerHTML = foodPost.text;
+        inputs[1].value = foodPost.food_post_id;
+        inputs[2].value = foodPost.status;
         if (foodPost.status === 'private') {
           modifyPostCheckBox.checked = true;
         }
@@ -248,7 +256,7 @@ loginForm.addEventListener('submit', async (evt) => {
     logOut.style.display = 'block';
     ProfilePge.style.display = 'block';
     addUserPage.style.display = 'none';
-    userInfo.innerHTML = `Logged in ${json.user.username}`;
+    userInfo.innerHTML = `You are logged in as ${json.user.username}`;
     loggedInUserId = json.user.user_id;
     await getFoodPost();
   }
@@ -290,6 +298,8 @@ addUserPage.addEventListener('click', async (evt) => {
   evt.preventDefault();
   addUserContainer.style.display = 'flex';
   addUserPage.style.display = 'none';
+  addLoginFormButton.style.display = 'none';
+
 
   //This scrolls the page to the top
   window.scroll({
@@ -304,6 +314,7 @@ cancelUser.addEventListener('click', async (evt) => {
   evt.preventDefault();
   addUserContainer.style.display = 'none';
   addUserPage.style.display = 'block';
+  addLoginFormButton.style.display ='block';
   addUserForm.reset();
 });
 
@@ -334,6 +345,7 @@ addUserForm.addEventListener('submit', async (evt) => {
   sessionStorage.setItem('token', json.token);
   addUserContainer.style.display = 'none';
   addUserPage.style.display = 'block';
+  addLoginFormButton.style.display = 'block';
   addUserForm.reset();
 });
 
