@@ -95,6 +95,11 @@
     justify-content: center;
 }
 
+#user-info {
+    margin: 20px;
+    color: darkgreen;
+}
+
 .Login {
     flex: 1;
     display: flex;
@@ -114,6 +119,50 @@
     margin: 50px;
     box-shadow: black 10px 10px 10px;
     padding-top: 100px;
+}
+
+.cardUserHeader {
+    display: flex;
+    justify-content: center;
+    margin: 4px;
+}
+
+.cardh2 {
+    display: flex;
+    justify-content: center;
+    margin: 4px;
+}
+
+.resp {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.cardRecipe {
+    display: flex;
+    justify-content: center;
+    margin: 4px;
+    height: 120px;
+    width: 100%;
+    min-width: 100%;
+    min-height: 120px;
+    max-width: 100%;
+    max-height: 120px;
+    /*overflow:scroll;*/
+    background-color: lightgoldenrodyellow;
+}
+
+.cardButton {
+    border-color: #a8caff;
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: #cedffa;
+    padding: 5px;
 }
 
 .googleFontText {
@@ -146,9 +195,11 @@
 
 .roundEdge {
     border-radius: 8px;
-    border: 1px solid #ccc;
+    /*border: 1px solid #ccc;*/
     padding: 1em;
     box-sizing: border-box;
+    background-color: #fafad2;
+    border: 3px solid #d1d1a7;
 }
 
 ul {
@@ -188,6 +239,9 @@ h3 {
 #newPostTitle, #newPostText, #newPostFile, #uploadButton, .cancel-post {
     display: inline-block;
     width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 300px;
     margin: .5em 0;
 }
 
@@ -216,6 +270,9 @@ h3 {
 #modifyTitle, #modifyText, #modifySave, .cancel-modify-post {
     display: inline-block;
     width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 300px;
     margin: .5em 0;
 }
 
