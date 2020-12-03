@@ -29,6 +29,7 @@ const iconD = document.querySelector('.btnTd');
 const ulLikes = document.querySelector('#likes');
 const newPostCheckBox = document.querySelector('#newPostCheckbox');
 const modifyPostCheckBox = document.querySelector('#modifyPostCheckbox');
+const addLikesForm = document.querySelector('#add-like-form');
 
 let loggedInUserId = null;
 
@@ -327,9 +328,27 @@ addForm.addEventListener('submit', async (evt) => {
   console.log('add response', json);
   postContainer.style.display = 'none';
   addPost.style.display = 'block';
-  await getFoodPost();
+  await addRating(json.food_post_id);
+  getFoodPost();
   addForm.reset();
 });
+
+// Creates new ratings row to ss_ratings
+const addRating = async (post_id) => {
+  const inputs = addLikesForm.querySelectorAll('input');
+  inputs[0].value = post_id;
+  const fd = new FormData(addLikesForm);
+  const fetchOptions = {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+    },
+    body: fd,
+  };
+  const response = await fetch(url + '/rating', fetchOptions);
+  const json = await response;
+  console.log('add rating response', json);
+};
 
 // submit modify foodPost form
 modifyFoodPostForm.addEventListener('submit', async (evt) => {
