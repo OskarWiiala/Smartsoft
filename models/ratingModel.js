@@ -6,10 +6,8 @@ const promisePool = pool.promise();
 const getAllRatingPosts = async () => {
   try {
     const [rows] = await promisePool
-    .execute(`SELECT food_post_id, user, title, text, filename, user_id, username, likes, dislikes
-FROM ss_food_post
-LEFT JOIN ss_user ON user = user_id
-LEFT JOIN ss_rating ON food_post_id = fk_food_post_id;`);
+    .execute(`SELECT id, fk_food_post_id, likes, dislikes
+                  FROM ss_food_post;`);
     return rows;
   }
   catch (e) {
@@ -21,8 +19,8 @@ const getRatingPost = async (id) => {
   try {
     console.log('ratingModel getRatingPost', id);
     const [rows] = await promisePool
-    .execute(`SELECT fk_food_post_id, likes, dislikes
-                  FROM ss_rating LEFT JOIN ss_food_post ON fk_food_post_id = food_post_id WHERE fk_food_post_id = ?`, [id]);
+    .execute(`SELECT id, fk_food_post_id, likes, dislikes
+                  FROM ss_rating WHERE fk_food_post_id = ?`, [id]);
     return rows[0];
   }
   catch (e) {
@@ -84,5 +82,4 @@ module.exports = {
   insertRatingPost,
   deleteRatingPost,
   getRatingPost
-
 };
