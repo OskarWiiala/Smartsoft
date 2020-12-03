@@ -69,11 +69,6 @@ const createFoodPostCards = (recipes) => {
     const clnU = iconU.cloneNode(true);
     const clnD = iconD.cloneNode(true);
 
-
-
-
-
-
     const card = document.createElement('card');
     card.classList.add('roundEdge');
     card.appendChild(user);
@@ -114,22 +109,9 @@ const createFoodPostCards = (recipes) => {
 
       card.appendChild(delButton);
 
-
-
-////////////////////////testing////////////////
-
-
-
-
-      const TESTButton = document.createElement('button');
-      TESTButton.innerHTML = 'TEST';
-      TESTButton.classList.add('cardButton');
-
-
-      TESTButton.addEventListener('click', async (evt) => {
-
+      // Adds one like to ss_rating
+      clnU.addEventListener('click', async (evt) => {
         const addLike = foodPost.likes + 1;
-
         const inputs = addLikesForm.querySelectorAll('input');
         inputs[0].value = foodPost.food_post_id;
         inputs[1].value = addLike;
@@ -137,7 +119,6 @@ const createFoodPostCards = (recipes) => {
 
         const data = serializeJson(addLikesForm);
         console.log('modify rating func after add', data);
-
 
         const fetchOptions = {
           method: 'PUT',
@@ -154,16 +135,31 @@ const createFoodPostCards = (recipes) => {
         addLikesForm.reset();
       });
 
+      // Adds one dislike to ss_rating
+      clnD.addEventListener('click', async (evt) => {
+        const addDislike = foodPost.dislikes + 1;
+        const inputs = addLikesForm.querySelectorAll('input');
+        inputs[0].value = foodPost.food_post_id;
+        inputs[1].value = foodPost.likes;
+        inputs[2].value = addDislike;
 
+        const data = serializeJson(addLikesForm);
+        console.log('modify rating func after add', data);
 
-      card.appendChild(TESTButton);
-
-
-
-
-
-//////////////////////test
-
+        const fetchOptions = {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+          },
+          body: JSON.stringify(data),
+        };
+        const response = await fetch(url + '/rating', fetchOptions);
+        const json = await response;
+        console.log('add 1 like rating response', json);
+        await getFoodPost();
+        addLikesForm.reset();
+      });
 
       // modify selected foodPost
       const modButton = document.createElement('button');
@@ -280,7 +276,6 @@ addUserPage.addEventListener('click', async (evt) => {
   addUserPage.style.display = 'none';
   addLoginFormButton.style.display = 'none';
 
-
   //This scrolls the page to the top
   window.scroll({
     top: 0,
@@ -294,15 +289,15 @@ cancelUser.addEventListener('click', async (evt) => {
   evt.preventDefault();
   addUserContainer.style.display = 'none';
   addUserPage.style.display = 'block';
-  addLoginFormButton.style.display ='block';
+  addLoginFormButton.style.display = 'block';
   addUserForm.reset();
 });
 
 //Used to hide login-form-container when clicking "cancel" button in the "Log in" card
 loginCancel.addEventListener('click', async (evt) => {
   evt.preventDefault();
-  loginFormContainer.style.display = "none";
-  addLoginFormButton.style.display = "block";
+  loginFormContainer.style.display = 'none';
+  addLoginFormButton.style.display = 'block';
   addUserPage.style.display = 'block';
   loginForm.reset();
 });
@@ -355,8 +350,8 @@ addPost.addEventListener('submit', async (evt) => {
 //Used to display login-form-container when clicking "Log in" button in the navigation
 addLoginFormButton.addEventListener('submit', async (evt) => {
   evt.preventDefault();
-  loginFormContainer.style.display = "flex";
-  addLoginFormButton.style.display = "none";
+  loginFormContainer.style.display = 'flex';
+  addLoginFormButton.style.display = 'none';
   addUserPage.style.display = 'none';
 
   //This scrolls the page to the top
@@ -449,8 +444,7 @@ cancelModifyPost.addEventListener('click', async (evt) => {
 modifyPostCheckBox.addEventListener('click', async (evt) => {
   if (modifyPostCheckBox.checked) {
     modifyPostCheckBox.value = 'private';
-  }
-  else {
+  } else {
     modifyPostCheckBox.value = 'public';
   }
 });
