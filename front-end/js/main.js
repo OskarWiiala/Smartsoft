@@ -173,8 +173,6 @@ loginForm.addEventListener('submit', async (evt) => {
     ProfilePge.style.display = 'block';
     addUserPage.style.display = 'none';
     userInfo.innerHTML = `Logged in ${json.user.username}`;
-    // add user id (hidden) to the add foodPost form
-    addUser.value = json.user.user_id;
     loggedInUserId = json.user.user_id;
     await getFoodPost();
   }
@@ -275,6 +273,8 @@ addPost.addEventListener('submit', async (evt) => {
   evt.preventDefault();
   postContainer.style.display = 'flex';
   addPost.style.display = 'none';
+  // add user id (hidden) to the add foodPost form
+  addUser.value = loggedInUserId;
 
   //This scrolls the page to the top
   window.scroll({
@@ -311,6 +311,11 @@ cancelPost.addEventListener('click', async (evt) => {
 addForm.addEventListener('submit', async (evt) => {
   evt.preventDefault();
   const fd = new FormData(addForm);
+  // if the private checkbox in the add food post form is unchecked, the status
+  // value is public
+  if (fd.get('status') == null) {
+    fd.set('status', 'public');
+  }
   const fetchOptions = {
     method: 'POST',
     headers: {
@@ -388,16 +393,6 @@ cancelModifyPost.addEventListener('click', async (evt) => {
   evt.preventDefault();
   modifyContainer.style.display = 'none';
   modifyFoodPostForm.reset();
-});
-
-// when private checkbox is clicked in add food post form, its value changes
-newPostCheckBox.addEventListener('click', async (evt) => {
-  if (newPostCheckBox.checked) {
-    newPostCheckBox.value = 'private';
-  }
-  else {
-    newPostCheckBox.value = 'public';
-  }
 });
 
 // when private checkbox is clicked in modify food post form, its value changes
