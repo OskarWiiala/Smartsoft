@@ -48,12 +48,11 @@ const updateRatingPost = async (req) => {
   try {
     console.log(req.body);
     const [rows] = await promisePool.execute(
-        'UPDATE ss_rating SET fk_food_post_id = ?, likes = ?, dislikes = ? WHERE fk_food_post_id = ?;',
+        'UPDATE ss_rating SET likes = ?, dislikes = ? WHERE fk_food_post_id = ?;',
         [
-          req.body.fk_food_post_id,
           req.body.likes,
           req.body.dislikes,
-          req.body.id,
+          req.body.fk_food_post_id,
         ]);
     console.log('ratingModel update:', rows);
     return rows.affectedRows === 1;
