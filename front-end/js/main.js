@@ -89,7 +89,6 @@ const createFoodPostCards = (recipes) => {
       delButton.classList.add('cardButton');
 
       delButton.addEventListener('click', async () => {
-         if(confirm(`Are you sure you want to delete post "${foodPost.title}?"`)) {
         const fetchOptions = {
           method: 'DELETE',
           headers: {
@@ -106,7 +105,7 @@ const createFoodPostCards = (recipes) => {
         } catch (e) {
           console.log(e.message);
         }
-      }});
+      });
 
       card.appendChild(delButton);
 
