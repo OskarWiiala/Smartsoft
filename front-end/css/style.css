@@ -1,0 +1,401 @@
+@media (max-width: 600px) {
+
+    .top {
+        flex-direction: column;
+        height: 25vh;
+    }
+
+    .TagLine {
+        display: none
+    }
+}
+
+@media (min-width: 600px) {
+
+    .top {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        height: 17vh;
+    }
+
+    .TagLine {
+        display: flex;
+    }
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.sticky-div {
+    position: sticky;
+    top: 0;
+}
+
+#mainSearchInputField {
+    border-radius: 10px;
+    padding: 4px;
+    border-color: #a8caff;
+}
+
+.top {
+    background: grey;
+    position: relative;
+    display: flex;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #cedffa;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.middle {
+    flex: 1;
+    background-image: linear-gradient(180deg, #ae9d7c, white);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    height: 5vh;
+}
+
+.Logo {
+    background-color: lightgoldenrodyellow;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logoPic {
+    padding-top: 10px;
+    padding-left: 2px;
+    border: 0;
+    float: left;
+}
+
+.TagLine {
+    background-color: lightgoldenrodyellow;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form-container {
+    max-width: 100em;
+    margin: auto;
+    padding: 1em;
+    display: none;
+    justify-content: center;
+}
+
+#user-info {
+    margin: 20px;
+    color: darkgreen;
+}
+
+.Login {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginInput {
+    padding: 4px;
+    border-color: orange;
+}
+
+.card {
+    background-color: white;
+    height: 400px;
+    width: 300px;
+    margin: 50px;
+    box-shadow: black 10px 10px 10px;
+    padding-top: 100px;
+}
+
+.cardUserHeader {
+    display: flex;
+    justify-content: center;
+    margin: 4px;
+}
+
+.cardh2 {
+    display: flex;
+    justify-content: center;
+    margin: 4px;
+}
+
+.resp {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.cardRecipe {
+    display: flex;
+    justify-content: center;
+    margin: 4px;
+    height: 120px;
+    width: 100%;
+    min-width: 100%;
+    min-height: 120px;
+    max-width: 100%;
+    max-height: 120px;
+    /*overflow:scroll;*/
+    background-color: lightgoldenrodyellow;
+}
+
+.cardButton {
+    border-color: #a8caff;
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: #cedffa;
+    padding: 5px;
+}
+
+.googleFontText {
+    font-size: x-large;
+    font-family: "Architects Daughter", serif;
+    text-align: center;
+    text-transform: uppercase;
+    color: #454545;
+}
+
+.submitButton {
+    border-color: #a8caff;
+    margin-right: 20px;
+    margin-left: 20px;
+    background-color: #cedffa;
+    padding: 5px;
+}
+
+#myButton {
+    border-color: #a8caff;
+    background-color: #cedffa;
+    padding: 5px;
+    margin-right: 20px;
+}
+
+.submitButton:hover, #myButton:hover {
+    background-color: #a8caff;
+    border-color: #80b1ff;
+}
+
+.roundEdge {
+    border-radius: 8px;
+    /*border: 1px solid #ccc;*/
+    padding: 1em;
+    box-sizing: border-box;
+    background-color: #fafad2;
+    border: 3px solid #d1d1a7;
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #cedffa;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.filler {
+    height: 5000px;
+}
+
+card {
+    background-color: white;
+    height: 400px;
+    width: 300px;
+    margin: 50px;
+    box-shadow: black 10px 10px 10px;
+    padding-top: 100px;
+}
+
+.yourposts-header {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    background-image: linear-gradient(180deg, #8ab7ff, #cedffa);
+    height: 5vh;
+}
+
+h3 {
+    display: flex;
+    justify-content: center;
+}
+
+#newPostTitle, #newPostText, #newPostFile, #uploadButton, .cancel-post {
+    display: inline-block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 300px;
+    margin: .5em 0;
+}
+
+#addUserUsername, #addUserEmail, #addUserPassword, #addUserButton, #addUserCancel, #loginButton, #loginCancel {
+    display: inline-block;
+    width: 100%;
+    margin: .5em 0;
+}
+
+#addUserButton:hover, #loginButton:hover, #uploadButton:hover {
+    background-color: #52b35f;
+    border-color: #002900;
+}
+
+#loginCancel:hover, #addUserCancel:hover, .cancel-post:hover {
+    background-color: #c73636;
+    border-color: #8c0101;
+}
+
+#loginEmail, #loginPassword {
+    display: inline-block;
+    width: 100%;
+    margin: .5em 0;
+}
+
+#modifyTitle, #modifyText, #modifySave, .cancel-modify-post {
+    display: inline-block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 300px;
+    margin: .5em 0;
+}
+
+#newPostCheckbox {
+    display: inline-block;
+    margin: 10px;
+}
+
+#newPostCheckboxLabel {
+    font-size: large;
+    font-family: Verdana;
+}
+
+.add-user-form-container {
+    max-width: 100em;
+    margin: auto;
+    padding: 1em;
+    display: none;
+    justify-content: center;
+}
+
+.post-container {
+    max-width: 100em;
+    margin: auto;
+    padding: 1em;
+    display: none;
+    justify-content: center;
+}
+
+.modify-container {
+    max-width: 100em;
+    margin: auto;
+    padding: 1em;
+    display: none;
+    justify-content: center;
+}
+
+.form-wrapper {
+    height: auto;
+    width: 300px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 1em;
+    box-sizing: border-box;
+    background-color: #c8f7fa;
+}
+
+/*This simply changes the background color of the create user from*/
+#form-wrapper-add-user, #loginWrapper {
+    background-color: #ffc966;
+}
+
+#form-wrapper-modify-post {
+    background-color: #E8E8E8;
+}
+
+input[type=checkbox] {
+    transform: scale(2);
+}
+
+#uploadButton, #addUserButton, #modifySave, #loginButton {
+    border: 2px solid #008000;
+    background-color: #66ff7a;
+    font-weight: bolder;
+}
+
+#cancel-form {
+    display: flex;
+    justify-content: center;
+}
+
+.cancel-post, #addUserCancel, .cancel-modify-post, #loginCancel {
+    height: auto;
+    padding: 1em;
+    justify-content: center;
+    border-color: #ff0000;
+    background-color: #ff6666;
+    font-weight: bolder;
+    border-radius: 8px;
+}
+
+/*Changes the background color of "choose file" to white*/
+input[type="file" i] {
+    background-color: white;
+}
+
+.light-border {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #cedffa;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.filler {
+    height: 5px;
+}
+
+
+.fa {
+    font-size: 50px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.fa-thumbs-up {
+    color: blue;
+}
+
+.fa-thumbs-down {
+    color: red;
+}
+
+.fa:hover {
+    transform: scale(2);
+}
+
+/*#dcdcdc text color*/
+/*#505050 background color*/
