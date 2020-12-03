@@ -3,6 +3,7 @@
 const ratingModel = require('../models/ratingModel');
 const {validationResult} = require('express-validator');
 
+
 const ratings = ratingModel.ratings;
 
 const rating_list_get = async (req, res) => {
@@ -17,7 +18,7 @@ const ratingPost_get_by_id = async (req, res) => {
 };
 
 const ratingPost_create = async (req, res) => {
-  console.log('ratingController ratingPost_create', req.body);
+  console.log('ratingController ratingPost_create', req.body, req.file);
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     console.log('validation', errors.array());
@@ -36,7 +37,7 @@ const rating_update = async (req, res) => {
     return res.status(400).json({errors: errors.array()});
   }
   const ratingUpdateOk = await ratingModel.updateRatingPost(req);
-  res.json(`message: ratings updated... ${ratingUpdateOk}`);
+  res.json(`{message: "ratings updated... ${ratingUpdateOk}"}`);
 };
 
 const ratingPost_delete = async (req, res) => {
