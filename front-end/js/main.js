@@ -39,103 +39,156 @@ const createFoodPostCards = (recipes) => {
   // clear ul
   ul.innerHTML = '';
   recipes.forEach((foodPost) => {
-    // create li with DOM methods
-    const img = document.createElement('img');
-    img.src = url + '/thumbnails/' + foodPost.filename;
-    img.alt = foodPost.title;
-    img.classList.add('resp');
+    if (foodPost.status === 'public') {
+      // create li with DOM methods
+      const img = document.createElement('img');
+      img.src = url + '/thumbnails/' + foodPost.filename;
+      img.alt = foodPost.title;
+      img.classList.add('resp');
 
-    const figure = document.createElement('figure').appendChild(img);
+      const figure = document.createElement('figure').appendChild(img);
 
-    const user = document.createElement('h4');
-    user.innerHTML = foodPost.username;
-    user.classList.add('cardUserHeader');
+      const user = document.createElement('h4');
+      user.innerHTML = foodPost.username;
+      user.classList.add('cardUserHeader');
 
-    const h2 = document.createElement('h2');
-    h2.innerHTML = foodPost.title;
-    h2.classList.add('cardh2');
+      const h2 = document.createElement('h2');
+      h2.innerHTML = foodPost.title;
+      h2.classList.add('cardh2');
 
-    const p1 = document.createElement('textarea');
-    p1.innerHTML = `Recipe: ${foodPost.text}`;
-    p1.classList.add('cardRecipe');
-    p1.readOnly = true;
+      const p1 = document.createElement('textarea');
+      p1.innerHTML = `Recipe: ${foodPost.text}`;
+      p1.classList.add('cardRecipe');
+      p1.readOnly = true;
 
-    const likes = document.createElement('likes');
-    likes.innerHTML = `${foodPost.likes}`;
+      const likes = document.createElement('likes');
+      likes.innerHTML = `${foodPost.likes}`;
 
-    const dislikes = document.createElement('dislikes');
-    dislikes.innerHTML = `${foodPost.dislikes}`;
+      const dislikes = document.createElement('dislikes');
+      dislikes.innerHTML = `${foodPost.dislikes}`;
 
-    const clnU = iconU.cloneNode(true);
-    const clnD = iconD.cloneNode(true);
+      const clnU = iconU.cloneNode(true);
+      const clnD = iconD.cloneNode(true);
 
-    const card = document.createElement('card');
-    card.classList.add('roundEdge');
-    card.appendChild(user);
-    card.appendChild(h2);
-    card.appendChild(figure);
-    card.appendChild(p1);
-    card.appendChild(clnU);
-    card.appendChild(likes);
-    card.appendChild(clnD);
-    card.appendChild(dislikes);
-    ul.appendChild(card);
+      const card = document.createElement('card');
+      card.classList.add('roundEdge');
+      card.appendChild(user);
+      card.appendChild(h2);
+      card.appendChild(figure);
+      card.appendChild(p1);
+      card.appendChild(clnU);
+      card.appendChild(likes);
+      card.appendChild(clnD);
+      card.appendChild(dislikes);
+      ul.appendChild(card);
 
-    // if the logged in user id matches the foodPost user id, the delete and modify buttons will be created
-    if (loggedInUserId === foodPost.user) {
-      // delete selected foodPost
-      const delButton = document.createElement('button');
-      delButton.innerHTML = 'Delete';
-      delButton.classList.add('cardButton');
+      // if the logged in user id matches the foodPost user id, the delete and modify buttons will be created
+      if (loggedInUserId === foodPost.user) {
+        // delete selected foodPost
+        const delButton = document.createElement('button');
+        delButton.innerHTML = 'Delete';
+        delButton.classList.add('cardButton');
 
-      delButton.addEventListener('click', async () => {
+        delButton.addEventListener('click', async () => {
+          const fetchOptions = {
+            method: 'DELETE',
+            headers: {
+              'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+            },
+          };
+          try {
+            const response = await fetch(
+                url + '/foodPost/' + foodPost.food_post_id,
+                fetchOptions);
+            const json = await response.json();
+            console.log('delete response', json);
+            getFoodPost();
+          } catch (e) {
+            console.log(e.message);
+          }
+        });
+
+        card.appendChild(delButton);
+
+        // modify selected foodPost
+        const modButton = document.createElement('button');
+        modButton.innerHTML = 'Modify';
+        modButton.classList.add('cardButton');
+
+        modButton.addEventListener('click', () => {
+          const inputs = modifyFoodPostForm.querySelectorAll('input');
+          inputs[0].value = foodPost.title;
+          // inputs[1].value = foodPost.text;
+          modifyTextarea.innerHTML = foodPost.text;
+          inputs[1].value = foodPost.food_post_id;
+          inputs[2].value = foodPost.status;
+          if (foodPost.status === 'private') {
+            modifyPostCheckBox.checked = true;
+          }
+          modifyContainer.style.display = 'flex';
+
+          //This scrolls the page to the top
+          window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+          });
+        });
+        card.appendChild(modButton);
+      }
+
+      // Adds one like to ss_rating
+      clnU.addEventListener('click', async (evt) => {
+        const addLike = foodPost.likes + 1;
+        const inputs = addLikesForm.querySelectorAll('input');
+        inputs[0].value = foodPost.food_post_id;
+        inputs[1].value = addLike;
+        inputs[2].value = foodPost.dislikes;
+
+        const data = serializeJson(addLikesForm);
+        console.log('modify rating func after add', data);
+
         const fetchOptions = {
-          method: 'DELETE',
+          method: 'PUT',
           headers: {
+            'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
           },
+          body: JSON.stringify(data),
         };
-        try {
-          const response = await fetch(
-              url + '/foodPost/' + foodPost.food_post_id,
-              fetchOptions);
-          const json = await response.json();
-          console.log('delete response', json);
-          getFoodPost();
-        } catch (e) {
-          console.log(e.message);
-        }
+        const response = await fetch(url + '/rating', fetchOptions);
+        const json = await response;
+        console.log('add 1 like rating response', json);
+        await getFoodPost();
+        addLikesForm.reset();
       });
 
-      card.appendChild(delButton);
+      // Adds one dislike to ss_rating
+      clnD.addEventListener('click', async (evt) => {
+        const addDislike = foodPost.dislikes + 1;
+        const inputs = addLikesForm.querySelectorAll('input');
+        inputs[0].value = foodPost.food_post_id;
+        inputs[1].value = foodPost.likes;
+        inputs[2].value = addDislike;
 
-      // modify selected foodPost
-      const modButton = document.createElement('button');
-      modButton.innerHTML = 'Modify';
-      modButton.classList.add('cardButton');
+        const data = serializeJson(addLikesForm);
+        console.log('modify rating func after add', data);
 
-      modButton.addEventListener('click', () => {
-        const inputs = modifyFoodPostForm.querySelectorAll('input');
-        inputs[0].value = foodPost.title;
-        // inputs[1].value = foodPost.text;
-        modifyTextarea.innerHTML = foodPost.text;
-        inputs[1].value = foodPost.food_post_id;
-        inputs[2].value = foodPost.status;
-        if (foodPost.status === 'private') {
-          modifyPostCheckBox.checked = true;
-        }
-        modifyContainer.style.display = 'flex';
-
-        //This scrolls the page to the top
-        window.scroll({
-          top: 0,
-          left: 0,
-          behavior: 'smooth',
-        });
+        const fetchOptions = {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+          },
+          body: JSON.stringify(data),
+        };
+        const response = await fetch(url + '/rating', fetchOptions);
+        const json = await response;
+        console.log('add 1 like rating response', json);
+        await getFoodPost();
+        addLikesForm.reset();
       });
-      card.appendChild(modButton);
     }
-
   });
 };
 
@@ -212,6 +265,7 @@ logOut.addEventListener('click', async (evt) => {
     postContainer.style.display = 'none';
     modifyContainer.style.display = 'none';
     loggedInUserId = null;
+    getFoodPost();
   } catch (e) {
     console.log(e.message);
   }
@@ -223,7 +277,6 @@ addUserPage.addEventListener('click', async (evt) => {
   addUserContainer.style.display = 'flex';
   addUserPage.style.display = 'none';
   addLoginFormButton.style.display = 'none';
-
 
   //This scrolls the page to the top
   window.scroll({
@@ -238,15 +291,15 @@ cancelUser.addEventListener('click', async (evt) => {
   evt.preventDefault();
   addUserContainer.style.display = 'none';
   addUserPage.style.display = 'block';
-  addLoginFormButton.style.display ='block';
+  addLoginFormButton.style.display = 'block';
   addUserForm.reset();
 });
 
 //Used to hide login-form-container when clicking "cancel" button in the "Log in" card
 loginCancel.addEventListener('click', async (evt) => {
   evt.preventDefault();
-  loginFormContainer.style.display = "none";
-  addLoginFormButton.style.display = "block";
+  loginFormContainer.style.display = 'none';
+  addLoginFormButton.style.display = 'block';
   addUserPage.style.display = 'block';
   loginForm.reset();
 });
@@ -299,8 +352,8 @@ addPost.addEventListener('submit', async (evt) => {
 //Used to display login-form-container when clicking "Log in" button in the navigation
 addLoginFormButton.addEventListener('submit', async (evt) => {
   evt.preventDefault();
-  loginFormContainer.style.display = "flex";
-  addLoginFormButton.style.display = "none";
+  loginFormContainer.style.display = 'flex';
+  addLoginFormButton.style.display = 'none';
   addUserPage.style.display = 'none';
 
   //This scrolls the page to the top
@@ -393,8 +446,9 @@ cancelModifyPost.addEventListener('click', async (evt) => {
 modifyPostCheckBox.addEventListener('click', async (evt) => {
   if (modifyPostCheckBox.checked) {
     modifyPostCheckBox.value = 'private';
-  }
-  else {
+  } else {
     modifyPostCheckBox.value = 'public';
   }
 });
+
+

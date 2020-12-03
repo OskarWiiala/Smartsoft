@@ -30,19 +30,6 @@ const getFoodPost = async (id) => {
   }
 };
 
-const getFoodPostLike = async (id) => {
-  try {
-    console.log('foodPostModel getFoodPostLike', id);
-    const [rows] = await promisePool
-    .execute(`SELECT id, fk_food_post_id, likes, dislikes
-                  FROM ss_rating LEFT JOIN ss_food_post ON post = food_post_id WHERE fk_food_post_id = ?`, [id]);
-    return rows[0];
-  }
-  catch (e) {
-    console.error('foodPostModel:', e.message);
-  }
-};
-
 const insertFoodPost = async (req) => {
   try {
     const [rows] = await promisePool.execute(
@@ -63,7 +50,6 @@ const insertFoodPost = async (req) => {
   }
 };
 
-
 const updateFoodPost = async (req) => {
   try {
     console.log(req.body);
@@ -76,24 +62,6 @@ const updateFoodPost = async (req) => {
           req.body.id
         ]);
     console.log('foodPostModel update:', rows);
-    return rows.affectedRows === 1;
-  }
-  catch (e) {
-    return false;
-  }
-};
-
-const updateFoodPostLikes = async (req) => {
-  try {
-    console.log(req.body);
-    const [rows] = await promisePool.execute(
-        'UPDATE ss_rating SET likes = ?, dislikes = ? WHERE fk_food_post_id = ?;',
-        [
-          req.body.likes,
-          req.body.dislikes,
-          req.body.id
-        ]);
-    console.log('foodPostModel likes update:', rows);
     return rows.affectedRows === 1;
   }
   catch (e) {
@@ -119,6 +87,4 @@ module.exports = {
   insertFoodPost,
   updateFoodPost,
   deleteFoodPost,
-  updateFoodPostLikes,
-  getFoodPostLike,
 };

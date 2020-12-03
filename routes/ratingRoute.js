@@ -41,8 +41,8 @@ router.get('/:id', ratingController.ratingPost_get_by_id);
 router.put('/',
     passport.authenticate('jwt', {session: false}),
     [
-      body('likes', 'cannot be empty').isNumeric,
-      body('dislikes', 'cannot be empty').isNumeric,
+      body('likes', 'cannot be empty').isNumeric(),
+      body('dislikes', 'cannot be empty').isNumeric(),
     ],
     ratingController.rating_update);
 
