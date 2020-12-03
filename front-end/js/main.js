@@ -386,3 +386,24 @@ modifyPostCheckBox.addEventListener('click', async (evt) => {
     modifyPostCheckBox.value = 'public';
   }
 });
+
+////////////////////////testing////////////////
+
+const testbu = document.querySelector('#test');
+
+const getRating = async (post_id) => {
+  const response = await fetch(
+      url + '/rating/' + post_id);
+  const json = await response.json();
+  console.log('get rating response', json);
+};
+
+
+// submit modify foodPost form
+testbu.addEventListener('click', async (evt) => {
+  evt.preventDefault();
+
+getRating(1);
+  console.log('toimii');
+});
+
