@@ -334,12 +334,17 @@ addForm.addEventListener('submit', async (evt) => {
 });
 
 
-////////////testing
+////////////   testing   ///////////////////////
 
 
 const addRating = async () => {
+  const responseID = await fetch(
+      url + '/foodPost/');
+  const jsonId = await responseID;
+  const inputs = addLikesForm.querySelectorAll('input');
+  // inputs[0].value = jsonId.food_post_id;
+  inputs[0].value = 59;
   const fd = new FormData(addLikesForm);
-
   const fetchOptions = {
     method: 'POST',
     headers: {
@@ -352,23 +357,7 @@ const addRating = async () => {
   console.log('add rating response', json);
 };
 
-// addLikesForm.addEventListener('submit', async (evt) => {
-//   evt.preventDefault();
-//     const fd = new FormData(addLikesForm);
-//
-//     const fetchOptions = {
-//       method: 'POST',
-//       headers: {
-//         'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-//       },
-//       body: fd,
-//     };
-//     const response = await fetch(url + '/rating', fetchOptions);
-//     const json = await response.json();
-//     console.log('add rating response', json);
-//     await getFoodPost();
-//     addLikesForm.reset();
-//   });
+
 
 //////////////////////////////////////////////////////
 
