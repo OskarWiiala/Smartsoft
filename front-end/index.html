@@ -61,14 +61,12 @@
 <div class="likesAndDislikes" style="display: none">
 
     <div class="likes" style="display: none">
-        <button class="btnTu"><i class="far fa-thumbs-up"></i></button>
+        <button class="btnTu"><i class="far fa-thumbs-up" type="submit"></i></button>
     </div>
-
 
     <div class="dislikes" style="display: none">
-        <button class="btnTd"><i class="far fa-thumbs-down"></i></button>
+        <button class="btnTd"><i class="far fa-thumbs-down" type="submit"></i></button>
     </div>
-
 
 </div>
 
@@ -177,6 +175,12 @@
 </div>
 
 <div class="content">
+
+    <form id="add-like-form" style="display: none">
+        <input id="addId" type="number" name="fk_food_post_id" value=1 required>
+        <input id="addLike" type="number" name="likes" value= 0 required>
+        <input id="addDislike" type="number" name="dislikes" value= 0 required>
+    </form>
 
     <!--    <form class="roundEdge" id="add-user-form" style="display: none;">-->
     <!--        <input class="roundEdge"-->
