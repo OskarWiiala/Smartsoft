@@ -140,10 +140,14 @@ const createFoodPostCards = (recipes) => {
 
       // Adds one like to ss_rating
       clnU.addEventListener('click', async (evt) => {
-        const addLike = foodPost.likes + 1;
+
+        iconU.disabled = true;
+        console.log('iconU is disabled');
+
+        const likes = foodPost.likes;
         const inputs = addLikesForm.querySelectorAll('input');
         inputs[0].value = foodPost.food_post_id;
-        inputs[1].value = addLike;
+        inputs[1].value = likes + 1;
         inputs[2].value = foodPost.dislikes;
 
         const data = serializeJson(addLikesForm);
@@ -162,10 +166,15 @@ const createFoodPostCards = (recipes) => {
         console.log('add 1 like rating response', json);
         await getFoodPost();
         addLikesForm.reset();
+        await buttonDisabler();
       });
 
       // Adds one dislike to ss_rating
       clnD.addEventListener('click', async (evt) => {
+
+        iconD.disabled = true;
+        console.log('iconD is disabled');
+
         const addDislike = foodPost.dislikes + 1;
         const inputs = addLikesForm.querySelectorAll('input');
         inputs[0].value = foodPost.food_post_id;
@@ -188,9 +197,28 @@ const createFoodPostCards = (recipes) => {
         console.log('add 1 like rating response', json);
         await getFoodPost();
         addLikesForm.reset();
+        await buttonDisabler();
       });
     }
   });
+};
+
+// returns disabled icon buttons back to work
+const buttonDisabler = async () => {
+
+  const unDis = async () => {
+    iconU.disabled = false;
+    iconD.disabled = false;
+    console.log('iconU is no longer disabled');
+    getFoodPost();
+    stopColor()
+  };
+  const stopTimer = setInterval(unDis, 3000);
+
+  const stopColor = async () => {
+    clearInterval(stopTimer);
+    console.log('disable timer stopped');
+  };
 };
 
 const getFoodPost = async () => {
