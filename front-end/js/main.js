@@ -31,6 +31,9 @@ const ulLikes = document.querySelector('#likes');
 const newPostCheckBox = document.querySelector('#newPostCheckbox');
 const modifyPostCheckBox = document.querySelector('#modifyPostCheckbox');
 const addLikesForm = document.querySelector('#add-like-form');
+const imageModal = document.querySelector('#image-modal');
+const modalImage = document.querySelector('#image-modal img');
+const close = document.querySelector('#image-modal a');
 
 let loggedInUserId = null;
 
@@ -45,6 +48,13 @@ const createFoodPostCards = (recipes) => {
       img.src = url + '/thumbnails/' + foodPost.filename;
       img.alt = foodPost.title;
       img.classList.add('resp');
+
+      // open large image when clicking image
+      img.addEventListener('click', () => {
+        modalImage.src = url + '/' + foodPost.filename;
+        imageModal.alt = foodPost.title;
+        imageModal.classList.toggle('hide');
+      });
 
       const figure = document.createElement('figure').appendChild(img);
 
@@ -72,6 +82,7 @@ const createFoodPostCards = (recipes) => {
 
       const card = document.createElement('card');
       card.classList.add('roundEdge');
+      card.classList.add('cardImage');
       card.appendChild(user);
       card.appendChild(h2);
       card.appendChild(figure);
@@ -210,9 +221,14 @@ const getFoodPost = async () => {
 };
 getFoodPost();
 
-// login
+// login event listener
 loginForm.addEventListener('submit', async (evt) => {
   evt.preventDefault();
+  await login();
+});
+
+// login function
+const login = async () => {
   const data = serializeJson(loginForm);
   const fetchOptions = {
     method: 'POST',
@@ -239,7 +255,7 @@ loginForm.addEventListener('submit', async (evt) => {
     await getFoodPost();
   }
   loginForm.reset();
-});
+};
 
 // logout
 logOut.addEventListener('click', async (evt) => {
@@ -324,6 +340,13 @@ addUserForm.addEventListener('submit', async (evt) => {
   addUserContainer.style.display = 'none';
   addUserPage.style.display = 'block';
   addLoginFormButton.style.display = 'block';
+  // login with the newly registered user
+  const loginInputs = loginForm.querySelectorAll('input');
+  const registerInputs = addUserForm.querySelectorAll('input');
+  loginInputs[0].value = registerInputs[1].value;
+  loginInputs[1].value = registerInputs[2].value;
+  await login();
+  addLoginFormButton.style.display = 'none';
   addUserForm.reset();
 });
 
@@ -452,4 +475,8 @@ modifyPostCheckBox.addEventListener('click', async (evt) => {
   }
 });
 
-
+// close modal
+close.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  imageModal.classList.toggle('hide');
+});
