@@ -152,6 +152,7 @@ const createFoodPostCards = (recipes) => {
       // Adds one like to ss_rating
       clnU.addEventListener('click', async (evt) => {
 
+        // This disables button
         iconU.disabled = true;
         console.log('iconU is disabled');
 
@@ -183,6 +184,7 @@ const createFoodPostCards = (recipes) => {
       // Adds one dislike to ss_rating
       clnD.addEventListener('click', async (evt) => {
 
+        // This disables button
         iconD.disabled = true;
         console.log('iconD is disabled');
 
@@ -217,17 +219,21 @@ const createFoodPostCards = (recipes) => {
 // returns disabled icon buttons back to work
 const buttonDisabler = async () => {
 
+  // this undo button disables
   const unDis = async () => {
     iconU.disabled = false;
     iconD.disabled = false;
-    console.log('iconU is no longer disabled');
+    console.log('iconU or iconD are no longer disabled');
     getFoodPost();
-    stopColor()
+    stopTimer()
   };
-  const stopTimer = setInterval(unDis, 3000);
 
-  const stopColor = async () => {
-    clearInterval(stopTimer);
+  // This sets 3 seconds timer
+  const Timer = setInterval(unDis, 3000);
+
+  // This stops timer from repeating itself
+  const stopTimer = async () => {
+    clearInterval(Timer);
     console.log('disable timer stopped');
   };
 };
