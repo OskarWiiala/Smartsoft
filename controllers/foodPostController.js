@@ -3,7 +3,6 @@
 const foodPostModel = require('../models/foodPostModel');
 const {validationResult} = require('express-validator');
 const {makeThumbnail} = require('../utils/resize');
-const {getCoordinates} = require('../utils/imageMeta');
 
 const foodPosts = foodPostModel.foodPosts;
 
@@ -20,7 +19,7 @@ const foodPost_get_by_id = async (req, res) => {
 
 const make_thumbnail = async(req, res, next) => {
   try {
-    const ready = await makeThumbnail({width: 160, height: 160}, req.file.path,
+    const ready = await makeThumbnail({width: 260, height: 160}, req.file.path,
         './thumbnails/' + req.file.filename);
     if (ready) {
       console.log('make_thumbnail', ready);
