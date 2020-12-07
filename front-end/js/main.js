@@ -35,6 +35,9 @@ const imageModal = document.querySelector('#image-modal');
 const modalImage = document.querySelector('#image-modal img');
 const close = document.querySelector('#image-modal a');
 const newPostText = document.querySelector('#newPostText');
+const searchInput = document.querySelector('#mainSearchInputField');
+const searchButton = document.querySelector('#searchButton');
+const searchForm = document.querySelector('#searchForm');
 
 let loggedInUserId = null;
 let loggedInUserStatus = null;
@@ -548,4 +551,22 @@ modifyPostCheckBox.addEventListener('click', async (evt) => {
 close.addEventListener('click', (evt) => {
   evt.preventDefault();
   imageModal.classList.toggle('hide');
+});
+
+// search title equal to input
+searchButton.addEventListener('click', async (evt) => {
+
+  const searchText = searchInput.value;
+
+  try {
+    const response = await fetch(
+        url + '/foodpost/title/' + searchText);
+    const json = await response.json();
+    const recipes = await json;
+
+    console.log('search results: ', recipes);
+    createFoodPostCards(recipes);
+  } catch (e) {
+    console.log(e.message);
+  }
 });

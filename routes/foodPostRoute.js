@@ -42,6 +42,7 @@ router.post('/',
     foodPostController.foodPost_create);
 
 router.get('/:id', foodPostController.foodPost_get_by_id);
+router.get('/title/:title', foodPostController.foodPost_get_by_title);
 router.put('/',
     passport.authenticate('jwt', {session: false}),
     [
