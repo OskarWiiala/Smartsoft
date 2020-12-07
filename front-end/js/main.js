@@ -118,6 +118,7 @@ const createFoodPostCards = (recipes) => {
                   fetchOptions);
               const json = await response.json();
               console.log('delete response', json);
+              getFoodPost();
             } catch (e) {
               console.log(e.message);
             }
