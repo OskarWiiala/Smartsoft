@@ -591,6 +591,11 @@ searchButton.addEventListener('click', async (evt) => {
       const recipes = await json;
 
       console.log('search title results: ', recipes);
+
+      if (recipes.length === 0) {
+        alert('Sorry, no results');
+      }
+
       createFoodPostCards(recipes);
     } catch (e) {
       console.log(e.message);
@@ -604,6 +609,11 @@ searchButton.addEventListener('click', async (evt) => {
       const recipes = await json;
 
       console.log('search username results: ', recipes);
+
+      if (recipes.length === 0) {
+        alert('Sorry, no results');
+      }
+
       createFoodPostCards(recipes);
     } catch (e) {
       console.log(e.message);
