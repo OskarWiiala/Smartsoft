@@ -257,9 +257,10 @@ h3 {
     margin: .5em 0;
 }
 
-#character-count {
-    font-size: 0.75rem;
-    align-self: flex-end;
+#character-count-add-post, #character-count-modify-post {
+    display: flex;
+    justify-content: flex-end;
+    font-family: Verdana;
 }
 
 #addUserUsername, #addUserEmail, #addUserPassword, #addUserButton, #addUserCancel, #loginButton, #loginCancel {
@@ -293,12 +294,12 @@ h3 {
     margin: .5em 0;
 }
 
-#newPostCheckbox {
+#newPostCheckbox, #modifyPostCheckbox {
     display: inline-block;
     margin: 10px;
 }
 
-#newPostCheckboxLabel {
+#newPostCheckboxLabel, #modifyPostCheckboxLabel {
     font-size: large;
     font-family: Verdana;
 }

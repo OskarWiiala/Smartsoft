@@ -34,6 +34,7 @@ const addLikesForm = document.querySelector('#add-like-form');
 const imageModal = document.querySelector('#image-modal');
 const modalImage = document.querySelector('#image-modal img');
 const close = document.querySelector('#image-modal a');
+const newPostText = document.querySelector('#newPostText');
 
 let loggedInUserId = null;
 let loggedInUserStatus = null;
@@ -427,6 +428,13 @@ addPost.addEventListener('submit', async (evt) => {
   });
 });
 
+// Checks the character count of the textarea when adding a food post
+const addPostTextCount = document.querySelector('#character-count-add-post');
+newPostText.addEventListener('input', async (evt) => {
+  evt.preventDefault();
+  addPostTextCount.textContent = `${evt.target.value.length}/${newPostText.maxLength}`;
+});
+
 //Used to display login-form-container when clicking "Log in" button in the navigation
 addLoginFormButton.addEventListener('submit', async (evt) => {
   evt.preventDefault();
@@ -511,6 +519,13 @@ modifyFoodPostForm.addEventListener('submit', async (evt) => {
   modifyContainer.style.display = 'none';
   await getFoodPost();
   modifyFoodPostForm.reset();
+});
+
+// Checks the character count of the textarea when modifying a food post
+const modifyPostTextCount = document.querySelector('#character-count-modify-post');
+modifyTextarea.addEventListener('input', async (evt) => {
+  evt.preventDefault();
+  modifyPostTextCount.textContent = `${evt.target.value.length}/${modifyTextarea.maxLength}`;
 });
 
 //Used to hide modify-container when clicking "cancel" button in the "modify food post" form
