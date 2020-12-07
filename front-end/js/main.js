@@ -590,8 +590,6 @@ searchButton.addEventListener('click', async (evt) => {
       const json = await response.json();
       const recipes = await json;
 
-      console.log('search title results: ', recipes);
-
       if (recipes.length === 0) {
         alert('Sorry, no results');
         getFoodPost();
@@ -608,8 +606,6 @@ searchButton.addEventListener('click', async (evt) => {
           url + '/foodpost/username/' + searchText);
       const json = await response.json();
       const recipes = await json;
-
-      console.log('search username results: ', recipes);
 
       if (recipes.length === 0) {
         alert('Sorry, no results');
