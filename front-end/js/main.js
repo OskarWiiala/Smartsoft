@@ -38,6 +38,7 @@ const searchInput = document.querySelector('#mainSearchInputField');
 const searchButton = document.querySelector('#searchButton');
 
 let loggedInUserId = null;
+let loggedInUserStatus = null;
 
 // create foodPost cards
 const createFoodPostCards = (recipes) => {
@@ -95,8 +96,9 @@ const createFoodPostCards = (recipes) => {
       card.appendChild(dislikes);
       ul.appendChild(card);
 
-      // if the logged in user id matches the foodPost user id, the delete and modify buttons will be created
-      if (loggedInUserId === foodPost.user) {
+      // if the logged in user id matches the foodPost user id, or its status is
+      // admin, the delete and modify buttons will be created
+      if (loggedInUserId === foodPost.user || loggedInUserStatus === 'admin') {
         // delete selected foodPost
         const delButton = document.createElement('button');
         delButton.innerHTML = 'Delete';
@@ -296,8 +298,13 @@ const login = async () => {
     logOut.style.display = 'block';
     ProfilePge.style.display = 'block';
     addUserPage.style.display = 'none';
-    userInfo.innerHTML = `You are logged in as ${json.user.username}`;
     loggedInUserId = json.user.user_id;
+    loggedInUserStatus = json.user.status;
+    if (loggedInUserStatus === 'admin') {
+      userInfo.innerHTML = `You are logged in as ${json.user.username} (ADMIN)`;
+    } else {
+      userInfo.innerHTML = `You are logged in as ${json.user.username}`;
+    }
     await getFoodPost();
   }
   loginForm.reset();
@@ -328,6 +335,7 @@ logOut.addEventListener('click', async (evt) => {
     postContainer.style.display = 'none';
     modifyContainer.style.display = 'none';
     loggedInUserId = null;
+    loggedInUserStatus = null;
     getFoodPost();
   } catch (e) {
     console.log(e.message);
