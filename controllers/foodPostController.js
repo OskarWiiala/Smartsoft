@@ -17,6 +17,12 @@ const foodPost_get_by_id = async (req, res) => {
   res.json(foodPost);
 };
 
+const foodPost_get_by_title = async (req, res) => {
+  console.log('foodPostController: http get foodPost with path param', req.params);
+  const foodPost = await foodPostModel.getFoodPostTitle(req.params.title);
+  res.json(foodPost);
+};
+
 const make_thumbnail = async(req, res, next) => {
   try {
     const ready = await makeThumbnail({width: 260, height: 160}, req.file.path,
@@ -68,4 +74,5 @@ module.exports = {
   foodPost_update,
   foodPost_delete,
   make_thumbnail,
+  foodPost_get_by_title
 };

@@ -34,6 +34,8 @@ const addLikesForm = document.querySelector('#add-like-form');
 const imageModal = document.querySelector('#image-modal');
 const modalImage = document.querySelector('#image-modal img');
 const close = document.querySelector('#image-modal a');
+const searchInput = document.querySelector('#mainSearchInputField');
+const searchButton = document.querySelector('#searchButton');
 
 let loggedInUserId = null;
 
@@ -114,10 +116,20 @@ const createFoodPostCards = (recipes) => {
                 fetchOptions);
             const json = await response.json();
             console.log('delete response', json);
-            getFoodPost();
           } catch (e) {
             console.log(e.message);
           }
+
+            try {
+              const response = await fetch(
+                  url + '/rating/' + foodPost.food_post_id,
+                  fetchOptions);
+              const json = await response.json();
+              console.log('rating delete response', json);
+              getFoodPost();
+            } catch (e) {
+              console.log(e.message);
+            }
         }});
 
         card.appendChild(delButton);
@@ -514,3 +526,32 @@ close.addEventListener('click', (evt) => {
   evt.preventDefault();
   imageModal.classList.toggle('hide');
 });
+
+
+
+
+
+//////////////testing ///////////////////////////////7//////////////////////////////////////////////////////////
+
+
+
+searchButton.addEventListener('click', async(evt) => {
+
+  try {
+    const responseS = await fetch(url + '/foodpost/title/Making a fish sandwich');
+    const json = await responseS.json();
+    const recipes = await json;
+
+    console.log('search response title: ', json.title);
+    console.log('search response username: ', json.username);
+    console.log('test: ', recipes);
+    // createFoodPostCards(recipes);
+    //await getFoodPost();
+  } catch (e) {
+    console.log(e.message);
+  }
+
+});
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
