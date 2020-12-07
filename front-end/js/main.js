@@ -550,7 +550,7 @@ searchButton.addEventListener('click', async (evt) => {
     console.log('search response title: ', json.title);
     console.log('search response username: ', json.username);
     console.log('test: ', recipes);
-    // createFoodPostCards(recipes);
+    createFoodPostCards(recipes);
     //await getFoodPost();
   } catch (e) {
     console.log(e.message);
