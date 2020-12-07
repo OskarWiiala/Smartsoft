@@ -45,6 +45,21 @@ const getFoodPostTitle = async (title) => {
   }
 };
 
+const getFoodPostUsername = async (username) => {
+  try {
+    console.log('foodPostModel getFoodPost', username);
+    const [rows] = await promisePool
+    .execute(`SELECT food_post_id, user, title, text, filename, ss_food_post.status, user_id, username, likes, dislikes
+                  FROM ss_food_post
+                  LEFT JOIN ss_rating ON food_post_id = fk_food_post_id
+                  LEFT JOIN ss_user ON user = user_id WHERE username = ?`, [username]);
+    return rows;
+  }
+  catch (e) {
+    console.error('foodPostModel:', e.message);
+  }
+};
+
 const insertFoodPost = async (req) => {
   try {
     const [rows] = await promisePool.execute(
@@ -102,5 +117,6 @@ module.exports = {
   insertFoodPost,
   updateFoodPost,
   deleteFoodPost,
-  getFoodPostTitle
+  getFoodPostTitle,
+  getFoodPostUsername
 };

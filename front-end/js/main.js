@@ -37,7 +37,7 @@ const close = document.querySelector('#image-modal a');
 const newPostText = document.querySelector('#newPostText');
 const searchInput = document.querySelector('#mainSearchInputField');
 const searchButton = document.querySelector('#searchButton');
-const searchForm = document.querySelector('#searchForm');
+const searchSelect = document.querySelector('#searchSelect');
 
 let loggedInUserId = null;
 let loggedInUserStatus = null;
@@ -525,7 +525,8 @@ modifyFoodPostForm.addEventListener('submit', async (evt) => {
 });
 
 // Checks the character count of the textarea when modifying a food post
-const modifyPostTextCount = document.querySelector('#character-count-modify-post');
+const modifyPostTextCount = document.querySelector(
+    '#character-count-modify-post');
 modifyTextarea.addEventListener('input', async (evt) => {
   evt.preventDefault();
   modifyPostTextCount.textContent = `${evt.target.value.length}/${modifyTextarea.maxLength}`;
@@ -553,20 +554,35 @@ close.addEventListener('click', (evt) => {
   imageModal.classList.toggle('hide');
 });
 
-// search title equal to input
+// search title or username equal to input
 searchButton.addEventListener('click', async (evt) => {
 
   const searchText = searchInput.value;
 
-  try {
-    const response = await fetch(
-        url + '/foodpost/title/' + searchText);
-    const json = await response.json();
-    const recipes = await json;
+  if (searchSelect.value === 'title') {
+    try {
+      const response = await fetch(
+          url + '/foodpost/title/' + searchText);
+      const json = await response.json();
+      const recipes = await json;
 
-    console.log('search results: ', recipes);
-    createFoodPostCards(recipes);
-  } catch (e) {
-    console.log(e.message);
+      console.log('search title results: ', recipes);
+      createFoodPostCards(recipes);
+    } catch (e) {
+      console.log(e.message);
+    }
+  } else {
+
+    try {
+      const response = await fetch(
+          url + '/foodpost/username/' + searchText);
+      const json = await response.json();
+      const recipes = await json;
+
+      console.log('search username results: ', recipes);
+      createFoodPostCards(recipes);
+    } catch (e) {
+      console.log(e.message);
+    }
   }
 });
