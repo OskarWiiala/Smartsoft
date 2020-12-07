@@ -2,7 +2,7 @@
 
     .top {
         flex-direction: column;
-        height: 25vh;
+        height: 17vh;
     }
 
     .TagLine {
@@ -15,7 +15,7 @@
     .top {
         flex-direction: row;
         flex-wrap: nowrap;
-        height: 17vh;
+        height: 10vh;
     }
 
     .TagLine {
@@ -62,7 +62,8 @@
     flex-wrap: wrap;
     justify-content: flex-end;
     align-items: center;
-    height: 5vh;
+    /*height: 5vh;*/
+    height: auto;
 }
 
 .Logo {
@@ -175,7 +176,7 @@
 }
 
 .googleFontText {
-    font-size: x-large;
+    font-size: large;
     font-family: "Architects Daughter", serif;
     text-align: center;
     text-transform: uppercase;
@@ -186,6 +187,8 @@
     border-color: #a8caff;
     margin-right: 20px;
     margin-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     background-color: #cedffa;
     padding: 5px;
 }
@@ -252,6 +255,11 @@ h3 {
     min-width: 100%;
     max-height: 300px;
     margin: .5em 0;
+}
+
+#character-count {
+    font-size: 0.75rem;
+    align-self: flex-end;
 }
 
 #addUserUsername, #addUserEmail, #addUserPassword, #addUserButton, #addUserCancel, #loginButton, #loginCancel {
