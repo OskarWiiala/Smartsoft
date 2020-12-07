@@ -34,9 +34,9 @@ const addLikesForm = document.querySelector('#add-like-form');
 const imageModal = document.querySelector('#image-modal');
 const modalImage = document.querySelector('#image-modal img');
 const close = document.querySelector('#image-modal a');
-const newPostText = document.querySelector('#newPostText');
 
 let loggedInUserId = null;
+let loggedInUserStatus = null;
 
 // create foodPost cards
 const createFoodPostCards = (recipes) => {
@@ -60,10 +60,7 @@ const createFoodPostCards = (recipes) => {
       const figure = document.createElement('figure').appendChild(img);
 
       const user = document.createElement('h4');
-      if (foodPost.status == 'private') {
-        user.innerHTML = foodPost.username + ` (${foodPost.status})`;
-      }
-      else {user.innerHTML = foodPost.username}
+      user.innerHTML = foodPost.username;
       user.classList.add('cardUserHeader');
 
       const h2 = document.createElement('h2');
@@ -97,32 +94,45 @@ const createFoodPostCards = (recipes) => {
       card.appendChild(dislikes);
       ul.appendChild(card);
 
-      // if the logged in user id matches the foodPost user id, the delete and modify buttons will be created
-      if (loggedInUserId === foodPost.user) {
+      // if the logged in user id matches the foodPost user id, or its status is
+      // admin, the delete and modify buttons will be created
+      if (loggedInUserId === foodPost.user || loggedInUserStatus === 'admin') {
         // delete selected foodPost
         const delButton = document.createElement('button');
         delButton.innerHTML = 'Delete';
         delButton.classList.add('cardButton');
 
         delButton.addEventListener('click', async () => {
-          if(confirm(`Are you sure you want to delete "${foodPost.title}"`)) {
-          const fetchOptions = {
-            method: 'DELETE',
-            headers: {
-              'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-            },
-          };
-          try {
-            const response = await fetch(
-                url + '/foodPost/' + foodPost.food_post_id,
-                fetchOptions);
-            const json = await response.json();
-            console.log('delete response', json);
-            getFoodPost();
-          } catch (e) {
-            console.log(e.message);
+          if (confirm(`Are you sure you want to delete "${foodPost.title}"`)) {
+            const fetchOptions = {
+              method: 'DELETE',
+              headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+              },
+            };
+            try {
+              const response = await fetch(
+                  url + '/foodPost/' + foodPost.food_post_id,
+                  fetchOptions);
+              const json = await response.json();
+              console.log('delete response', json);
+              getFoodPost();
+            } catch (e) {
+              console.log(e.message);
+            }
+
+            try {
+              const response = await fetch(
+                  url + '/rating/' + foodPost.food_post_id,
+                  fetchOptions);
+              const json = await response.json();
+              console.log('rating delete response', json);
+              getFoodPost();
+            } catch (e) {
+              console.log(e.message);
+            }
           }
-        }});
+        });
 
         card.appendChild(delButton);
 
@@ -229,7 +239,7 @@ const buttonDisabler = async () => {
     iconD.disabled = false;
     console.log('iconU or iconD are no longer disabled');
     getFoodPost();
-    stopTimer()
+    stopTimer();
   };
 
   // This sets 3 seconds timer
@@ -288,8 +298,13 @@ const login = async () => {
     logOut.style.display = 'block';
     ProfilePge.style.display = 'block';
     addUserPage.style.display = 'none';
-    userInfo.innerHTML = `${json.user.username}`;
     loggedInUserId = json.user.user_id;
+    loggedInUserStatus = json.user.status;
+    if (loggedInUserStatus === 'admin') {
+      userInfo.innerHTML = `You are logged in as ${json.user.username} (ADMIN)`;
+    } else {
+      userInfo.innerHTML = `You are logged in as ${json.user.username}`;
+    }
     await getFoodPost();
   }
   loginForm.reset();
@@ -320,6 +335,7 @@ logOut.addEventListener('click', async (evt) => {
     postContainer.style.display = 'none';
     modifyContainer.style.display = 'none';
     loggedInUserId = null;
+    loggedInUserStatus = null;
     getFoodPost();
   } catch (e) {
     console.log(e.message);
@@ -411,19 +427,6 @@ addPost.addEventListener('submit', async (evt) => {
   });
 });
 
-
-
-
-
-// Checks the character count of the textarea when adding a food post
-const addPostTextCount = document.querySelector('#character-count-add-post');
-newPostText.addEventListener('input', async (evt) => {
-  evt.preventDefault();
-  addPostTextCount.textContent = `${evt.target.value.length}/${newPostText.maxLength}`;
-});
-
-
-
 //Used to display login-form-container when clicking "Log in" button in the navigation
 addLoginFormButton.addEventListener('submit', async (evt) => {
   evt.preventDefault();
@@ -508,13 +511,6 @@ modifyFoodPostForm.addEventListener('submit', async (evt) => {
   modifyContainer.style.display = 'none';
   await getFoodPost();
   modifyFoodPostForm.reset();
-});
-
-// Checks the character count of the textarea when modifying a food post
-const modifyPostTextCount = document.querySelector('#character-count-modify-post');
-modifyTextarea.addEventListener('input', async (evt) => {
-  evt.preventDefault();
-  modifyPostTextCount.textContent = `${evt.target.value.length}/${modifyTextarea.maxLength}`;
 });
 
 //Used to hide modify-container when clicking "cancel" button in the "modify food post" form
