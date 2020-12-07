@@ -273,14 +273,14 @@ card {
 /*    }*/
 /*}*/
 
-#MyPostsHeader {
+#MyPostsHeader, #SearchResultsHeader {
     justify-content: center;
     padding-top: 30px;
     padding-bottom: 30px;
     background-color: lavender;
 }
 
-#MyPostsHeading {
+#MyPostsHeading, #SearchResultsHeading {
     width: fit-content;
     margin: auto;
     font-family: "Arial", serif;

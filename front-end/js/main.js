@@ -40,6 +40,7 @@ const searchInput = document.querySelector('#mainSearchInputField');
 const searchButton = document.querySelector('#searchButton');
 const searchSelect = document.querySelector('#searchSelect');
 const myPostsHeader = document.querySelector('#MyPostsHeader');
+const searchResultsHeader = document.querySelector('#SearchResultsHeader');
 
 let loggedInUserId = null;
 let loggedInUserStatus = null;
@@ -426,6 +427,7 @@ profilePageButton.addEventListener('click', async (evt) => {
   profilePageButton.style.display = 'none';
   homePageButton.style.display = 'block';
   myPostsHeader.style.display = 'block';
+  searchResultsHeader.style.display = 'none';
   await getFoodPost();
 });
 
@@ -436,6 +438,7 @@ homePageButton.addEventListener('click', async (evt) => {
   profilePageButton.style.display = 'block';
   addPost.style.display = 'none';
   myPostsHeader.style.display = 'none';
+  searchResultsHeader.style.display = 'none';
   await getFoodPost();
 });
 
@@ -625,4 +628,9 @@ searchButton.addEventListener('click', async (evt) => {
       console.log(e.message);
     }
   }
+  myPostsHeader.style.display = 'none';
+  searchResultsHeader.style.display = 'block';
+  homePageButton.style.display = 'block';
+  addPost.style.display = 'none';
+  profilePageButton.style.display = 'block';
 });

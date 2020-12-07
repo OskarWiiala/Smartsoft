@@ -31,7 +31,7 @@ const foodPost_get_by_username = async (req, res) => {
 
 const make_thumbnail = async(req, res, next) => {
   try {
-    const ready = await makeThumbnail({width: 260, height: 160}, req.file.path,
+    const ready = await makeThumbnail({width: 500, height: 300}, req.file.path,
         './thumbnails/' + req.file.filename);
     if (ready) {
       console.log('make_thumbnail', ready);
