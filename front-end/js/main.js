@@ -593,7 +593,15 @@ searchButton.addEventListener('click', async (evt) => {
       if (recipes.length === 0) {
         alert('Sorry, no results');
         getFoodPost();
+      } else {
+
       }
+
+      recipes.forEach((foodPost) => {
+        if (foodPost.status === 'private') {
+          alert('Some results are private');
+        }
+      });
 
       createFoodPostCards(recipes);
     } catch (e) {
