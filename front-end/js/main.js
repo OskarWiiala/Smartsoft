@@ -82,9 +82,7 @@ const createCardContent = async (foodPost) => {
   const figure = document.createElement('figure').appendChild(img);
 
   const user = document.createElement('h4');
-  if(foodPost.status == 'private') {
-  user.innerHTML = foodPost.username + ' (' + foodPost.status + ')';
-  } else { user.innerHTML = foodPost.username}
+  user.innerHTML = foodPost.username;
   user.classList.add('cardUserHeader');
 
   const h2 = document.createElement('h2');
@@ -592,8 +590,6 @@ searchButton.addEventListener('click', async (evt) => {
       const json = await response.json();
       const recipes = await json;
 
-      console.log('search title results: ', recipes);
-
       if (recipes.length === 0) {
         alert('Sorry, no results');
         getFoodPost();
@@ -610,8 +606,6 @@ searchButton.addEventListener('click', async (evt) => {
           url + '/foodpost/username/' + searchText);
       const json = await response.json();
       const recipes = await json;
-
-      console.log('search username results: ', recipes);
 
       if (recipes.length === 0) {
         alert('Sorry, no results');
