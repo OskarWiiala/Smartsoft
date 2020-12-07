@@ -36,6 +36,7 @@ const modalImage = document.querySelector('#image-modal img');
 const close = document.querySelector('#image-modal a');
 const searchInput = document.querySelector('#mainSearchInputField');
 const searchButton = document.querySelector('#searchButton');
+const searchForm = document.querySelector('#searchForm');
 
 let loggedInUserId = null;
 let loggedInUserStatus = null;
@@ -537,25 +538,20 @@ close.addEventListener('click', (evt) => {
   imageModal.classList.toggle('hide');
 });
 
-//////////////testing ///////////////////////////////7//////////////////////////////////////////////////////////
-
+// search title equal to input
 searchButton.addEventListener('click', async (evt) => {
 
+  const searchText = searchInput.value;
+
   try {
-    const responseS = await fetch(
-        url + '/foodpost/title/Making a fish sandwich');
-    const json = await responseS.json();
+    const response = await fetch(
+        url + '/foodpost/title/' + searchText);
+    const json = await response.json();
     const recipes = await json;
 
-    console.log('search response title: ', json.title);
-    console.log('search response username: ', json.username);
-    console.log('test: ', recipes);
+    console.log('search results: ', recipes);
     createFoodPostCards(recipes);
-    //await getFoodPost();
   } catch (e) {
     console.log(e.message);
   }
-
 });
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
