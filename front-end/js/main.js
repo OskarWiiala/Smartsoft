@@ -64,7 +64,10 @@ const createFoodPostCards = (recipes) => {
       const figure = document.createElement('figure').appendChild(img);
 
       const user = document.createElement('h4');
-      user.innerHTML = foodPost.username;
+      if(foodPost.status == 'private') {
+      user.innerHTML = `${foodPost.username} (${foodPost.status})`;
+      } else {user.innerHTML = foodPost.username}
+
       user.classList.add('cardUserHeader');
 
       const h2 = document.createElement('h2');
@@ -72,7 +75,7 @@ const createFoodPostCards = (recipes) => {
       h2.classList.add('cardh2');
 
       const p1 = document.createElement('textarea');
-      p1.innerHTML = `Recipe: ${foodPost.text}`;
+      p1.innerHTML = `${foodPost.text}`;
       p1.classList.add('cardRecipe');
       p1.readOnly = true;
 

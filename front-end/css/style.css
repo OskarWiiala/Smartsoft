@@ -2,12 +2,13 @@
 
     .top {
         flex-direction: column;
-        height: 17vh;
+        height: 8vh;
     }
 
     .TagLine {
         display: none
     }
+
 }
 
 @media (min-width: 600px) {
@@ -113,19 +114,20 @@
     border-color: orange;
 }
 
-.card {
-    background-color: white;
-    height: 400px;
-    width: 300px;
-    margin: 50px;
-    box-shadow: black 10px 10px 10px;
-    padding-top: 100px;
-}
+/*.card {*/
+/*    background-color: white;*/
+/*    height: 400px;*/
+/*    width: 300px;*/
+/*    margin: 50px;*/
+/*    box-shadow: black 10px 10px 10px;*/
+/*    padding-top: 100px;*/
+/*}*/
 
-.cardUserHeader {
+.cardUserHeader, .cardh2, .cardRecipe {
     display: flex;
     justify-content: center;
     margin: 4px;
+    font-family: "Architects Daughter", serif;
 }
 
 .cardh2 {
@@ -156,6 +158,7 @@
     max-height: 120px;
     /*overflow:scroll;*/
     background-color: lightgoldenrodyellow;
+    font-size: larger;
 }
 
 .cardButton {
@@ -228,12 +231,51 @@ ul {
 
 card {
     background-color: white;
-    height: 400px;
-    width: 300px;
+    height: 750px;
+    width: 600px;
     margin: 50px;
     box-shadow: black 10px 10px 10px;
     padding-top: 100px;
 }
+
+@media screen and (max-width: 767px) {
+    card {
+        height: 90vh;
+        width: 300px;
+        margin: 10px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    card {
+        width: 600px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    card {
+        width: 600px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    card {
+        width: 600px;
+    }
+}
+
+/*@media (max-width: 900px) {*/
+/*    card {*/
+/*        width: 80vw;*/
+/*    }*/
+/*}*/
+
+/*@media (min-width: 900px) and (max-width: 1300px) {*/
+/*    card {*/
+/*        width: 60vw;*/
+/*    }*/
+/*}*/
+
 
 .yourposts-header {
     display: flex;
@@ -428,7 +470,7 @@ input[type="file" i] {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,.5);
+    background-color: rgba(0, 0, 0, .5);
     position: fixed;
 }
 
