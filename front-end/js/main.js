@@ -594,6 +594,7 @@ searchButton.addEventListener('click', async (evt) => {
 
       if (recipes.length === 0) {
         alert('Sorry, no results');
+        getFoodPost();
       }
 
       createFoodPostCards(recipes);
@@ -612,6 +613,7 @@ searchButton.addEventListener('click', async (evt) => {
 
       if (recipes.length === 0) {
         alert('Sorry, no results');
+        getFoodPost();
       }
 
       createFoodPostCards(recipes);
