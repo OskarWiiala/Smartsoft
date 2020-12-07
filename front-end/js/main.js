@@ -103,24 +103,36 @@ const createFoodPostCards = (recipes) => {
         delButton.classList.add('cardButton');
 
         delButton.addEventListener('click', async () => {
-          if(confirm(`Are you sure you want to delete "${foodPost.title}"`)) {
-          const fetchOptions = {
-            method: 'DELETE',
-            headers: {
-              'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-            },
-          };
-          try {
-            const response = await fetch(
-                url + '/foodPost/' + foodPost.food_post_id,
-                fetchOptions);
-            const json = await response.json();
-            console.log('delete response', json);
-            getFoodPost();
-          } catch (e) {
-            console.log(e.message);
+          if (confirm(`Are you sure you want to delete "${foodPost.title}"`)) {
+            const fetchOptions = {
+              method: 'DELETE',
+              headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+              },
+            };
+            try {
+              const response = await fetch(
+                  url + '/foodPost/' + foodPost.food_post_id,
+                  fetchOptions);
+              const json = await response.json();
+              console.log('delete response', json);
+              getFoodPost();
+            } catch (e) {
+              console.log(e.message);
+            }
+
+            try {
+              const response = await fetch(
+                  url + '/rating/' + foodPost.food_post_id,
+                  fetchOptions);
+              const json = await response.json();
+              console.log('rating delete response', json);
+              getFoodPost();
+            } catch (e) {
+              console.log(e.message);
+            }
           }
-        }});
+        });
 
         card.appendChild(delButton);
 
@@ -227,7 +239,7 @@ const buttonDisabler = async () => {
     iconD.disabled = false;
     console.log('iconU or iconD are no longer disabled');
     getFoodPost();
-    stopTimer()
+    stopTimer();
   };
 
   // This sets 3 seconds timer
