@@ -29,7 +29,19 @@
         <p id="user-info"></p>
 
         <input type="text" id="mainSearchInputField">
-        <button id="searchButton" >search title</button>
+        <button id="searchButton" >search title or user</button>
+
+        <label for="searchSelect">search:</label>
+
+        <select id="searchSelect">
+            <option value="title">title</option>
+            <option value="username">username</option>
+        </select>
+
+
+
+
+
 
         <form id="addLoginFormButton">
             <button class="submitButton submitButton2" type="submit">Log in</button>
@@ -39,8 +51,12 @@
             <button class="submitButton submitButton2" type="submit">Log out</button>
         </form>
 
-        <form id="profilePage" style="display: none;">
+        <form id="profilePageButton" style="display: none;">
             <button class="submitButton submitButton2" type="submit">My profile</button>
+        </form>
+
+        <form id="homePageButton" style="display: none;">
+            <button class="submitButton submitButton2" type="submit">Home page</button>
         </form>
 
         <form id="addUserPage">
@@ -184,6 +200,10 @@
     <a href="#" class="close">Close</a>
     <img src="" alt="">
 </div>
+
+<header id="MyPostsHeader" style="display: none">
+    <h1 id="MyPostsHeading">My Posts:</h1>
+</header>
 
 <div class="content">
 
