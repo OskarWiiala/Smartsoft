@@ -1,2 +1,1 @@
-# Task
-# Smartsoft
+# Smartsoft web project
