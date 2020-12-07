@@ -105,22 +105,22 @@ const createFoodPostCards = (recipes) => {
         delButton.classList.add('cardButton');
 
         delButton.addEventListener('click', async () => {
-          if(confirm(`Are you sure you want to delete "${foodPost.title}"`)) {
-          const fetchOptions = {
-            method: 'DELETE',
-            headers: {
-              'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-            },
-          };
-          try {
-            const response = await fetch(
-                url + '/foodPost/' + foodPost.food_post_id,
-                fetchOptions);
-            const json = await response.json();
-            console.log('delete response', json);
-          } catch (e) {
-            console.log(e.message);
-          }
+          if (confirm(`Are you sure you want to delete "${foodPost.title}"`)) {
+            const fetchOptions = {
+              method: 'DELETE',
+              headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+              },
+            };
+            try {
+              const response = await fetch(
+                  url + '/foodPost/' + foodPost.food_post_id,
+                  fetchOptions);
+              const json = await response.json();
+              console.log('delete response', json);
+            } catch (e) {
+              console.log(e.message);
+            }
 
             try {
               const response = await fetch(
@@ -132,7 +132,8 @@ const createFoodPostCards = (recipes) => {
             } catch (e) {
               console.log(e.message);
             }
-        }});
+          }
+        });
 
         card.appendChild(delButton);
 
@@ -239,7 +240,7 @@ const buttonDisabler = async () => {
     iconD.disabled = false;
     console.log('iconU or iconD are no longer disabled');
     getFoodPost();
-    stopTimer()
+    stopTimer();
   };
 
   // This sets 3 seconds timer
@@ -535,18 +536,13 @@ close.addEventListener('click', (evt) => {
   imageModal.classList.toggle('hide');
 });
 
-
-
-
-
 //////////////testing ///////////////////////////////7//////////////////////////////////////////////////////////
 
-
-
-searchButton.addEventListener('click', async(evt) => {
+searchButton.addEventListener('click', async (evt) => {
 
   try {
-    const responseS = await fetch(url + '/foodpost/title/Making a fish sandwich');
+    const responseS = await fetch(
+        url + '/foodpost/title/Making a fish sandwich');
     const json = await responseS.json();
     const recipes = await json;
 
@@ -560,6 +556,5 @@ searchButton.addEventListener('click', async(evt) => {
   }
 
 });
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
