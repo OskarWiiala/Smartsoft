@@ -86,7 +86,10 @@ const createCardContent = async (foodPost) => {
   const user = document.createElement('h4');
   if (foodPost.status == 'private') {
     user.innerHTML = `${foodPost.username} (${foodPost.status})`;
-  } else {user.innerHTML = foodPost.username};
+  } else {
+    user.innerHTML = foodPost.username;
+  }
+  ;
 
   user.classList.add('cardUserHeader');
 
@@ -122,69 +125,72 @@ const createCardContent = async (foodPost) => {
   ul.appendChild(card);
 
   // Adds one like to ss_rating
-  clnU.addEventListener('click', async (evt) => {
+  if (loggedInUserId != null) {
+    clnU.addEventListener('click', async (evt) => {
 
-    // This disables button
-    iconU.disabled = true;
-    console.log('iconU is disabled');
+      // This disables button
+      iconU.disabled = true;
+      console.log('iconU is disabled');
 
-    const likes = foodPost.likes;
-    const inputs = addLikesForm.querySelectorAll('input');
-    inputs[0].value = foodPost.food_post_id;
-    inputs[1].value = likes + 1;
-    inputs[2].value = foodPost.dislikes;
+      const likes = foodPost.likes;
+      const inputs = addLikesForm.querySelectorAll('input');
+      inputs[0].value = foodPost.food_post_id;
+      inputs[1].value = likes + 1;
+      inputs[2].value = foodPost.dislikes;
 
-    const data = serializeJson(addLikesForm);
-    console.log('modify rating func after add', data);
+      const data = serializeJson(addLikesForm);
+      console.log('modify rating func after add', data);
 
-    const fetchOptions = {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-      },
-      body: JSON.stringify(data),
-    };
-    const response = await fetch(url + '/rating', fetchOptions);
-    const json = await response;
-    console.log('add 1 like rating response', json);
-    await getFoodPost();
-    addLikesForm.reset();
-    await buttonDisabler();
-  });
+      const fetchOptions = {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+        },
+        body: JSON.stringify(data),
+      };
+      const response = await fetch(url + '/rating', fetchOptions);
+      const json = await response;
+      console.log('add 1 like rating response', json);
+      await getFoodPost();
+      addLikesForm.reset();
+      await buttonDisabler();
+    });
+  }
 
   // Adds one dislike to ss_rating
-  clnD.addEventListener('click', async (evt) => {
+  if (loggedInUserId != null) {
+    clnD.addEventListener('click', async (evt) => {
 
-    // This disables button
-    iconD.disabled = true;
-    console.log('iconD is disabled');
+      // This disables button
+      iconD.disabled = true;
+      console.log('iconD is disabled');
 
-    const addDislike = foodPost.dislikes + 1;
-    const inputs = addLikesForm.querySelectorAll('input');
-    inputs[0].value = foodPost.food_post_id;
-    inputs[1].value = foodPost.likes;
-    inputs[2].value = addDislike;
+      const addDislike = foodPost.dislikes + 1;
+      const inputs = addLikesForm.querySelectorAll('input');
+      inputs[0].value = foodPost.food_post_id;
+      inputs[1].value = foodPost.likes;
+      inputs[2].value = addDislike;
 
-    const data = serializeJson(addLikesForm);
-    console.log('modify rating func after add', data);
+      const data = serializeJson(addLikesForm);
+      console.log('modify rating func after add', data);
 
-    const fetchOptions = {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-      },
-      body: JSON.stringify(data),
-    };
-    const response = await fetch(url + '/rating', fetchOptions);
-    const json = await response;
-    console.log('add 1 like rating response', json);
-    await getFoodPost();
-    addLikesForm.reset();
-    await buttonDisabler();
-  });
-
+      const fetchOptions = {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+        },
+        body: JSON.stringify(data),
+      };
+      const response = await fetch(url + '/rating', fetchOptions);
+      const json = await response;
+      console.log('add 1 like rating response', json);
+      await getFoodPost();
+      addLikesForm.reset();
+      await buttonDisabler();
+    });
+  }
   // if the logged in user id matches the foodPost user id, or the logged in user's
   // status is admin, the delete and modify buttons will be created
   if (loggedInUserId === foodPost.user || loggedInUserStatus === 'admin') {
