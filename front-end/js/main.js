@@ -665,11 +665,6 @@ searchForm.addEventListener('submit', async (evt) => {
   }
 });
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 top10Button.addEventListener('submit', async (evt) => {
   evt.preventDefault();
 
