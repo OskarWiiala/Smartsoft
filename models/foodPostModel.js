@@ -32,7 +32,7 @@ const getFoodPost = async (id) => {
 
 const getFoodPostTitle = async (title) => {
   try {
-    console.log('foodPostModel getFoodPost', title);
+    console.log('foodPostModel getFoodPostTitle', title);
     const [rows] = await promisePool
     .execute(`SELECT food_post_id, user, title, text, filename, ss_food_post.status, user_id, username, likes, dislikes
                   FROM ss_food_post
@@ -47,7 +47,7 @@ const getFoodPostTitle = async (title) => {
 
 const getFoodPostUsername = async (username) => {
   try {
-    console.log('foodPostModel getFoodPost', username);
+    console.log('foodPostModel getFoodPostUsername', username);
     const [rows] = await promisePool
     .execute(`SELECT food_post_id, user, title, text, filename, ss_food_post.status, user_id, username, likes, dislikes
                   FROM ss_food_post

@@ -198,7 +198,7 @@ const createDeleteModifyButtons = async (foodPost, card) => {
   delButton.classList.add('cardButton');
 
   delButton.addEventListener('click', async () => {
-    if(confirm(`Are you sure you want to delete "${foodPost.title}"`)) {
+    if (confirm(`Are you sure you want to delete "${foodPost.title}"`)) {
       const fetchOptions = {
         method: 'DELETE',
         headers: {
@@ -215,7 +215,8 @@ const createDeleteModifyButtons = async (foodPost, card) => {
       } catch (e) {
         console.log(e.message);
       }
-    }});
+    }
+  });
 
   card.appendChild(delButton);
 
@@ -278,7 +279,7 @@ const getFoodPost = async () => {
     };
     const response = await fetch(url + '/foodPost', options);
     const recipes = await response.json();
-    createFoodPostCards(recipes);
+    createFoodPostCards(recipes.reverse());
   } catch (e) {
     console.log(e.message);
   }
@@ -587,12 +588,10 @@ close.addEventListener('click', (evt) => {
 // search title or username equal to input
 searchButton.addEventListener('click', async (evt) => {
 
-  const searchText = searchInput.value;
-
   if (searchSelect.value === 'title') {
     try {
       const response = await fetch(
-          url + '/foodpost/title/' + searchText);
+          url + '/foodpost/title/' + searchInput.value);
       const json = await response.json();
       const recipes = await json;
 
@@ -621,7 +620,7 @@ searchButton.addEventListener('click', async (evt) => {
 
     try {
       const response = await fetch(
-          url + '/foodpost/username/' + searchText);
+          url + '/foodpost/username/' + searchInput.value);
       const json = await response.json();
       const recipes = await json;
 
