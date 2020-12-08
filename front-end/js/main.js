@@ -83,7 +83,10 @@ const createCardContent = async (foodPost) => {
   const figure = document.createElement('figure').appendChild(img);
 
   const user = document.createElement('h4');
-  user.innerHTML = foodPost.username;
+  if (foodPost.status == 'private') {
+    user.innerHTML = `${foodPost.username} (${foodPost.status})`;
+  } else {user.innerHTML = foodPost.username};
+
   user.classList.add('cardUserHeader');
 
   const h2 = document.createElement('h2');
