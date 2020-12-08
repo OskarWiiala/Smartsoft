@@ -597,7 +597,11 @@ searchButton.addEventListener('click', async (evt) => {
         alert('Sorry, no results');
         getFoodPost();
       } else {
-
+        myPostsHeader.style.display = 'none';
+        searchResultsHeader.style.display = 'block';
+        homePageButton.style.display = 'block';
+        addPost.style.display = 'none';
+        profilePageButton.style.display = 'block';
       }
 
       recipes.forEach((foodPost) => {
@@ -621,16 +625,23 @@ searchButton.addEventListener('click', async (evt) => {
       if (recipes.length === 0) {
         alert('Sorry, no results');
         getFoodPost();
+      } else {
+        myPostsHeader.style.display = 'none';
+        searchResultsHeader.style.display = 'block';
+        homePageButton.style.display = 'block';
+        addPost.style.display = 'none';
+        profilePageButton.style.display = 'block';
       }
+
+      recipes.forEach((foodPost) => {
+        if (foodPost.status === 'private') {
+          alert('Some results are private');
+        }
+      });
 
       createFoodPostCards(recipes);
     } catch (e) {
       console.log(e.message);
     }
   }
-  myPostsHeader.style.display = 'none';
-  searchResultsHeader.style.display = 'block';
-  homePageButton.style.display = 'block';
-  addPost.style.display = 'none';
-  profilePageButton.style.display = 'block';
 });
