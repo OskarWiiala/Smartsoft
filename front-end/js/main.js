@@ -94,7 +94,7 @@ const createCardContent = async (foodPost) => {
   h2.classList.add('cardh2');
 
   const p1 = document.createElement('textarea');
-  p1.innerHTML = `Recipe: ${foodPost.text}`;
+  p1.innerHTML = `${foodPost.text}`;
   p1.classList.add('cardRecipe');
   p1.readOnly = true;
 
