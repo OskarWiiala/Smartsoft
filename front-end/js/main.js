@@ -690,16 +690,11 @@ top10Button.addEventListener('submit', async (evt) => {
         profilePageButton.style.display = 'block';
       }
 
-      recipes.forEach((foodPost) => {
-        if (foodPost.status === 'private') {
+      recipes.forEach((rating) => {
+        if (rating.status === 'private') {
           alert('Some results are private');
         }
       });
-
-      console.log('top 10 response', recipes);
-
-      // const top5 = recipes.slice(0, 5);
-      // console.log('top 5 response', top5);
 
       createFoodPostCards(recipes);
     } catch (e) {
