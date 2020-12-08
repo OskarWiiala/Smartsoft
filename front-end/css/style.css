@@ -513,10 +513,6 @@ input[type="file" i] {
     color: red;
 }
 
-.fa:hover {
-    transform: scale(2);
-}
-
 /* image modal classes */
 .hide {
     display: none !important;
