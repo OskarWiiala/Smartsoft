@@ -4,7 +4,6 @@ const url = 'http://localhost:3000'; // change url when uploading to server
 // select existing html elements
 const ul = document.querySelector('#foodPostCardsList');
 const addForm = document.querySelector('#addFoodPostForm');
-const loginWrapper = document.querySelector('#loginWrapper');
 const loginForm = document.querySelector('#login-form');
 const logoutButton = document.querySelector('#logoutButton');
 const userInfo = document.querySelector('#user-info');
@@ -21,15 +20,12 @@ const loginCancel = document.querySelector('#loginCancel');
 const postContainer = document.querySelector('.post-container');
 const cancelPost = document.querySelector('.cancel-post');
 const addUser = document.querySelector('.add-user');
-const upLoadB = document.querySelector('#uploadButton');
 const modifyFoodPostForm = document.querySelector('#modifyFoodPostForm');
 const modifyContainer = document.querySelector('.modify-container');
 const modifyTextarea = document.querySelector('#modifyText');
 const cancelModifyPost = document.querySelector('.cancel-modify-post');
 const iconU = document.querySelector('.btnTu');
 const iconD = document.querySelector('.btnTd');
-const ulLikes = document.querySelector('#likes');
-const newPostCheckBox = document.querySelector('#newPostCheckbox');
 const modifyPostCheckBox = document.querySelector('#modifyPostCheckbox');
 const addLikesForm = document.querySelector('#add-like-form');
 const imageModal = document.querySelector('#image-modal');
@@ -38,7 +34,6 @@ const close = document.querySelector('#image-modal a');
 const newPostText = document.querySelector('#newPostText');
 const searchForm = document.querySelector('#searchForm');
 const searchInput = document.querySelector('#mainSearchInputField');
-const searchButton = document.querySelector('#searchButton');
 const searchSelect = document.querySelector('#searchSelect');
 const myPostsHeader = document.querySelector('#MyPostsHeader');
 const searchResultsHeader = document.querySelector('#SearchResultsHeader');
@@ -84,12 +79,11 @@ const createCardContent = async (foodPost) => {
   const figure = document.createElement('figure').appendChild(img);
 
   const user = document.createElement('h4');
-  if (foodPost.status == 'private') {
+  if (foodPost.status === 'private') {
     user.innerHTML = `${foodPost.username} (${foodPost.status})`;
   } else {
     user.innerHTML = foodPost.username;
   }
-  ;
 
   user.classList.add('cardUserHeader');
 
@@ -246,6 +240,8 @@ const createDeleteModifyButtons = async (foodPost, card) => {
       modifyPostCheckBox.checked = true;
     }
     modifyContainer.style.display = 'flex';
+    postContainer.style.display = 'none';
+    addForm.reset();
 
     //This scrolls the page to the top
     window.scroll({
@@ -444,13 +440,24 @@ profilePageButton.addEventListener('click', async () => {
   homePageButton.style.display = 'block';
   myPostsHeader.style.display = 'block';
   searchResultsHeader.style.display = 'none';
+  postContainer.style.display = 'none';
+  addPostButton.style.display = 'block';
+  modifyContainer.style.display = 'none';
   await getFoodPost();
+
+  //This scrolls the page to the top
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
 });
 
-// when the home page button is pressed, it disappears and the my profile button appears
+// when the home page button is pressed, it disappears and the home page appears
 homePageButton.addEventListener('click', async () => {
   homePageButton.style.display = 'none';
   profilePageButton.style.display = 'block';
+  addPostButton.style.display = 'block';
   myPostsHeader.style.display = 'none';
   searchResultsHeader.style.display = 'none';
   postContainer.style.display = 'none';
@@ -458,6 +465,13 @@ homePageButton.addEventListener('click', async () => {
   addForm.reset();
   modifyFoodPostForm.reset();
   await getFoodPost();
+
+  //This scrolls the page to the top
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
 });
 
 //Used to display post-container when clicking "create new post" button in the navigation
@@ -465,6 +479,7 @@ addPostButton.addEventListener('click', async () => {
   if (loggedInUserId != null) {
     postContainer.style.display = 'flex';
     addPostButton.style.display = 'none';
+    modifyContainer.style.display = 'none';
     // add user id (hidden) to the add foodPost form
     addUser.value = loggedInUserId;
 
