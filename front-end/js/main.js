@@ -279,7 +279,7 @@ const getFoodPost = async () => {
     };
     const response = await fetch(url + '/foodPost', options);
     const recipes = await response.json();
-    createFoodPostCards(recipes);
+    createFoodPostCards(recipes.reverse());
   } catch (e) {
     console.log(e.message);
   }
