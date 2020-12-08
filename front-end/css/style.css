@@ -123,15 +123,6 @@
     border-color: orange;
 }
 
-/*.card {*/
-/*    background-color: white;*/
-/*    height: 400px;*/
-/*    width: 300px;*/
-/*    margin: 50px;*/
-/*    box-shadow: black 10px 10px 10px;*/
-/*    padding-top: 100px;*/
-/*}*/
-
 .cardUserHeader {
     display: flex;
     justify-content: center;
@@ -158,28 +149,33 @@
     margin-right: auto;
     margin-top: 4px;
     margin-bottom: 4px;
+    max-width: 100%;
+    max-height: 33%;
 }
 
 .cardRecipe {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     margin: 4px;
-    height: 120px;
+    height: 50%;
     width: 100%;
     min-width: 100%;
     min-height: 120px;
     max-width: 100%;
     max-height: 50%;
-    /*overflow:scroll;*/
-    /*background-color: #fafad2;*/
-    /*background-color: #fffff0;*/
+    overflow: auto;
+    word-break: break-all;
     font-family: "Architects Daughter", serif;
     font-size: larger;
-    padding: 5px;
+    padding: 12px 12px;
     background-color: #fffcf5;
-    background-image:
-    linear-gradient(#e6e6e6 .1em, transparent .1em);
+    background-image: linear-gradient(#e6e6e6 .1em, transparent .1em);
     background-size: 100% 1.2em;
+    line-height: 33px;
+    line-break: auto;
+    border-radius: 5px;
+    border: 1px solid #d1d1a7;
+
 }
 
 .cardButton {
@@ -188,6 +184,18 @@
     margin-left: 10px;
     background-color: #cedffa;
     padding: 5px;
+}
+
+.likes, .dislikes {
+    font-family: "Architects Daughter", serif;
+    padding: 5px;
+    font-size: 25px;
+}
+.likes {
+    color: blue;
+}
+.dislikes {
+    color: red;
 }
 
 .login-form-container, .add-user-form-container, .post-container, .modify-container {
@@ -259,16 +267,8 @@
 #foodPostCardsList {
     display: flex;
     flex-wrap: wrap;
-    /*background-color: #cedffa;*/
     justify-content: space-evenly;
     align-items: center;
-    /*background-color: #ffffff;*/
-    /*background-color: #ffeeb0;*/
-    /*background-color: #ffeba1;*/
-    /*background-color: #fffcf5;*/
-    /*background-image: linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),*/
-    /*linear-gradient(#e6e6e6 .1em, transparent .1em);*/
-    /*background-size: 100% 1.2em;*/
 }
 
 .filler {
@@ -283,44 +283,6 @@ card {
     box-shadow: black 10px 10px 10px;
     padding-top: 100px;
 }
-
-@media screen and (max-width: 767px) {
-    card {
-        height: 90vh;
-        width: 300px;
-        margin: 10px;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-    card {
-        width: 600px;
-    }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-    card {
-        width: 600px;
-    }
-}
-
-@media screen and (min-width: 1200px) {
-    card {
-        width: 600px;
-    }
-}
-
-/*@media (max-width: 900px) {*/
-/*    card {*/
-/*        width: 80vw;*/
-/*    }*/
-/*}*/
-
-/*@media (min-width: 900px) and (max-width: 1300px) {*/
-/*    card {*/
-/*        width: 60vw;*/
-/*    }*/
-/*}*/
 
 #MyPostsHeader, #SearchResultsHeader {
     justify-content: center;
@@ -488,10 +450,11 @@ input[type="file" i] {
     /*background-color: #cedffa;*/
     justify-content: space-evenly;
     align-items: center;
-    background-color: #fffcf5;
-    background-image: linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
-    linear-gradient(#e6e6e6 .1em, transparent .1em);
-    background-size: 100% 1.2em;
+    /*background-color: #fffcf5;*/
+    /*background-image: linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),*/
+    /*linear-gradient(#e6e6e6 .1em, transparent .1em);*/
+    /*background-size: 100% 1.2em;*/
+    background-image: url("../table-background.jpg");
 }
 
 .filler {
@@ -546,4 +509,30 @@ input[type="file" i] {
 
 .cardImage img:hover {
     cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+    card {
+        height: 90vh;
+        width: 300px;
+        margin: 10px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    card {
+        width: 600px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    card {
+        width: 600px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    card {
+        width: 600px;
+    }
 }

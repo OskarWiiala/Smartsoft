@@ -97,16 +97,19 @@ const createCardContent = async (foodPost) => {
   h2.innerHTML = foodPost.title;
   h2.classList.add('cardh2');
 
-  const p1 = document.createElement('textarea');
+  const p1 = document.createElement('article');
   p1.innerHTML = `${foodPost.text}`;
   p1.classList.add('cardRecipe');
+  p1.style = "white-space: pre-line";
   p1.readOnly = true;
 
   const likes = document.createElement('likes');
   likes.innerHTML = `${foodPost.likes}`;
+  likes.classList.add('likes');
 
   const dislikes = document.createElement('dislikes');
   dislikes.innerHTML = `${foodPost.dislikes}`;
+  dislikes.classList.add('dislikes');
 
   const clnU = iconU.cloneNode(true);
   const clnD = iconD.cloneNode(true);
