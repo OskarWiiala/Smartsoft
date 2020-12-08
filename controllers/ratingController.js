@@ -11,6 +11,11 @@ const rating_list_get = async (req, res) => {
   res.json(ratings);
 };
 
+const topRated_list_get = async (req, res) => {
+  const ratings = await ratingModel.getTopRatedPosts();
+  res.json(ratings);
+};
+
 const ratingPost_get_by_id = async (req, res) => {
   console.log('ratingController: http get rating with path param', req.params);
   const rating = await ratingModel.getRatingPost(req.params.id);
@@ -52,5 +57,6 @@ module.exports = {
   rating_update,
   ratingPost_create,
   ratingPost_get_by_id,
-  ratingPost_delete
+  ratingPost_delete,
+  topRated_list_get
 };

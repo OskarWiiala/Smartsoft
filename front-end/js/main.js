@@ -37,6 +37,7 @@ const searchInput = document.querySelector('#mainSearchInputField');
 const searchSelect = document.querySelector('#searchSelect');
 const myPostsHeader = document.querySelector('#MyPostsHeader');
 const searchResultsHeader = document.querySelector('#SearchResultsHeader');
+const top10Button = document.querySelector('#topSearchForm');
 
 let loggedInUserId = null;
 let loggedInUserStatus = null;
@@ -677,4 +678,36 @@ searchForm.addEventListener('submit', async (evt) => {
       console.log(e.message);
     }
   }
+});
+
+top10Button.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+
+    try {
+      const response = await fetch(
+          url + '/rating/top/top');
+      const json = await response.json();
+      const recipes = await json;
+
+      if (recipes.length === 0) {
+        alert('Sorry, no results');
+        searchResultsHeader.style.display = 'none';
+        await getFoodPost();
+      } else {
+        myPostsHeader.style.display = 'none';
+        searchResultsHeader.style.display = 'block';
+        homePageButton.style.display = 'block';
+        profilePageButton.style.display = 'block';
+      }
+
+      recipes.forEach((rating) => {
+        if (rating.status === 'private') {
+          alert('Some results are private');
+        }
+      });
+
+      createFoodPostCards(recipes);
+    } catch (e) {
+      console.log(e.message);
+    }
 });
