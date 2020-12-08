@@ -2,18 +2,18 @@
 const url = 'http://localhost:3000'; // change url when uploading to server
 
 // select existing html elements
-const ul = document.querySelector('ul');
+const ul = document.querySelector('#foodPostCardsList');
 const addForm = document.querySelector('#addFoodPostForm');
 const loginWrapper = document.querySelector('#loginWrapper');
 const loginForm = document.querySelector('#login-form');
-const logOut = document.querySelector('#log-out');
+const logoutButton = document.querySelector('#logoutButton');
 const userInfo = document.querySelector('#user-info');
 const profilePageButton = document.querySelector('#profilePageButton');
 const homePageButton = document.querySelector('#homePageButton');
-const addLoginFormButton = document.querySelector('#addLoginFormButton');
-const addUserPage = document.querySelector('#addUserPage');
+const loginButton = document.querySelector('#navigationLoginButton');
+const registerButton = document.querySelector('#registerButton');
 const addUserForm = document.querySelector('#add-user-form');
-const addPost = document.querySelector('#displayAddPostButton');
+const addPostButton = document.querySelector('#addPostButton');
 const addUserContainer = document.querySelector('.add-user-form-container');
 const loginFormContainer = document.querySelector('.login-form-container');
 const cancelUser = document.querySelector('#addUserCancel');
@@ -36,6 +36,7 @@ const imageModal = document.querySelector('#image-modal');
 const modalImage = document.querySelector('#image-modal img');
 const close = document.querySelector('#image-modal a');
 const newPostText = document.querySelector('#newPostText');
+const searchForm = document.querySelector('#searchForm');
 const searchInput = document.querySelector('#mainSearchInputField');
 const searchButton = document.querySelector('#searchButton');
 const searchSelect = document.querySelector('#searchSelect');
@@ -285,6 +286,7 @@ const getFoodPost = async () => {
   }
 };
 
+// at first the foodPosts will be fetched
 getFoodPost();
 
 // login event listener
@@ -313,9 +315,10 @@ const login = async () => {
     // save token
     sessionStorage.setItem('token', json.token);
     loginFormContainer.style.display = 'none';
-    logOut.style.display = 'block';
+    logoutButton.style.display = 'block';
     profilePageButton.style.display = 'block';
-    addUserPage.style.display = 'none';
+    registerButton.style.display = 'none';
+    addPostButton.style.display = 'block';
     loggedInUserId = json.user.user_id;
     loggedInUserStatus = json.user.status;
     if (loggedInUserStatus === 'admin') {
@@ -329,8 +332,7 @@ const login = async () => {
 };
 
 // logout
-logOut.addEventListener('click', async (evt) => {
-  evt.preventDefault();
+logoutButton.addEventListener('click', async () => {
   try {
     const options = {
       headers: {
@@ -343,19 +345,21 @@ logOut.addEventListener('click', async (evt) => {
     // remove token
     sessionStorage.removeItem('token');
     alert('You have logged out');
-    // loginForm.style.display = 'block';
-    logOut.style.display = 'none';
+    logoutButton.style.display = 'none';
     userInfo.innerHTML = ``;
     profilePageButton.style.display = 'none';
-    addPost.style.display = 'none';
-    addUserPage.style.display = 'block';
-    addLoginFormButton.style.display = 'block';
+    registerButton.style.display = 'block';
+    loginButton.style.display = 'block';
     postContainer.style.display = 'none';
     modifyContainer.style.display = 'none';
     myPostsHeader.style.display = 'none';
     homePageButton.style.display = 'none';
+    postContainer.style.display = 'none';
+    modifyContainer.style.display = 'none';
     loggedInUserId = null;
     loggedInUserStatus = null;
+    addForm.reset();
+    modifyFoodPostForm.reset();
     await getFoodPost();
   } catch (e) {
     console.log(e.message);
@@ -363,11 +367,11 @@ logOut.addEventListener('click', async (evt) => {
 });
 
 //When non-logged in user clicks on "create new user", the form for submitting new users shows up
-addUserPage.addEventListener('click', async (evt) => {
-  evt.preventDefault();
+registerButton.addEventListener('click', async () => {
   addUserContainer.style.display = 'flex';
-  addUserPage.style.display = 'none';
-  addLoginFormButton.style.display = 'none';
+  registerButton.style.display = 'none';
+  loginButton.style.display = 'none';
+  addPostButton.style.display = 'none';
 
   //This scrolls the page to the top
   window.scroll({
@@ -377,21 +381,21 @@ addUserPage.addEventListener('click', async (evt) => {
   });
 });
 
-//Used to hide add-user-form-container when clicking "cancel" button in the "add new food post" card
-cancelUser.addEventListener('click', async (evt) => {
-  evt.preventDefault();
+//Used to hide add-user-form-container when clicking "cancel" button in the "create new user" card
+cancelUser.addEventListener('click', async () => {
   addUserContainer.style.display = 'none';
-  addUserPage.style.display = 'block';
-  addLoginFormButton.style.display = 'block';
+  registerButton.style.display = 'block';
+  loginButton.style.display = 'block';
+  addPostButton.style.display = 'block';
   addUserForm.reset();
 });
 
 //Used to hide login-form-container when clicking "cancel" button in the "Log in" card
-loginCancel.addEventListener('click', async (evt) => {
-  evt.preventDefault();
+loginCancel.addEventListener('click', async () => {
   loginFormContainer.style.display = 'none';
-  addLoginFormButton.style.display = 'block';
-  addUserPage.style.display = 'block';
+  loginButton.style.display = 'block';
+  registerButton.style.display = 'block';
+  addPostButton.style.display = 'block';
   loginForm.reset();
 });
 
@@ -412,22 +416,21 @@ addUserForm.addEventListener('submit', async (evt) => {
   // save token
   sessionStorage.setItem('token', json.token);
   addUserContainer.style.display = 'none';
-  addUserPage.style.display = 'block';
-  addLoginFormButton.style.display = 'block';
+  registerButton.style.display = 'block';
+  loginButton.style.display = 'block';
   // login with the newly registered user
   const loginInputs = loginForm.querySelectorAll('input');
   const registerInputs = addUserForm.querySelectorAll('input');
   loginInputs[0].value = registerInputs[1].value;
   loginInputs[1].value = registerInputs[2].value;
   await login();
-  addLoginFormButton.style.display = 'none';
+  loginButton.style.display = 'none';
+  addPostButton.style.display = 'block';
   addUserForm.reset();
 });
 
 // when the my profile button is pressed, the my profile content appears
-profilePageButton.addEventListener('click', async (evt) => {
-  evt.preventDefault();
-  addPost.style.display = 'block';
+profilePageButton.addEventListener('click', async () => {
   profilePageButton.style.display = 'none';
   homePageButton.style.display = 'block';
   myPostsHeader.style.display = 'block';
@@ -436,30 +439,35 @@ profilePageButton.addEventListener('click', async (evt) => {
 });
 
 // when the home page button is pressed, it disappears and the my profile button appears
-homePageButton.addEventListener('click', async (evt) => {
-  evt.preventDefault();
+homePageButton.addEventListener('click', async () => {
   homePageButton.style.display = 'none';
   profilePageButton.style.display = 'block';
-  addPost.style.display = 'none';
   myPostsHeader.style.display = 'none';
   searchResultsHeader.style.display = 'none';
+  postContainer.style.display = 'none';
+  modifyContainer.style.display = 'none';
+  addForm.reset();
+  modifyFoodPostForm.reset();
   await getFoodPost();
 });
 
 //Used to display post-container when clicking "create new post" button in the navigation
-addPost.addEventListener('submit', async (evt) => {
-  evt.preventDefault();
-  postContainer.style.display = 'flex';
-  addPost.style.display = 'none';
-  // add user id (hidden) to the add foodPost form
-  addUser.value = loggedInUserId;
+addPostButton.addEventListener('click', async () => {
+  if (loggedInUserId != null) {
+    postContainer.style.display = 'flex';
+    addPostButton.style.display = 'none';
+    // add user id (hidden) to the add foodPost form
+    addUser.value = loggedInUserId;
 
-  //This scrolls the page to the top
-  window.scroll({
-    top: 0,
-    left: 0,
-    behavior: 'smooth',
-  });
+    //This scrolls the page to the top
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  } else {
+    alert('You must sign in to add a post!');
+  }
 });
 
 // Checks the character count of the textarea when adding a food post
@@ -470,11 +478,11 @@ newPostText.addEventListener('input', async (evt) => {
 });
 
 //Used to display login-form-container when clicking "Log in" button in the navigation
-addLoginFormButton.addEventListener('submit', async (evt) => {
-  evt.preventDefault();
+loginButton.addEventListener('click', async () => {
   loginFormContainer.style.display = 'flex';
-  addLoginFormButton.style.display = 'none';
-  addUserPage.style.display = 'none';
+  loginButton.style.display = 'none';
+  registerButton.style.display = 'none';
+  addPostButton.style.display = 'none';
 
   //This scrolls the page to the top
   window.scroll({
@@ -485,10 +493,9 @@ addLoginFormButton.addEventListener('submit', async (evt) => {
 });
 
 //Used to hide post-container when clicking "cancel" button in the "add new food post" card
-cancelPost.addEventListener('click', async (evt) => {
-  evt.preventDefault();
+cancelPost.addEventListener('click', async () => {
   postContainer.style.display = 'none';
-  addPost.style.display = 'block';
+  addPostButton.style.display = 'block';
   addForm.reset();
 });
 
@@ -512,7 +519,7 @@ addForm.addEventListener('submit', async (evt) => {
   const json = await response.json();
   console.log('add response', json);
   postContainer.style.display = 'none';
-  addPost.style.display = 'block';
+  addPostButton.style.display = 'block';
   await addRating(json.food_post_id);
   await getFoodPost();
   addForm.reset();
@@ -564,8 +571,7 @@ modifyTextarea.addEventListener('input', async (evt) => {
 });
 
 //Used to hide modify-container when clicking "cancel" button in the "modify food post" form
-cancelModifyPost.addEventListener('click', async (evt) => {
-  evt.preventDefault();
+cancelModifyPost.addEventListener('click', async () => {
   modifyContainer.style.display = 'none';
   modifyFoodPostForm.reset();
 });
@@ -586,7 +592,8 @@ close.addEventListener('click', (evt) => {
 });
 
 // search title or username equal to input
-searchButton.addEventListener('click', async (evt) => {
+searchForm.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
 
   if (searchSelect.value === 'title') {
     try {
@@ -597,12 +604,12 @@ searchButton.addEventListener('click', async (evt) => {
 
       if (recipes.length === 0) {
         alert('Sorry, no results');
+        searchResultsHeader.style.display = 'none';
         getFoodPost();
       } else {
         myPostsHeader.style.display = 'none';
         searchResultsHeader.style.display = 'block';
         homePageButton.style.display = 'block';
-        addPost.style.display = 'none';
         profilePageButton.style.display = 'block';
       }
 
@@ -626,12 +633,12 @@ searchButton.addEventListener('click', async (evt) => {
 
       if (recipes.length === 0) {
         alert('Sorry, no results');
+        searchResultsHeader.style.display = 'none';
         getFoodPost();
       } else {
         myPostsHeader.style.display = 'none';
         searchResultsHeader.style.display = 'block';
         homePageButton.style.display = 'block';
-        addPost.style.display = 'none';
         profilePageButton.style.display = 'block';
       }
 

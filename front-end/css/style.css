@@ -5,7 +5,7 @@
         height: 17vh;
     }
 
-    .TagLine {
+    .SiteID {
         display: none
     }
 }
@@ -18,7 +18,7 @@
         height: 10vh;
     }
 
-    .TagLine {
+    .SiteID {
         display: flex;
     }
 }
@@ -60,7 +60,7 @@
     background-image: linear-gradient(180deg, #ae9d7c, white);
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     /*height: 5vh;*/
     height: auto;
@@ -81,11 +81,18 @@
     float: left;
 }
 
-.TagLine {
+.SiteID, .Tagline {
+    display: flex;
     background-color: lightgoldenrodyellow;
     flex: 1;
     justify-content: center;
     align-items: center;
+}
+
+.taglineText {
+    font-family: "Trebuchet MS", serif;
+    text-align: center;
+    color: darkgoldenrod;
 }
 
 .login-form-container {
@@ -193,38 +200,55 @@
 }
 
 .googleFontText {
-    font-size: large;
+    font-size: x-large;
     font-family: "Architects Daughter", serif;
     text-align: center;
     text-transform: uppercase;
     color: #454545;
 }
 
-.submitButton {
-    border-color: #a8caff;
-    margin-right: 20px;
-    margin-left: 20px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background-color: #cedffa;
-    padding: 5px;
+#searchContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 30px;
 }
 
-#myButton {
-    border-color: #a8caff;
-    background-color: #cedffa;
-    padding: 5px;
-    margin-right: 20px;
+#navigation {
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
-.submitButton:hover, #myButton:hover {
-    background-color: #a8caff;
-    border-color: #80b1ff;
+#navigationButtons {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.navigationButton {
+    float: left;
+    display: block;
+    font-size: 19px;
+    text-align: center;
+    text-decoration: none;
+    padding: 15px 15px;
+    margin: 5px;
+    background-color: #96db76;
+    font-family: "Arial", sans-serif;
+    border-radius: 8px;
+}
+
+.navigationButton:hover {
+    color: white;
+    cursor: pointer;
 }
 
 .roundEdge {
     border-radius: 8px;
-    /*border: 1px solid #ccc;*/
     padding: 1em;
     box-sizing: border-box;
     background-color: #fafad2;
@@ -232,7 +256,7 @@
     background-size: 25px 25px;
 }
 
-ul {
+#foodPostCardsList {
     display: flex;
     flex-wrap: wrap;
     /*background-color: #cedffa;*/
@@ -312,7 +336,7 @@ card {
     color: dimgrey;
 }
 
-h3 {
+.formTitle {
     display: flex;
     justify-content: center;
 }
@@ -522,10 +546,6 @@ input[type="file" i] {
     color: #fff;
     text-shadow: #000;
     font-size: 2em;
-}
-
-.tooltiptext {
-    visibility: hidden;
 }
 
 .cardImage img:hover {

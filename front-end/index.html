@@ -10,6 +10,8 @@
 
 </head>
 <body>
+
+<!-- Top bar -->
 <div class="top">
     <div class="Logo">
         <div id="logoPic">
@@ -17,57 +19,63 @@
         </div>
     </div>
 
-    <div class="TagLine">
+    <div class="SiteID">
         <div class="googleFontText">
             <h1>Food recipes</h1>
         </div>
     </div>
-</div>
 
-<div class="sticky-div">
-    <div class="middle">
-        <p id="user-info"></p>
-
-        <input type="text" id="mainSearchInputField">
-        <button id="searchButton" >search</button>
-
-        <label for="searchSelect"> for </label>
-
-        <select id="searchSelect">
-            <option value="title">title</option>
-            <option value="username">username</option>
-        </select>
-
-        <form id="addLoginFormButton">
-            <button class="submitButton submitButton2" type="submit">Log in</button>
-        </form>
-
-        <form id="log-out" style="display: none;">
-            <button class="submitButton submitButton2" type="submit">Log out</button>
-        </form>
-
-        <form id="profilePageButton" style="display: none;">
-            <button class="submitButton submitButton2" type="submit">My profile</button>
-        </form>
-
-        <form id="homePageButton" style="display: none;">
-            <button class="submitButton submitButton2" type="submit">Home page</button>
-        </form>
-
-        <form id="addUserPage">
-            <button class="submitButton submitButton2" type="submit">create new user</button>
-        </form>
-
-        <form action="index.html" id="HomePage" style="display: none;">
-            <button class="submitButton submitButton2" type="submit">Home</button>
-        </form>
-
-        <form id="displayAddPostButton" style="display: none;">
-            <button class="submitButton submitButton2" type="submit">Create new post</button>
-        </form>
+    <div class="Tagline">
+        <div class="taglineText">
+            <h3>Share and discover the most delicious recipes!</h3>
+        </div>
     </div>
 </div>
 
+<!-- Navigation bar -->
+<div class="sticky-div">
+    <div class="middle">
+
+        <div id="searchContainer">
+
+            <form id="searchForm">
+                <input type="text" id="mainSearchInputField">
+                <button id="searchButton" type="submit">Search</button>
+            </form>
+
+            <label for="searchSelect"> for </label>
+
+            <select id="searchSelect">
+                <option value="title">title</option>
+                <option value="username">username</option>
+            </select>
+
+        </div>
+
+        <p id="user-info"></p>
+
+        <nav id="navigation">
+            <ul id="navigationButtons">
+
+                <li><a id="homePageButton" class="navigationButton" style="display: none;">Home page</a></li>
+
+                <li><a id="addPostButton" class="navigationButton">New post</a></li>
+
+                <li><a id="profilePageButton" class="navigationButton" style="display: none;">My profile</a></li>
+
+                <li><a id="registerButton" class="navigationButton" >Register</a></li>
+
+                <li><a id="navigationLoginButton" class="navigationButton">Log in</a></li>
+
+                <li><a id="logoutButton" class="navigationButton" style="display: none">Log out</a></li>
+
+            </ul>
+        </nav>
+
+    </div>
+</div>
+
+<!-- Likes and dislikes section (invisible) -->
 <div class="likesAndDislikes" style="display: none">
 
     <div class="likes" style="display: none">
@@ -86,6 +94,7 @@
     </form>
 </div>
 
+<!-- Login form -->
 <div class="login-form-container" style="display: none">
     <div id="loginWrapper" class="form-wrapper">
         <form id="login-form">
@@ -104,23 +113,12 @@
             </div>
             <button id="loginButton" class="light-border" type="submit">Log In</button>
         </form>
-        <form id="form-loginCancel" style="display: flex">
-        <button id="loginCancel" class="light-border" type="submit">Cancel</button>
-        </form>
 
-<!--        <p id="user-info"></p>-->
-<!--        <form id="log-out" style="display: none;">-->
-
-<!--            <button class="submitButton submitButton2" type="submit">Log out</button>-->
-<!--        </form>-->
-
-<!--        <form id="profilePage" style="display: none;">-->
-<!--            <button class="submitButton submitButton2" type="submit">My profile</button>-->
-<!--        </form>-->
+        <button id="loginCancel" class="light-border" style="display: flex">Cancel</button>
     </div>
 </div>
 
-
+<!-- Create user form -->
 <div class="add-user-form-container" style="display: none">
     <div id="form-wrapper-add-user" class="form-wrapper">
         <form id="add-user-form">
@@ -136,15 +134,15 @@
                    placeholder="Password" required>
             <button id="addUserButton" class="light-border" type="submit">Create user</button>
         </form>
-        <form id="form-addUserCancel" style="display: flex">
-            <button id="addUserCancel" class="light-border" type="submit">Cancel</button>
-        </form>
+
+        <button id="addUserCancel" class="light-border" style="display: flex">Cancel</button>
     </div>
 </div>
 
+<!-- Add foodPost form -->
 <div class="post-container" style="display: none;">
     <div class="form-wrapper">
-        <h3>Add new food post</h3>
+        <h3 class="formTitle">Add new food post</h3>
         <form action="http://localhost:3000/foodPost"
               method="post"
               enctype="multipart/form-data"
@@ -163,17 +161,16 @@
             <input id="newPostCheckbox" type="checkbox" name="status" value="private">
             <label id="newPostCheckboxLabel" for="newPostCheckbox">private</label>
             <button id="uploadButton" class="light-border" type="submit">Upload</button>
+        </form>
 
-        </form>
-        <form id="cancel-form" style="display: flex">
-            <button class="cancel-post" type="submit">Cancel</button>
-        </form>
+        <button class="cancel-post" style="display: flex">Cancel</button>
     </div>
 </div>
 
+<!-- Modify foodPost form -->
 <div class="modify-container" style="display: none;">
     <div id="form-wrapper-modify-post" class="form-wrapper">
-        <h3>Modify post</h3>
+        <h3 class="formTitle">Modify post</h3>
         <form id="modifyFoodPostForm">
             <input id="modifyTitle" class="light-border" type="text" name="title" placeholder="Title" required>
             <textarea id="modifyText" class="light-border"  name="text" maxlength="1500" placeholder="Recipe" required></textarea>
@@ -184,52 +181,34 @@
             <button id="modifySave" class="light-border" type="submit">Save changes</button>
         </form>
 
-        <form id="cancel-modify-form" style="display: flex">
-            <button class="cancel-modify-post" type="submit">Cancel</button>
-        </form>
+        <button class="cancel-modify-post" style="display: flex">Cancel</button>
     </div>
-
 </div>
 
+<!-- Image modal for viewing images bigger -->
 <div class="hide modal" id="image-modal">
     <a href="#" class="close">Close</a>
     <img src="" alt="">
 </div>
 
+<!-- Header for my posts -->
 <header id="MyPostsHeader" style="display: none">
     <h1 id="MyPostsHeading">My Posts:</h1>
 </header>
 
+<!-- Header for search results -->
 <header id="SearchResultsHeader" style="display: none">
     <h1 id="SearchResultsHeading">Search Results:</h1>
 </header>
 
+<!-- Main content container for foodPost cards -->
 <div class="content">
-
-
-    <!--    <form class="roundEdge" id="add-user-form" style="display: none;">-->
-    <!--        <input class="roundEdge"-->
-    <!--               type="text"-->
-    <!--               name="username"-->
-    <!--               pattern=".{3,}"-->
-    <!--               placeholder="username"-->
-    <!--               required>-->
-    <!--        <input class="roundEdge" type="email" name="email" placeholder="email" required>-->
-    <!--        <input class="roundEdge" type="password" name="password" pattern="(?=.*[A-Z]).{8,}"-->
-    <!--               placeholder="Password" required>-->
-    <!--        <button class="roundEdge" type="submit">Save</button>-->
-    <!--    </form>-->
-
-
-    <ul>
-        <!-- js creates list here -->
+    <ul id="foodPostCardsList">
+        <!-- js creates foodPost cards here -->
     </ul>
-
 </div>
 
-<!--<div class="filler"></div>-->
 <script src="./js/serialize.js"></script>
 <script src="./js/main.js"></script>
 </body>
 </html>
-
