@@ -38,6 +38,7 @@ router.post('/',
     ratingController.ratingPost_create);
 
 router.get('/:id', ratingController.ratingPost_get_by_id);
+router.get('/top/:top', ratingController.topRated_list_get);
 router.put('/',
     passport.authenticate('jwt', {session: false}),
     [

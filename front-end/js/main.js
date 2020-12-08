@@ -42,6 +42,7 @@ const searchButton = document.querySelector('#searchButton');
 const searchSelect = document.querySelector('#searchSelect');
 const myPostsHeader = document.querySelector('#MyPostsHeader');
 const searchResultsHeader = document.querySelector('#SearchResultsHeader');
+const top10Button = document.querySelector('#topSearchForm');
 
 let loggedInUserId = null;
 let loggedInUserStatus = null;
@@ -662,4 +663,46 @@ searchForm.addEventListener('submit', async (evt) => {
       console.log(e.message);
     }
   }
+});
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+top10Button.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+
+    try {
+      const response = await fetch(
+          url + '/rating/top/top');
+      const json = await response.json();
+      const recipes = await json;
+
+      if (recipes.length === 0) {
+        alert('Sorry, no results');
+        searchResultsHeader.style.display = 'none';
+        await getFoodPost();
+      } else {
+        myPostsHeader.style.display = 'none';
+        searchResultsHeader.style.display = 'block';
+        homePageButton.style.display = 'block';
+        profilePageButton.style.display = 'block';
+      }
+
+      recipes.forEach((foodPost) => {
+        if (foodPost.status === 'private') {
+          alert('Some results are private');
+        }
+      });
+
+      console.log('top 10 response', recipes);
+
+      // const top5 = recipes.slice(0, 5);
+      // console.log('top 5 response', top5);
+
+      createFoodPostCards(recipes);
+    } catch (e) {
+      console.log(e.message);
+    }
 });

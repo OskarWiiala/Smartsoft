@@ -15,6 +15,19 @@ LEFT JOIN ss_rating ON food_post_id = fk_food_post_id;`);
   }
 };
 
+const getTopRatedPosts = async () => {
+  try {
+    const [rows] = await promisePool.execute(`SELECT food_post_id, user, title, text, filename, user_id, username, likes, dislikes
+FROM ss_food_post
+LEFT JOIN ss_user ON user = user_id
+LEFT JOIN ss_rating ON food_post_id = fk_food_post_id
+ORDER BY likes DESC`);
+    return rows;
+  } catch (e) {
+    console.error('ratingModel:', e.message);
+  }
+};
+
 const getRatingPost = async (id) => {
   try {
     console.log('ratingModel getRatingPost', id);
@@ -78,5 +91,6 @@ module.exports = {
   insertRatingPost,
   deleteRatingPost,
   getRatingPost,
+  getTopRatedPosts
 
 };
