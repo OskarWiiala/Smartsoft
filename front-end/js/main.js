@@ -78,6 +78,7 @@ const createCardContent = async (foodPost) => {
   // open large image when clicking image
   img.addEventListener('click', () => {
     modalImage.src = url + '/' + foodPost.filename;
+    modalImage.classList.add('modalImageClass');
     imageModal.alt = foodPost.title;
     imageModal.classList.toggle('hide');
   });
