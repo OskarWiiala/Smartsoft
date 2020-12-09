@@ -298,7 +298,7 @@ card {
     background-color: lavender;
 }
 
-#MyPostsHeading, #SearchResultsHeading {
+#MyPostsHeading, #SearchResultsHeading, #SearchResultsPrivate{
     width: fit-content;
     margin: auto;
     font-family: "Arial", serif;
@@ -363,7 +363,7 @@ card {
 
 #newPostCheckboxLabel, #modifyPostCheckboxLabel {
     font-size: large;
-    font-family: Verdana;
+    font-family: Verdana, sans-serif;
 }
 
 .add-user-form-container {

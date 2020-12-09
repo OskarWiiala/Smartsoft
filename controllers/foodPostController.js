@@ -61,7 +61,6 @@ const foodPost_create = async (req, res) => {
   res.send(foodPost);
 };
 
-
 const foodPost_update = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

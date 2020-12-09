@@ -40,6 +40,7 @@ const searchResultsHeader = document.querySelector('#SearchResultsHeader');
 const top10Button = document.querySelector('#topButton');
 const nameInput = document.querySelector('#addUserUsername');
 const emailInput = document.querySelector('#addUserEmail');
+const privateSearchResults = document.querySelector('#SearchResultsPrivate');
 
 let loggedInUserId = null;
 let loggedInUserStatus = null;
@@ -97,7 +98,7 @@ const createCardContent = async (foodPost) => {
   const p1 = document.createElement('article');
   p1.innerHTML = `${foodPost.text}`;
   p1.classList.add('cardRecipe');
-  p1.style = "white-space: pre-line";
+  p1.style = 'white-space: pre-line';
   p1.readOnly = true;
 
   const likes = document.createElement('likes');
@@ -415,55 +416,54 @@ loginCancel.addEventListener('click', async () => {
 addUserForm.addEventListener('submit', async (evt) => {
   evt.preventDefault();
 
-
+  // check if username is already in use
   const response = await fetch(
       url + '/foodpost/username/' + nameInput.value);
   const json = await response.json();
   const usernames = await json;
 
   if (usernames.length !== 0) {
-    alert('name already in use! Try a another one');
+    alert('Name already in use! Try a another one');
   } else {
 
-      const response = await fetch(
-          url + '/foodpost/email/' + emailInput.value);
+    // check if email already in use
+    const response = await fetch(
+        url + '/foodpost/email/' + emailInput.value);
+    const json = await response.json();
+    const emails = await json;
+
+    if (emails.length !== 0) {
+      alert('Email already in use! Try a another one');
+    } else {
+
+      const data = serializeJson(addUserForm);
+      const fetchOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      };
+      const response = await fetch(url + '/auth/register', fetchOptions);
       const json = await response.json();
-      const emails = await json;
-
-      if (emails.length !== 0) {
-        alert('email already in use! Try a another one');
-      } else {
-
-        const data = serializeJson(addUserForm);
-        const fetchOptions = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        };
-        const response = await fetch(url + '/auth/register', fetchOptions);
-        const json = await response.json();
-        console.log('user add response', json);
-        // save token
-        sessionStorage.setItem('token', json.token);
-        addUserContainer.style.display = 'none';
-        registerButton.style.display = 'block';
-        loginButton.style.display = 'block';
-        // login with the newly registered user
-        const loginInputs = loginForm.querySelectorAll('input');
-        const registerInputs = addUserForm.querySelectorAll('input');
-        loginInputs[0].value = registerInputs[1].value;
-        loginInputs[1].value = registerInputs[2].value;
-        await login();
-        loginButton.style.display = 'none';
-        addPostButton.style.display = 'block';
-        top10Button.style.display = 'block';
-        addUserForm.reset();
-      }
-
+      console.log('user add response', json);
+      // save token
+      sessionStorage.setItem('token', json.token);
+      addUserContainer.style.display = 'none';
+      registerButton.style.display = 'block';
+      loginButton.style.display = 'block';
+      // login with the newly registered user
+      const loginInputs = loginForm.querySelectorAll('input');
+      const registerInputs = addUserForm.querySelectorAll('input');
+      loginInputs[0].value = registerInputs[1].value;
+      loginInputs[1].value = registerInputs[2].value;
+      await login();
+      loginButton.style.display = 'none';
+      addPostButton.style.display = 'block';
+      top10Button.style.display = 'block';
+      addUserForm.reset();
+    }
   }
-
 });
 
 // when the my profile button is pressed, the my profile content appears
@@ -676,7 +676,7 @@ searchForm.addEventListener('submit', async (evt) => {
 
       recipes.forEach((foodPost) => {
         if (foodPost.status === 'private') {
-          alert('Some results are private');
+          privateSearchResults.style.display = 'block';
         }
       });
 
@@ -705,7 +705,7 @@ searchForm.addEventListener('submit', async (evt) => {
 
       recipes.forEach((foodPost) => {
         if (foodPost.status === 'private') {
-          alert('Some results are private');
+          privateSearchResults.style.display = 'block';
         }
       });
 
@@ -717,34 +717,34 @@ searchForm.addEventListener('submit', async (evt) => {
 });
 
 top10Button.addEventListener('click', async () => {
-    try {
-      const response = await fetch(
-          url + '/rating/top/top');
-      const json = await response.json();
-      const recipes = await json;
+  try {
+    const response = await fetch(
+        url + '/rating/top/top');
+    const json = await response.json();
+    const recipes = await json;
 
-      if (recipes.length === 0) {
-        alert('Sorry, no results');
-        searchResultsHeader.style.display = 'none';
-        await getFoodPost();
-      } else {
-        myPostsHeader.style.display = 'none';
-        searchResultsHeader.style.display = 'block';
-        homePageButton.style.display = 'block';
-        top10Button.style.display = 'none';
-        modifyContainer.style.display = 'none';
-        postContainer.style.display = 'none';
-        addForm.reset();
-      }
-
-      recipes.forEach((rating) => {
-        if (rating.status === 'private') {
-          alert('Some results are private');
-        }
-      });
-
-      createFoodPostCards(recipes);
-    } catch (e) {
-      console.log(e.message);
+    if (recipes.length === 0) {
+      alert('Sorry, no results');
+      searchResultsHeader.style.display = 'none';
+      await getFoodPost();
+    } else {
+      myPostsHeader.style.display = 'none';
+      searchResultsHeader.style.display = 'block';
+      homePageButton.style.display = 'block';
+      top10Button.style.display = 'none';
+      modifyContainer.style.display = 'none';
+      postContainer.style.display = 'none';
+      addForm.reset();
     }
+
+    recipes.forEach((rating) => {
+      if (rating.status === 'private') {
+        privateSearchResults.style.display = 'block';
+      }
+    });
+
+    createFoodPostCards(recipes);
+  } catch (e) {
+    console.log(e.message);
+  }
 });
