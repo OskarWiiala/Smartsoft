@@ -38,6 +38,7 @@ const searchSelect = document.querySelector('#searchSelect');
 const myPostsHeader = document.querySelector('#MyPostsHeader');
 const searchResultsHeader = document.querySelector('#SearchResultsHeader');
 const top10Button = document.querySelector('#topButton');
+const nameInput = document.querySelector('#addUserUsername');
 
 let loggedInUserId = null;
 let loggedInUserStatus = null;
@@ -412,32 +413,45 @@ loginCancel.addEventListener('click', async () => {
 // submit register form
 addUserForm.addEventListener('submit', async (evt) => {
   evt.preventDefault();
-  const data = serializeJson(addUserForm);
-  const fetchOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  };
-  const response = await fetch(url + '/auth/register', fetchOptions);
-  const json = await response.json();
-  console.log('user add response', json);
-  // save token
-  sessionStorage.setItem('token', json.token);
-  addUserContainer.style.display = 'none';
-  registerButton.style.display = 'block';
-  loginButton.style.display = 'block';
-  // login with the newly registered user
-  const loginInputs = loginForm.querySelectorAll('input');
-  const registerInputs = addUserForm.querySelectorAll('input');
-  loginInputs[0].value = registerInputs[1].value;
-  loginInputs[1].value = registerInputs[2].value;
-  await login();
-  loginButton.style.display = 'none';
-  addPostButton.style.display = 'block';
-  top10Button.style.display = 'block';
-  addUserForm.reset();
+
+    const response = await fetch(
+        url + '/foodpost/username/' + nameInput.value);
+    const json = await response.json();
+    const usernames = await json;
+
+    if (usernames.length !== 0) {
+
+      alert('name already in use! Try a another one');
+
+    } else {
+
+      const data = serializeJson(addUserForm);
+      const fetchOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      };
+      const response = await fetch(url + '/auth/register', fetchOptions);
+      const json = await response.json();
+      console.log('user add response', json);
+      // save token
+      sessionStorage.setItem('token', json.token);
+      addUserContainer.style.display = 'none';
+      registerButton.style.display = 'block';
+      loginButton.style.display = 'block';
+      // login with the newly registered user
+      const loginInputs = loginForm.querySelectorAll('input');
+      const registerInputs = addUserForm.querySelectorAll('input');
+      loginInputs[0].value = registerInputs[1].value;
+      loginInputs[1].value = registerInputs[2].value;
+      await login();
+      loginButton.style.display = 'none';
+      addPostButton.style.display = 'block';
+      top10Button.style.display = 'block';
+      addUserForm.reset();
+    }
 });
 
 // when the my profile button is pressed, the my profile content appears
