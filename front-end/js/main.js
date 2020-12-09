@@ -97,6 +97,12 @@ const createCardContent = async (foodPost) => {
   p1.classList.add('cardRecipe');
   p1.readOnly = true;
 
+  const btnDiv = document.createElement('div');
+  btnDiv.classList.add('btnDiv');
+
+  const cardButtonDiv = document.createElement('div');
+  cardButtonDiv.classList.add('cardButtonDiv');
+
   const likes = document.createElement('likes');
   likes.innerHTML = `${foodPost.likes}`;
   likes.classList.add('likes');
@@ -115,10 +121,16 @@ const createCardContent = async (foodPost) => {
   card.appendChild(h2);
   card.appendChild(figure);
   card.appendChild(p1);
-  card.appendChild(clnU);
-  card.appendChild(likes);
-  card.appendChild(clnD);
-  card.appendChild(dislikes);
+  card.appendChild(btnDiv)
+  // card.appendChild(clnU);
+  // card.appendChild(likes);
+  // card.appendChild(clnD);
+  // card.appendChild(dislikes);
+  btnDiv.appendChild(clnU);
+  btnDiv.appendChild(likes);
+  btnDiv.appendChild(clnD);
+  btnDiv.appendChild(dislikes);
+  btnDiv.appendChild(cardButtonDiv)
   ul.appendChild(card);
 
   // Adds one like to ss_rating
@@ -191,11 +203,11 @@ const createCardContent = async (foodPost) => {
   // if the logged in user id matches the foodPost user id, or the logged in user's
   // status is admin, the delete and modify buttons will be created
   if (loggedInUserId === foodPost.user || loggedInUserStatus === 'admin') {
-    await createDeleteModifyButtons(foodPost, card);
+    await createDeleteModifyButtons(foodPost, card, cardButtonDiv);
   }
 };
 
-const createDeleteModifyButtons = async (foodPost, card) => {
+const createDeleteModifyButtons = async (foodPost, card, cardButtonDiv) => {
   // delete selected foodPost
   const delButton = document.createElement('button');
   delButton.innerHTML = 'Delete';
@@ -222,7 +234,7 @@ const createDeleteModifyButtons = async (foodPost, card) => {
     }
   });
 
-  card.appendChild(delButton);
+  cardButtonDiv.appendChild(delButton);
 
   // modify selected foodPost
   const modButton = document.createElement('button');
@@ -250,7 +262,7 @@ const createDeleteModifyButtons = async (foodPost, card) => {
       behavior: 'smooth',
     });
   });
-  card.appendChild(modButton);
+  cardButtonDiv.appendChild(modButton);
 };
 
 // returns disabled icon buttons back to work

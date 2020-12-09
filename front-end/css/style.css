@@ -35,17 +35,44 @@
     top: 0;
 }
 
-#mainSearchInputField {
-    border-radius: 10px;
+#mainSearchInputField, #mainSearchInputField:active {
+    border-radius: 8px;
     padding: 4px;
-    border-color: #a8caff;
+    border-width: 1px;
+    border-color: limegreen;
+    background-color: #96db76;
+    width: 225px;
+    height: 40px;
 }
 
-#searchSelectFor {
-    font-family: Arial, serif;
-    padding-top: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
+#searchButton {
+    height: 40px;
+    width: 50px;
+    background-color: #96db76;
+    border-radius: 8px;
+    border-width: 0;
+    position: relative;
+    top: 5px;
+}
+
+#searchIcon {
+    font-size: 25px;
+    padding: 8px 12px;
+}
+
+#searchIcon:hover {
+    color: white;
+    cursor: pointer;
+}
+
+#searchSelect {
+    background-color: #96db76;
+    border-radius: 8px;
+    margin-left: 5px;
+    height: 40px;
+    position: relative;
+    top: 5px;
+    border-color: green;
 }
 
 .top {
@@ -112,7 +139,8 @@
 }
 
 #user-info {
-    margin: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
     color: darkgreen;
     font-family: "Architects Daughter", serif;
     font-size: large;
@@ -146,6 +174,9 @@
     justify-content: center;
     margin: 4px;
     font-family: "Architects Daughter", serif;
+    overflow: auto;
+    max-width: 100%;
+    max-height: 40px;
 }
 
 .resp {
@@ -157,7 +188,7 @@
     margin-top: 4px;
     margin-bottom: 4px;
     max-width: 100%;
-    max-height: 33%;
+    max-height: 25%;
 }
 
 .cardRecipe {
@@ -185,12 +216,24 @@
     white-space: pre-line;
 }
 
+.btnDiv {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
 .cardButton {
-    border-color: #a8caff;
-    margin-right: 10px;
-    margin-left: 10px;
-    background-color: #cedffa;
-    padding: 5px;
+    float: right;
+    display: block;
+    font-size: 19px;
+    text-align: center;
+    text-decoration: none;
+    padding: 15px 15px;
+    margin: 5px 8px 5px 8px;
+    background-color: #96db76;
+    font-family: "Architects Daughter", serif;
+    border-radius: 8px;
+    border-width: 0;
 }
 
 .likes, .dislikes {
@@ -198,9 +241,11 @@
     padding: 5px;
     font-size: 25px;
 }
+
 .likes {
     color: blue;
 }
+
 .dislikes {
     color: red;
 }
@@ -210,8 +255,8 @@
 }
 
 .cardButton:hover {
-    background-color: #a8caff;
-    border-color: #80b1ff;
+    color: white;
+    cursor: pointer;
 }
 
 .googleFontText {
@@ -318,6 +363,7 @@ card {
     max-height: 300px;
     margin: .5em 0;
 }
+
 
 #character-count-add-post, #character-count-modify-post {
     display: flex;
@@ -475,12 +521,34 @@ input[type="file" i] {
     user-select: none;
 }
 
+.btnTu, .btnTd {
+    border-width: 0;
+}
+
 .fa-thumbs-up {
     color: blue;
+    font-size: 25px;
+    background-color: lightgoldenrodyellow;
 }
 
 .fa-thumbs-down {
     color: red;
+    font-size: 25px;
+    background-color: lightgoldenrodyellow;
+}
+
+.btnDiv {
+    margin-top: 5px;
+}
+
+.cardButtonDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.btnTd {
+    margin-left: 13px;
 }
 
 /* image modal classes */
@@ -520,26 +588,46 @@ input[type="file" i] {
 
 @media screen and (max-width: 767px) {
     card {
-        height: 90vh;
+        height: 700px;
         width: 300px;
         margin: 10px;
+    }
+
+    .cardButton {
+        font-size: 15px;
+        padding: 10px 10px;
     }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
     card {
         width: 600px;
+        height: 790px;
+    }
+
+    .cardButtonDiv {
+        margin-bottom: 8px;
     }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
     card {
         width: 600px;
+        height: 790px;
+    }
+
+    .cardButtonDiv {
+        margin-bottom: 8px;
     }
 }
 
 @media screen and (min-width: 1200px) {
     card {
         width: 600px;
+        height: 790px;
+    }
+
+    .cardButtonDiv {
+        margin-bottom: 8px;
     }
 }
