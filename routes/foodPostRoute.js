@@ -44,6 +44,7 @@ router.post('/',
 router.get('/:id', foodPostController.foodPost_get_by_id);
 router.get('/title/:title', foodPostController.foodPost_get_by_title);
 router.get('/username/:username', foodPostController.foodPost_get_by_username);
+router.get('/email/:email', foodPostController.foodPost_get_by_email);
 router.put('/',
     passport.authenticate('jwt', {session: false}),
     [
