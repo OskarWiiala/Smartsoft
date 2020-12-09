@@ -4,7 +4,6 @@ const url = 'http://localhost:3000'; // change url when uploading to server
 // select existing html elements
 const ul = document.querySelector('#foodPostCardsList');
 const addForm = document.querySelector('#addFoodPostForm');
-const loginWrapper = document.querySelector('#loginWrapper');
 const loginForm = document.querySelector('#login-form');
 const logoutButton = document.querySelector('#logoutButton');
 const userInfo = document.querySelector('#user-info');
@@ -21,15 +20,12 @@ const loginCancel = document.querySelector('#loginCancel');
 const postContainer = document.querySelector('.post-container');
 const cancelPost = document.querySelector('.cancel-post');
 const addUser = document.querySelector('.add-user');
-const upLoadB = document.querySelector('#uploadButton');
 const modifyFoodPostForm = document.querySelector('#modifyFoodPostForm');
 const modifyContainer = document.querySelector('.modify-container');
 const modifyTextarea = document.querySelector('#modifyText');
 const cancelModifyPost = document.querySelector('.cancel-modify-post');
 const iconU = document.querySelector('.btnTu');
 const iconD = document.querySelector('.btnTd');
-const ulLikes = document.querySelector('#likes');
-const newPostCheckBox = document.querySelector('#newPostCheckbox');
 const modifyPostCheckBox = document.querySelector('#modifyPostCheckbox');
 const addLikesForm = document.querySelector('#add-like-form');
 const imageModal = document.querySelector('#image-modal');
@@ -38,10 +34,10 @@ const close = document.querySelector('#image-modal a');
 const newPostText = document.querySelector('#newPostText');
 const searchForm = document.querySelector('#searchForm');
 const searchInput = document.querySelector('#mainSearchInputField');
-const searchButton = document.querySelector('#searchButton');
 const searchSelect = document.querySelector('#searchSelect');
 const myPostsHeader = document.querySelector('#MyPostsHeader');
 const searchResultsHeader = document.querySelector('#SearchResultsHeader');
+const top10Button = document.querySelector('#topButton');
 
 let loggedInUserId = null;
 let loggedInUserStatus = null;
@@ -84,12 +80,11 @@ const createCardContent = async (foodPost) => {
   const figure = document.createElement('figure').appendChild(img);
 
   const user = document.createElement('h4');
-  if (foodPost.status == 'private') {
+  if (foodPost.status === 'private') {
     user.innerHTML = `${foodPost.username} (${foodPost.status})`;
   } else {
     user.innerHTML = foodPost.username;
   }
-  ;
 
   user.classList.add('cardUserHeader');
 
@@ -245,6 +240,8 @@ const createDeleteModifyButtons = async (foodPost, card) => {
       modifyPostCheckBox.checked = true;
     }
     modifyContainer.style.display = 'flex';
+    postContainer.style.display = 'none';
+    addForm.reset();
 
     //This scrolls the page to the top
     window.scroll({
@@ -327,6 +324,7 @@ const login = async () => {
     profilePageButton.style.display = 'block';
     registerButton.style.display = 'none';
     addPostButton.style.display = 'block';
+    top10Button.style.display = 'block';
     loggedInUserId = json.user.user_id;
     loggedInUserStatus = json.user.status;
     if (loggedInUserStatus === 'admin') {
@@ -380,6 +378,7 @@ registerButton.addEventListener('click', async () => {
   registerButton.style.display = 'none';
   loginButton.style.display = 'none';
   addPostButton.style.display = 'none';
+  top10Button.style.display = 'none';
 
   //This scrolls the page to the top
   window.scroll({
@@ -395,6 +394,7 @@ cancelUser.addEventListener('click', async () => {
   registerButton.style.display = 'block';
   loginButton.style.display = 'block';
   addPostButton.style.display = 'block';
+  top10Button.style.display = 'block';
   addUserForm.reset();
 });
 
@@ -404,6 +404,7 @@ loginCancel.addEventListener('click', async () => {
   loginButton.style.display = 'block';
   registerButton.style.display = 'block';
   addPostButton.style.display = 'block';
+  top10Button.style.display = 'block';
   loginForm.reset();
 });
 
@@ -434,6 +435,7 @@ addUserForm.addEventListener('submit', async (evt) => {
   await login();
   loginButton.style.display = 'none';
   addPostButton.style.display = 'block';
+  top10Button.style.display = 'block';
   addUserForm.reset();
 });
 
@@ -443,20 +445,42 @@ profilePageButton.addEventListener('click', async () => {
   homePageButton.style.display = 'block';
   myPostsHeader.style.display = 'block';
   searchResultsHeader.style.display = 'none';
+  postContainer.style.display = 'none';
+  addPostButton.style.display = 'block';
+  modifyContainer.style.display = 'none';
+  top10Button.style.display = 'block';
   await getFoodPost();
+
+  //This scrolls the page to the top
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
 });
 
-// when the home page button is pressed, it disappears and the my profile button appears
+// when the home page button is pressed, it disappears and the home page appears
 homePageButton.addEventListener('click', async () => {
   homePageButton.style.display = 'none';
-  profilePageButton.style.display = 'block';
+  if (loggedInUserId != null) {
+    profilePageButton.style.display = 'block';
+  }
+  addPostButton.style.display = 'block';
   myPostsHeader.style.display = 'none';
   searchResultsHeader.style.display = 'none';
   postContainer.style.display = 'none';
   modifyContainer.style.display = 'none';
+  top10Button.style.display = 'block';
   addForm.reset();
   modifyFoodPostForm.reset();
   await getFoodPost();
+
+  //This scrolls the page to the top
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
 });
 
 //Used to display post-container when clicking "create new post" button in the navigation
@@ -464,6 +488,7 @@ addPostButton.addEventListener('click', async () => {
   if (loggedInUserId != null) {
     postContainer.style.display = 'flex';
     addPostButton.style.display = 'none';
+    modifyContainer.style.display = 'none';
     // add user id (hidden) to the add foodPost form
     addUser.value = loggedInUserId;
 
@@ -474,7 +499,7 @@ addPostButton.addEventListener('click', async () => {
       behavior: 'smooth',
     });
   } else {
-    alert('You must sign in to add a post!');
+    alert('You must log in to add a post!');
   }
 });
 
@@ -491,6 +516,7 @@ loginButton.addEventListener('click', async () => {
   loginButton.style.display = 'none';
   registerButton.style.display = 'none';
   addPostButton.style.display = 'none';
+  top10Button.style.display = 'none';
 
   //This scrolls the page to the top
   window.scroll({
@@ -661,4 +687,37 @@ searchForm.addEventListener('submit', async (evt) => {
       console.log(e.message);
     }
   }
+});
+
+top10Button.addEventListener('click', async () => {
+    try {
+      const response = await fetch(
+          url + '/rating/top/top');
+      const json = await response.json();
+      const recipes = await json;
+
+      if (recipes.length === 0) {
+        alert('Sorry, no results');
+        searchResultsHeader.style.display = 'none';
+        await getFoodPost();
+      } else {
+        myPostsHeader.style.display = 'none';
+        searchResultsHeader.style.display = 'block';
+        homePageButton.style.display = 'block';
+        top10Button.style.display = 'none';
+        modifyContainer.style.display = 'none';
+        postContainer.style.display = 'none';
+        addForm.reset();
+      }
+
+      recipes.forEach((rating) => {
+        if (rating.status === 'private') {
+          alert('Some results are private');
+        }
+      });
+
+      createFoodPostCards(recipes);
+    } catch (e) {
+      console.log(e.message);
+    }
 });

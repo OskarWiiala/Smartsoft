@@ -41,6 +41,13 @@
     border-color: #a8caff;
 }
 
+#searchSelectFor {
+    font-family: Arial, serif;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 .top {
     background: grey;
     position: relative;
@@ -474,10 +481,6 @@ input[type="file" i] {
 
 .fa-thumbs-down {
     color: red;
-}
-
-.fa:hover {
-    transform: scale(2);
 }
 
 /* image modal classes */
