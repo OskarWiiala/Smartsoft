@@ -100,7 +100,6 @@ const createCardContent = async (foodPost) => {
   const p1 = document.createElement('article');
   p1.innerHTML = `${foodPost.text}`;
   p1.classList.add('cardRecipe');
-  p1.style = "white-space: pre-line";
   p1.readOnly = true;
 
   const likes = document.createElement('likes');
