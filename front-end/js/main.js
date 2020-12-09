@@ -37,7 +37,7 @@ const searchInput = document.querySelector('#mainSearchInputField');
 const searchSelect = document.querySelector('#searchSelect');
 const myPostsHeader = document.querySelector('#MyPostsHeader');
 const searchResultsHeader = document.querySelector('#SearchResultsHeader');
-const top10Button = document.querySelector('#topSearchForm');
+const top10Button = document.querySelector('#topButton');
 
 let loggedInUserId = null;
 let loggedInUserStatus = null;
@@ -325,6 +325,7 @@ const login = async () => {
     profilePageButton.style.display = 'block';
     registerButton.style.display = 'none';
     addPostButton.style.display = 'block';
+    top10Button.style.display = 'block';
     loggedInUserId = json.user.user_id;
     loggedInUserStatus = json.user.status;
     if (loggedInUserStatus === 'admin') {
@@ -378,6 +379,7 @@ registerButton.addEventListener('click', async () => {
   registerButton.style.display = 'none';
   loginButton.style.display = 'none';
   addPostButton.style.display = 'none';
+  top10Button.style.display = 'none';
 
   //This scrolls the page to the top
   window.scroll({
@@ -393,6 +395,7 @@ cancelUser.addEventListener('click', async () => {
   registerButton.style.display = 'block';
   loginButton.style.display = 'block';
   addPostButton.style.display = 'block';
+  top10Button.style.display = 'block';
   addUserForm.reset();
 });
 
@@ -402,6 +405,7 @@ loginCancel.addEventListener('click', async () => {
   loginButton.style.display = 'block';
   registerButton.style.display = 'block';
   addPostButton.style.display = 'block';
+  top10Button.style.display = 'block';
   loginForm.reset();
 });
 
@@ -432,6 +436,7 @@ addUserForm.addEventListener('submit', async (evt) => {
   await login();
   loginButton.style.display = 'none';
   addPostButton.style.display = 'block';
+  top10Button.style.display = 'block';
   addUserForm.reset();
 });
 
@@ -444,6 +449,7 @@ profilePageButton.addEventListener('click', async () => {
   postContainer.style.display = 'none';
   addPostButton.style.display = 'block';
   modifyContainer.style.display = 'none';
+  top10Button.style.display = 'block';
   await getFoodPost();
 
   //This scrolls the page to the top
@@ -457,12 +463,15 @@ profilePageButton.addEventListener('click', async () => {
 // when the home page button is pressed, it disappears and the home page appears
 homePageButton.addEventListener('click', async () => {
   homePageButton.style.display = 'none';
-  profilePageButton.style.display = 'block';
+  if (loggedInUserId != null) {
+    profilePageButton.style.display = 'block';
+  }
   addPostButton.style.display = 'block';
   myPostsHeader.style.display = 'none';
   searchResultsHeader.style.display = 'none';
   postContainer.style.display = 'none';
   modifyContainer.style.display = 'none';
+  top10Button.style.display = 'block';
   addForm.reset();
   modifyFoodPostForm.reset();
   await getFoodPost();
@@ -491,7 +500,7 @@ addPostButton.addEventListener('click', async () => {
       behavior: 'smooth',
     });
   } else {
-    alert('You must sign in to add a post!');
+    alert('You must log in to add a post!');
   }
 });
 
@@ -508,6 +517,7 @@ loginButton.addEventListener('click', async () => {
   loginButton.style.display = 'none';
   registerButton.style.display = 'none';
   addPostButton.style.display = 'none';
+  top10Button.style.display = 'none';
 
   //This scrolls the page to the top
   window.scroll({
@@ -680,9 +690,7 @@ searchForm.addEventListener('submit', async (evt) => {
   }
 });
 
-top10Button.addEventListener('submit', async (evt) => {
-  evt.preventDefault();
-
+top10Button.addEventListener('click', async () => {
     try {
       const response = await fetch(
           url + '/rating/top/top');
@@ -697,7 +705,10 @@ top10Button.addEventListener('submit', async (evt) => {
         myPostsHeader.style.display = 'none';
         searchResultsHeader.style.display = 'block';
         homePageButton.style.display = 'block';
-        profilePageButton.style.display = 'block';
+        top10Button.style.display = 'none';
+        modifyContainer.style.display = 'none';
+        postContainer.style.display = 'none';
+        addForm.reset();
       }
 
       recipes.forEach((rating) => {
