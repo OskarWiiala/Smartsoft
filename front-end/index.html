@@ -40,10 +40,8 @@
 
             <form id="searchForm">
                 <input type="text" id="mainSearchInputField">
-                <button id="searchButton" type="submit">Search</button>
+                <button id="searchButton" type="submit"><i id="searchIcon" class="fa fa-search"></i></button>
             </form>
-
-            <label id="searchSelectFor">for</label>
 
             <select id="searchSelect">
                 <option value="title">title</option>
@@ -130,6 +128,7 @@
                    type="text"
                    name="username"
                    pattern=".{3,}"
+                   maxlength="25"
                    placeholder="username"
                    required>
             <input id="addUserEmail" class="light-border" type="email" name="email" placeholder="email" required>
@@ -154,7 +153,7 @@
             <input class="light-border add-user" type="number" name="user" placeholder="User" style="display: none"
                    required>
             <label>
-                <input id="newPostTitle" class="light-border" type="text" name="title" placeholder="Title" required>
+                <input id="newPostTitle" class="light-border" type="text" name="title" maxlength="60" placeholder="Title" required>
             </label>
             <label>
                 <textarea id="newPostText" class="light-border"  name="text" placeholder="Recipe" maxlength="1500" required></textarea>
