@@ -33,5 +33,3 @@ app.use('/auth', authRoute);
 app.use('/foodPost', foodPostRoute);
 app.use('/rating', ratingRoute);
 app.use('/user', passport.authenticate('jwt', {session: false}), userRoute);
-
-//app.listen(port, () => console.log(`Smartsoft web app listening on port ${port}!`));

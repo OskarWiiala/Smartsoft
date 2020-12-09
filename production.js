@@ -12,5 +12,5 @@ module.exports = (app, port) => {
     }
   });
 
-  app.listen(port, () => console.log(`Smartsoft app listens on port ${port}`));
+  app.listen(port, () => console.log(`Smartsoft web app listening on port ${port}!`));
 };
