@@ -18,19 +18,10 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({dest: 'uploads/', fileFilter});
 
-const injectFile = (req, res, next) => {
-  if (req.file) {
-    req.body.type = req.file.mimetype;
-  }
-  console.log('inject', req.body);
-  next();
-};
-
 router.get('/', ratingController.rating_list_get);
 router.post('/',
     passport.authenticate('jwt', {session: false}),
     upload.single('rating'),
-    injectFile,
     [
       body('likes', 'required').isLength({min: 1}).isNumeric(),
       body('dislikes', 'required').isLength({min: 1}).isNumeric(),
