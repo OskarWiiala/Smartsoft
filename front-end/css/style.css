@@ -43,6 +43,8 @@
     background-color: #96db76;
     width: 225px;
     height: 40px;
+    font-family: "Architects Daughter", serif;
+    font-size: large;
 }
 
 #searchButton {
@@ -73,6 +75,32 @@
     position: relative;
     top: 5px;
     border-color: green;
+    font-family: "Architects Daughter", serif;
+    font-size: large;
+}
+
+#toggleMiddleDiv {
+    background-color: transparent;
+    height: 0;
+    display: inline-block;
+    float: right;
+}
+
+#toggleMiddleButton {
+    margin: 8px;
+    font-size: 19px;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px 5px;
+    background-color: #96db76;
+    font-family: "Architects Daughter", serif;
+    border-radius: 8px;
+    border-width: 0;
+}
+
+#toggleMiddleButton:hover {
+    color: white;
+    cursor: pointer;
 }
 
 .top {
@@ -202,7 +230,7 @@
     max-width: 100%;
     max-height: 50%;
     overflow: auto;
-    word-break: break-all;
+    word-break: break-word;
     font-family: "Architects Daughter", serif;
     font-size: larger;
     padding: 12px 12px;
@@ -298,7 +326,7 @@
     padding: 15px 15px;
     margin: 5px;
     background-color: #96db76;
-    font-family: "Arial", sans-serif;
+    font-family: "Architects Daughter", serif;
     border-radius: 8px;
 }
 
@@ -353,6 +381,7 @@ card {
 .formTitle {
     display: flex;
     justify-content: center;
+    font-family: "Architects Daughter", serif;
 }
 
 #newPostTitle, #newPostText, #newPostFile, #uploadButton, .cancel-post {
@@ -360,15 +389,18 @@ card {
     width: 100%;
     max-width: 100%;
     min-width: 100%;
-    max-height: 300px;
+    max-height: 900px;
     margin: .5em 0;
+    font-family: "Architects Daughter", serif;
+    font-size: large;
 }
 
 
 #character-count-add-post, #character-count-modify-post {
     display: flex;
     justify-content: flex-end;
-    font-family: Verdana;
+    font-family: "Architects Daughter", serif;
+    font-size: large;
 }
 
 #addUserUsername, #addUserEmail, #addUserPassword, #addUserButton, #addUserCancel, #loginButton, #loginCancel {
@@ -391,6 +423,9 @@ card {
     display: inline-block;
     width: 100%;
     margin: .5em 0;
+    border: 0;
+    font-family: "Architects Daughter", serif;
+    font-size: large;
 }
 
 #modifyTitle, #modifyText, #modifySave, .cancel-modify-post {
@@ -398,8 +433,10 @@ card {
     width: 100%;
     max-width: 100%;
     min-width: 100%;
-    max-height: 300px;
+    max-height: 900px;
     margin: .5em 0;
+    font-family: "Architects Daughter", serif;
+    font-size: large;
 }
 
 #newPostCheckbox, #modifyPostCheckbox {
@@ -409,7 +446,11 @@ card {
 
 #newPostCheckboxLabel, #modifyPostCheckboxLabel {
     font-size: large;
-    font-family: Verdana, sans-serif;
+    position: relative;
+    bottom: 10px;
+    font-family: "Architects Daughter", serif;
+    font-weight: bold;
+
 }
 
 .add-user-form-container {
@@ -418,6 +459,11 @@ card {
     padding: 1em;
     display: none;
     justify-content: center;
+}
+
+.registerUserGuide {
+    font-family: "Architects Daughter", serif;
+    font-size: large;
 }
 
 .post-container {
@@ -468,6 +514,8 @@ input[type=checkbox] {
     border: 2px solid #008000;
     background-color: #66ff7a;
     font-weight: bolder;
+    font-family: "Architects Daughter", serif;
+    font-size: large;
 }
 
 #cancel-form {
@@ -483,6 +531,8 @@ input[type=checkbox] {
     background-color: #ff6666;
     font-weight: bolder;
     border-radius: 8px;
+    font-family: "Architects Daughter", serif;
+    font-size: large;
 }
 
 /*Changes the background color of "choose file" to white*/

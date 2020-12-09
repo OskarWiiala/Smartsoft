@@ -41,6 +41,8 @@ const top10Button = document.querySelector('#topButton');
 const nameInput = document.querySelector('#addUserUsername');
 const emailInput = document.querySelector('#addUserEmail');
 const privateSearchResults = document.querySelector('#SearchResultsPrivate');
+const toggleMiddleButton = document.querySelector('#toggleMiddleButton');
+const middle = document.querySelector('.middle');
 
 let loggedInUserId = null;
 let loggedInUserStatus = null;
@@ -125,7 +127,7 @@ const createCardContent = async (foodPost) => {
   card.appendChild(h2);
   card.appendChild(figure);
   card.appendChild(p1);
-  card.appendChild(btnDiv)
+  card.appendChild(btnDiv);
   // card.appendChild(clnU);
   // card.appendChild(likes);
   // card.appendChild(clnD);
@@ -134,7 +136,7 @@ const createCardContent = async (foodPost) => {
   btnDiv.appendChild(likes);
   btnDiv.appendChild(clnD);
   btnDiv.appendChild(dislikes);
-  btnDiv.appendChild(cardButtonDiv)
+  btnDiv.appendChild(cardButtonDiv);
   ul.appendChild(card);
 
   // Adds one like to ss_rating
@@ -570,6 +572,16 @@ cancelPost.addEventListener('click', async () => {
   postContainer.style.display = 'none';
   addPostButton.style.display = 'block';
   addForm.reset();
+});
+
+toggleMiddleButton.addEventListener('click', async () => {
+  if (middle.style.display !== 'none') {
+    middle.style.display = 'none';
+    toggleMiddleButton.innerHTML = 'show';
+  } else {
+    middle.style.display = 'flex';
+    toggleMiddleButton.innerHTML = 'hide';
+  }
 });
 
 // submit add foodPost form
