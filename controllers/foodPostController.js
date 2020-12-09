@@ -29,6 +29,12 @@ const foodPost_get_by_username = async (req, res) => {
   res.json(foodPost);
 };
 
+const foodPost_get_by_email = async (req, res) => {
+  console.log('foodPostController: http get foodPost with path param', req.params);
+  const foodPost = await foodPostModel.getFoodPostEmail(req.params.email);
+  res.json(foodPost);
+};
+
 const make_thumbnail = async(req, res, next) => {
   try {
     const ready = await makeThumbnail({width: 500, height: 300}, req.file.path,
@@ -55,7 +61,6 @@ const foodPost_create = async (req, res) => {
   res.send(foodPost);
 };
 
-
 const foodPost_update = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -81,5 +86,6 @@ module.exports = {
   foodPost_delete,
   make_thumbnail,
   foodPost_get_by_title,
-  foodPost_get_by_username
+  foodPost_get_by_username,
+  foodPost_get_by_email,
 };

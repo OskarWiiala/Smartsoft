@@ -60,6 +60,21 @@ const getFoodPostUsername = async (username) => {
   }
 };
 
+const getFoodPostEmail = async (email) => {
+  try {
+    console.log('foodPostModel getFoodPostUsername', email);
+    const query = `SELECT food_post_id, user, title, text, filename, ss_food_post.status, user_id, username, likes, dislikes
+                  FROM ss_food_post
+                  LEFT JOIN ss_rating ON food_post_id = fk_food_post_id
+                  LEFT JOIN ss_user ON user = user_id WHERE LOWER(email) LIKE LOWER('%${email}%')`;
+    const [rows] = await promisePool.execute(query);
+    return rows;
+  }
+  catch (e) {
+    console.error('foodPostModel:', e.message);
+  }
+};
+
 const insertFoodPost = async (req) => {
   try {
     const [rows] = await promisePool.execute(
@@ -118,5 +133,6 @@ module.exports = {
   updateFoodPost,
   deleteFoodPost,
   getFoodPostTitle,
-  getFoodPostUsername
+  getFoodPostUsername,
+  getFoodPostEmail,
 };

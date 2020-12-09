@@ -122,6 +122,7 @@
 <div class="add-user-form-container" style="display: none">
     <div id="form-wrapper-add-user" class="form-wrapper">
         <form id="add-user-form">
+            <p>Username should contain at least 3 characters</p>
             <input id="addUserUsername"
                    class="light-border"
                    type="text"
@@ -131,6 +132,7 @@
                    placeholder="username"
                    required>
             <input id="addUserEmail" class="light-border" type="email" name="email" placeholder="email" required>
+            <p>Password should contain at least 8 characters and one of them should be capital letter</p>
             <input id="addUserPassword" class="light-border" type="password" name="password" pattern="(?=.*[A-Z]).{8,}"
                    placeholder="Password" required>
             <button id="addUserButton" class="light-border" type="submit">Create user</button>
@@ -199,6 +201,7 @@
 
 <!-- Header for search results -->
 <header id="SearchResultsHeader" style="display: none">
+    <h2 id="SearchResultsPrivate" style="display: none">Some results are private and hidden.</h2>
     <h1 id="SearchResultsHeading">Search Results:</h1>
 </header>
 

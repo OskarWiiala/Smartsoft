@@ -5,7 +5,7 @@ const promisePool = pool.promise();
 
 const getAllRatingPosts = async () => {
   try {
-    const [rows] = await promisePool.execute(`SELECT food_post_id, user, title, text, filename, user_id, username, likes, dislikes
+    const [rows] = await promisePool.execute(`SELECT food_post_id, user, title, text, filename, ss_food_post.status, user_id, username, likes, dislikes
 FROM ss_food_post
 LEFT JOIN ss_user ON user = user_id
 LEFT JOIN ss_rating ON food_post_id = fk_food_post_id;`);
