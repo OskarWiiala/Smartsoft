@@ -118,5 +118,5 @@ module.exports = {
   updateFoodPost,
   deleteFoodPost,
   getFoodPostTitle,
-  getFoodPostUsername
+  getFoodPostUsername,
 };
