@@ -2,7 +2,7 @@
 
     .top {
         flex-direction: column;
-        height: 17vh;
+        height: 19vh;
     }
 
     .SiteID {
@@ -137,9 +137,10 @@
 #logoPic {
     padding-top: 10px;
     padding-left: 2px;
+    padding-bottom: 10px;
     border: 0;
     float: left;
-    height: 80px;
+    height: 90px;
 }
 
 .SiteID, .Tagline {
