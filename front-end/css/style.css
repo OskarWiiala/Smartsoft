@@ -1,32 +1,12 @@
-@media (max-width: 600px) {
-
-    .top {
-        flex-direction: column;
-        height: 19vh;
-    }
-
-    .SiteID {
-        display: none
-    }
-}
-
-@media (min-width: 600px) {
-
-    .top {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        height: 10vh;
-    }
-
-    .SiteID {
-        display: flex;
-    }
-}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+#foodRecipesHeader {
+    font-size: 100%;
 }
 
 .sticky-div {
@@ -209,10 +189,7 @@
 
 .resp {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 4px;
-    margin-bottom: 4px;
+    margin: 4px auto;
     max-width: 100%;
     max-height: 25%;
 }
@@ -291,6 +268,7 @@
     text-align: center;
     text-transform: uppercase;
     color: #454545;
+    /*max-height: 100%;*/
 }
 
 #searchContainer {
@@ -304,6 +282,7 @@
     margin-top: 15px;
     margin-left: 10px;
     margin-right: 10px;
+    max-width: 100%;
 }
 
 #navigationButtons {
@@ -312,7 +291,8 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: auto;
+    max-width: 100%;
 }
 
 .navigationButton {
@@ -490,7 +470,8 @@ card {
 
 /*This simply changes the background color of the create user from*/
 #form-wrapper-add-user, #loginWrapper {
-    background-color: #fafad2;
+    /*background-color: #ffc966;*/
+    background-color: lightgoldenrodyellow;
 }
 
 #form-wrapper-modify-post {
@@ -633,9 +614,16 @@ input[type="file" i] {
         padding: 10px 10px;
     }
 
+    .cardButtonDiv {
+        margin-bottom: 8px;
+    }
+
     .modalImageClass {
         max-width: 100%;
+        max-height: 100%;
     }
+
+
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -650,6 +638,7 @@ input[type="file" i] {
 
     .modalImageClass {
         max-width: 100%;
+        max-height: 100%;
     }
 }
 
@@ -665,6 +654,7 @@ input[type="file" i] {
 
     .modalImageClass {
         max-width: 100%;
+        max-height: 100%;
     }
 }
 
@@ -681,5 +671,31 @@ input[type="file" i] {
     .modalImageClass {
         max-width: 100%;
         max-height: 90vh;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .top {
+        flex-direction: column;
+        /*height: 19vh;*/
+        min-height: 150px;
+    }
+
+    .SiteID {
+        display: none
+    }
+}
+
+@media (min-width: 600px) {
+
+    .top {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        height: 100px;
+    }
+
+    .SiteID {
+        display: flex;
     }
 }
