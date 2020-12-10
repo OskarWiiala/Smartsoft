@@ -39,14 +39,14 @@
         <div id="searchContainer">
 
             <form id="searchForm">
-                <input type="text" id="mainSearchInputField">
+                <label for="mainSearchInputField"></label><input type="text" id="mainSearchInputField">
                 <button id="searchButton" type="submit"><i id="searchIcon" class="fa fa-search"></i></button>
             </form>
 
-            <select id="searchSelect">
-                <option value="title">title</option>
-                <option value="username">username</option>
-            </select>
+            <label for="searchSelect"></label><select id="searchSelect">
+            <option value="title">title</option>
+            <option value="username">username</option>
+        </select>
 
         </div>
 
@@ -63,7 +63,7 @@
 
                 <li><a id="profilePageButton" class="navigationButton" style="display: none;">My profile</a></li>
 
-                <li><a id="registerButton" class="navigationButton" >Register</a></li>
+                <li><a id="registerButton" class="navigationButton">Register</a></li>
 
                 <li><a id="navigationLoginButton" class="navigationButton">Log in</a></li>
 
@@ -72,6 +72,9 @@
             </ul>
         </nav>
 
+    </div>
+    <div id="toggleMiddleDiv">
+        <button id="toggleMiddleButton">hide</button>
     </div>
 </div>
 
@@ -86,11 +89,11 @@
         <button class="btnTd"><i class="far fa-thumbs-down" type="submit"></i></button>
     </div>
 
-<!--    These are used for sending like and dislikes to ss_rating table-->
+    <!--    These are used for sending like and dislikes to ss_rating table-->
     <form id="add-like-form" style="display: none">
         <label for="addId"></label><input id="addId" type="number" name="fk_food_post_id" value=0 required>
-        <label for="addLike"></label><input id="addLike" type="number" name="likes" value= 0 required>
-        <label for="addDislike"></label><input id="addDislike" type="number" name="dislikes" value= 0 required>
+        <label for="addLike"></label><input id="addLike" type="number" name="likes" value=0 required>
+        <label for="addDislike"></label><input id="addDislike" type="number" name="dislikes" value=0 required>
     </form>
 </div>
 
@@ -106,6 +109,7 @@
             </div>
             <div id="loginPassword" class="light-border">
                 <label>Password:</label>
+                <br>
                 <label>
                     <input class="loginInput" type="password" name="password"
                            placeholder="Password" required>
@@ -122,19 +126,22 @@
 <div class="add-user-form-container" style="display: none">
     <div id="form-wrapper-add-user" class="form-wrapper">
         <form id="add-user-form">
-            <p>Username should contain at least 3 characters</p>
-            <input id="addUserUsername"
-                   class="light-border"
-                   type="text"
-                   name="username"
-                   pattern=".{3,}"
-                   maxlength="25"
-                   placeholder="username"
-                   required>
-            <input id="addUserEmail" class="light-border" type="email" name="email" placeholder="email" required>
-            <p>Password should contain at least 8 characters and one of them should be capital letter</p>
-            <input id="addUserPassword" class="light-border" type="password" name="password" pattern="(?=.*[A-Z]).{8,}"
-                   placeholder="Password" required>
+            <p class="registerUserGuide">Username should contain at least 3 characters</p>
+            <label for="addUserUsername"></label><input id="addUserUsername"
+                                                        class="light-border"
+                                                        type="text"
+                                                        name="username"
+                                                        pattern=".{3,}"
+                                                        maxlength="20"
+                                                        placeholder="username"
+                                                        required>
+            <label for="addUserEmail"></label><input id="addUserEmail" class="light-border" type="email" name="email"
+                                                     placeholder="email" required>
+            <p class="registerUserGuide">Password should contain at least 8 characters and one of them should be capital
+                letter</p>
+            <label for="addUserPassword"></label><input id="addUserPassword" class="light-border" type="password"
+                                                        name="password" pattern="(?=.*[A-Z]).{8,}"
+                                                        placeholder="Password" required>
             <button id="addUserButton" class="light-border" type="submit">Create user</button>
         </form>
 
@@ -150,15 +157,20 @@
               method="post"
               enctype="multipart/form-data"
               id="addFoodPostForm">
-            <input class="light-border add-user" type="number" name="user" placeholder="User" style="display: none"
-                   required>
             <label>
-                <input id="newPostTitle" class="light-border" type="text" name="title" maxlength="60" placeholder="Title" required>
+                <input class="light-border add-user" type="number" name="user" placeholder="User" style="display: none"
+                       required>
             </label>
             <label>
-                <textarea id="newPostText" class="light-border"  name="text" placeholder="Recipe" maxlength="1500" required></textarea>
+                <input id="newPostTitle" class="light-border" type="text" name="title" maxlength="60"
+                       placeholder="Title" required>
+            </label>
+            <label>
+                <textarea id="newPostText" class="light-border" name="text" placeholder="Recipe" maxlength="1500"
+                          required></textarea>
                 <p id="character-count-add-post">0/1500</p>
             </label>
+            <p>Add your own image</p>
             <input id="newPostFile" class="light-border" type="file" name="foodPost" accept="image/*"
                    placeholder="Choose an image file" required>
             <input id="newPostCheckbox" type="checkbox" name="status" value="private">
@@ -175,8 +187,10 @@
     <div id="form-wrapper-modify-post" class="form-wrapper">
         <h3 class="formTitle">Modify post</h3>
         <form id="modifyFoodPostForm">
-            <input id="modifyTitle" class="light-border" type="text" name="title" placeholder="Title" required>
-            <textarea id="modifyText" class="light-border"  name="text" maxlength="1500" placeholder="Recipe" required></textarea>
+            <label for="modifyTitle"></label><input id="modifyTitle" class="light-border" type="text" name="title"
+                                                    maxlength="60" placeholder="Title" required>
+            <label for="modifyText"></label><textarea id="modifyText" class="light-border" name="text" maxlength="1500"
+                                                      placeholder="Recipe" required></textarea>
             <p id="character-count-modify-post"></p>
             <input type="hidden" name="id">
             <input id="modifyPostCheckbox" type="checkbox" name="status" value="public">
