@@ -4,15 +4,18 @@
     box-sizing: border-box;
 }
 
+/*sets the font size for the website name in the top-section*/
 #foodRecipesHeader {
     font-size: 190%;
 }
 
+/*Makes the navigation sticky*/
 .sticky-div {
     position: sticky;
     top: 0;
 }
 
+/*Styles the search field*/
 #mainSearchInputField, #mainSearchInputField:active {
     border-radius: 8px;
     padding: 4px;
@@ -45,6 +48,7 @@
     cursor: pointer;
 }
 
+/*Styling for the title/username selection in the search system*/
 #searchSelect {
     background-color: #96db76;
     border-radius: 8px;
@@ -57,6 +61,7 @@
     font-size: large;
 }
 
+/*Styling for the div of the show menu/hide menu section*/
 #toggleMiddleDiv {
     background-color: transparent;
     height: 0;
@@ -64,6 +69,7 @@
     float: right;
 }
 
+/*Styling for the actual show menu/hide menu button*/
 #toggleMiddleButton {
     margin: 8px;
     font-size: 19px;
@@ -81,20 +87,14 @@
     cursor: pointer;
 }
 
+/*Section for the part where the logo, project name and slogan is*/
 .top {
     background: grey;
     position: relative;
     display: flex;
 }
 
-.content {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #cedffa;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
+/*Styling for the navigation/search section*/
 .middle {
     flex: 1;
     background-image: linear-gradient(180deg, #ae9d7c, white);
@@ -105,6 +105,7 @@
     height: auto;
 }
 
+/*Styling for the container holding the website logo*/
 .Logo {
     background-color: #fafad2;
     flex: 1;
@@ -113,6 +114,7 @@
     align-items: center;
 }
 
+/*Styling for the actual logo*/
 #logoPic {
     padding-top: 10px;
     padding-left: 2px;
@@ -122,6 +124,7 @@
     height: 90px;
 }
 
+/*Styling for the project name and slogan container*/
 .SiteID, .Tagline {
     display: flex;
     background-color: lightgoldenrodyellow;
@@ -136,6 +139,7 @@
     color: darkgoldenrod;
 }
 
+
 .login-form-container {
     max-width: 100%;
     margin: auto;
@@ -145,6 +149,7 @@
     background-color: #fffcf5;
 }
 
+/*Styling for the user info in the navigation section. This only shows up when user is logged in*/
 #user-info {
     margin-right: 20px;
     margin-left: 20px;
@@ -153,18 +158,13 @@
     font-size: large;
 }
 
-.Login {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
+/*Styling for the user submitted login email and password inputs*/
 .loginInput {
     padding: 4px;
     border-color: orange;
 }
 
+/*Styling for the user name in the food cards. All content in the food cards are created by DOM in main.js*/
 .cardUserHeader {
     display: flex;
     justify-content: center;
@@ -176,6 +176,7 @@
     font-size: large;
 }
 
+/*Styling for the title of the food cards*/
 .cardh2 {
     display: flex;
     justify-content: center;
@@ -186,6 +187,7 @@
     max-height: 40px;
 }
 
+/*Styles the picture thumbnail in the food cards*/
 .resp {
     display: block;
     margin: 4px auto;
@@ -193,6 +195,7 @@
     max-height: 25%;
 }
 
+/*Styles the section where the user created food card recipe/article is with the notebook background*/
 .cardRecipe {
     display: flex;
     justify-content: flex-start;
@@ -218,12 +221,23 @@
     white-space: pre-line;
 }
 
+/*Container for the like/dislike and delete/modify post buttons*/
 .btnDiv {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    margin-top: 5px;
 }
 
+/*Container for the delete/modify buttons in the food cards*/
+.cardButtonDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/*Styling for the delete/modify buttons at the bottom of the food card
+(only shows up on posts that the logged in user has posted. Also accessible by administrators)*/
 .cardButton {
     float: right;
     display: block;
@@ -238,6 +252,7 @@
     border-width: 0;
 }
 
+/*Styling for the text that shows likes and dislikes in the food cards*/
 .likes, .dislikes {
     font-family: "Architects Daughter", serif;
     padding: 5px;
@@ -257,15 +272,16 @@
     cursor: pointer;
 }
 
+/*Styling for the project name paragraph in .top. This exists inside SiteID*/
 .googleFontText {
     font-size: x-large;
     font-family: "Architects Daughter", serif;
     text-align: center;
     text-transform: uppercase;
     color: #454545;
-    /*max-height: 100%;*/
 }
 
+/*Styling for the container that holds the search input field, search button and username/title selection*/
 #searchContainer {
     display: flex;
     flex-direction: row;
@@ -273,6 +289,7 @@
     margin: 30px;
 }
 
+/*Styling for the navigation container in the navigation bar*/
 #navigation {
     margin-top: 15px;
     margin-left: 10px;
@@ -280,6 +297,7 @@
     max-width: 100%;
 }
 
+/*Styles the ul part of the navigation buttons*/
 #navigationButtons {
     display: flex;
     flex-direction: row;
@@ -290,6 +308,7 @@
     max-width: 100%;
 }
 
+/*Styles for the individual li navigation buttons*/
 .navigationButton {
     float: left;
     display: block;
@@ -308,6 +327,7 @@
     cursor: pointer;
 }
 
+/*Styles the base for the food cards*/
 .roundEdge {
     border-radius: 8px;
     padding: 1em;
@@ -317,6 +337,7 @@
     background-size: 25px 25px;
 }
 
+/*Contains all food cards*/
 #foodPostCardsList {
     display: flex;
     flex-wrap: wrap;
@@ -324,10 +345,7 @@
     align-items: center;
 }
 
-.filler {
-    height: 5000px;
-}
-
+/*Is used to set some properties of a food card*/
 card {
     background-color: white;
     height: 700px;
@@ -337,6 +355,7 @@ card {
     padding-top: 100px;
 }
 
+/*Styling for the container tha holds the header that says what the foodPostCardsList displays. E.g "My posts" or "Search results:"*/
 #MyPostsHeader, #SearchResultsHeader {
     justify-content: center;
     padding-top: 30px;
@@ -344,6 +363,7 @@ card {
     background-color: lavender;
 }
 
+/*Styling for the container that holds the actual text for the stuff above*/
 #MyPostsHeading, #SearchResultsHeading, #SearchResultsPrivate {
     width: fit-content;
     margin: auto;
@@ -351,12 +371,14 @@ card {
     color: dimgrey;
 }
 
+/*Styles the title section of "add new food post card" form*/
 .formTitle {
     display: flex;
     justify-content: center;
     font-family: "Architects Daughter", serif;
 }
 
+/*Sets the dimensions and placings for all the items inside the "add new food post card" form*/
 #newPostTitle, #newPostText, #newPostFile, #uploadButton, .cancel-post {
     display: inline-block;
     width: 100%;
@@ -368,6 +390,7 @@ card {
     font-size: large;
 }
 
+/*Styles the word counter inside "add new food post card" and "modify post" forms*/
 #character-count-add-post, #character-count-modify-post {
     display: flex;
     justify-content: flex-end;
@@ -375,6 +398,7 @@ card {
     font-size: large;
 }
 
+/*Sets the dimensions and placings inside the "add user" form*/
 #addUserUsername, #addUserEmail, #addUserPassword, #addUserButton, #addUserCancel, #loginButton, #loginCancel {
     display: inline-block;
     width: 100%;
@@ -400,6 +424,7 @@ card {
     font-size: large;
 }
 
+/*Styles the items inside the "modify post" form*/
 #modifyTitle, #modifyText, #modifySave, .cancel-modify-post {
     display: inline-block;
     width: 100%;
@@ -411,11 +436,13 @@ card {
     font-size: large;
 }
 
+/*Sets the placing of the checkbox inside the "add new food post card" and "modify post" forms*/
 #newPostCheckbox, #modifyPostCheckbox {
     display: inline-block;
     margin: 10px;
 }
 
+/*Sets the style for the "private" word next to the checkboxes*/
 #newPostCheckboxLabel, #modifyPostCheckboxLabel {
     font-size: large;
     position: relative;
@@ -424,6 +451,7 @@ card {
     font-weight: bold;
 }
 
+/*Styles the container that holds the "add user" form*/
 .add-user-form-container {
     max-width: 100em;
     margin: auto;
@@ -432,11 +460,13 @@ card {
     justify-content: center;
 }
 
+/*Styles the instructions inside the "add user" form*/
 .registerUserGuide {
     font-family: "Architects Daughter", serif;
     font-size: large;
 }
 
+/*Styles the container for the "add new food post" form*/
 .post-container {
     max-width: 100em;
     margin: auto;
@@ -445,6 +475,7 @@ card {
     justify-content: center;
 }
 
+/*Styles the container for the "modify post" form*/
 .modify-container {
     max-width: 100em;
     margin: auto;
@@ -453,6 +484,7 @@ card {
     justify-content: center;
 }
 
+/*Extra styling for all the forms*/
 .form-wrapper {
     height: auto;
     width: 300px;
@@ -472,11 +504,13 @@ card {
     background-color: lightgoldenrodyellow;
 }
 
+/*Styles all checkboxes (currently only 2 in the project, both inside forms)*/
 input[type=checkbox] {
     height: 30px;
     width: 30px;
 }
 
+/*Styling for buttons inside forms*/
 #uploadButton, #addUserButton, #modifySave, #loginButton {
     border: 2px solid #008000;
     background-color: #66ff7a;
@@ -485,11 +519,7 @@ input[type=checkbox] {
     font-size: large;
 }
 
-#cancel-form {
-    display: flex;
-    justify-content: center;
-}
-
+/*Styles all cancel buttons*/
 .cancel-post, #addUserCancel, .cancel-modify-post, #loginCancel {
     height: auto;
     padding: 1em;
@@ -507,6 +537,7 @@ input[type="file" i] {
     background-color: white;
 }
 
+/*Some extra styling for many items inside forms*/
 .light-border {
     border-radius: 8px;
     border: 1px solid #ccc;
@@ -514,6 +545,7 @@ input[type="file" i] {
     box-sizing: border-box;
 }
 
+/*Styling for the section where the food cards are set*/
 .content {
     display: flex;
     flex-wrap: wrap;
@@ -522,9 +554,6 @@ input[type="file" i] {
     background-image: url("../table-background.jpg");
 }
 
-.filler {
-    height: 5px;
-}
 
 .fa {
     font-size: 50px;
@@ -532,6 +561,7 @@ input[type="file" i] {
     user-select: none;
 }
 
+/*removes borders from the like/dislike buttons*/
 .btnTu, .btnTd {
     border-width: 0;
 }
@@ -546,16 +576,6 @@ input[type="file" i] {
     color: red;
     font-size: 25px;
     background-color: lightgoldenrodyellow;
-}
-
-.btnDiv {
-    margin-top: 5px;
-}
-
-.cardButtonDiv {
-    width: 100%;
-    display: flex;
-    justify-content: center;
 }
 
 .btnTd {
@@ -596,6 +616,7 @@ input[type="file" i] {
     cursor: pointer;
 }
 
+/*Used for making better responsiveness, especially with mobile devices*/
 @media screen and (max-width: 767px) {
     card {
         height: 700px;
