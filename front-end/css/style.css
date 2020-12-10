@@ -1,32 +1,13 @@
-@media (max-width: 600px) {
 
-    .top {
-        flex-direction: column;
-        height: 17vh;
-    }
-
-    .SiteID {
-        display: none
-    }
-}
-
-@media (min-width: 600px) {
-
-    .top {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        height: 10vh;
-    }
-
-    .SiteID {
-        display: flex;
-    }
-}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+#foodRecipesHeader {
+    font-size: 100%;
 }
 
 .sticky-div {
@@ -292,6 +273,7 @@
     text-align: center;
     text-transform: uppercase;
     color: #454545;
+    /*max-height: 100%;*/
 }
 
 #searchContainer {
@@ -305,6 +287,7 @@
     margin-top: 15px;
     margin-left: 10px;
     margin-right: 10px;
+    max-width: 100%;
 }
 
 #navigationButtons {
@@ -313,7 +296,8 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: auto;
+    max-width: 100%;
 }
 
 .navigationButton {
@@ -603,7 +587,6 @@ input[type="file" i] {
 }
 
 .modal {
-    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -644,8 +627,13 @@ input[type="file" i] {
         padding: 10px 10px;
     }
 
+    .cardButtonDiv {
+        margin-bottom: 8px;
+    }
+
     .modalImageClass {
         max-width: 100%;
+        max-height: 100%;
     }
 }
 
@@ -661,6 +649,7 @@ input[type="file" i] {
 
     .modalImageClass {
         max-width: 100%;
+        max-height: 100%;
     }
 }
 
@@ -676,6 +665,7 @@ input[type="file" i] {
 
     .modalImageClass {
         max-width: 100%;
+        max-height: 100%;
     }
 }
 
@@ -692,5 +682,30 @@ input[type="file" i] {
     .modalImageClass {
         max-width: 100%;
         max-height: 90vh;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .top {
+        flex-direction: column;
+        height: 17vh;
+    }
+
+    .SiteID {
+        display: none
+    }
+}
+
+@media (min-width: 600px) {
+
+    .top {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        height: 13vh;
+    }
+
+    .SiteID {
+        display: flex;
     }
 }

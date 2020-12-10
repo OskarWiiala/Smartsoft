@@ -578,10 +578,10 @@ cancelPost.addEventListener('click', async () => {
 toggleMiddleButton.addEventListener('click', async () => {
   if (middle.style.display !== 'none') {
     middle.style.display = 'none';
-    toggleMiddleButton.innerHTML = 'show';
+    toggleMiddleButton.innerHTML = 'show menu';
   } else {
     middle.style.display = 'flex';
-    toggleMiddleButton.innerHTML = 'hide';
+    toggleMiddleButton.innerHTML = 'hide menu';
   }
 });
 
@@ -696,7 +696,8 @@ searchForm.addEventListener('submit', async (evt) => {
         myPostsHeader.style.display = 'none';
         searchResultsHeader.style.display = 'block';
         homePageButton.style.display = 'block';
-        profilePageButton.style.display = 'block';
+        if (loggedInUserId != null) {
+        profilePageButton.style.display = 'block'};
       }
 
       recipes.forEach((foodPost) => {
