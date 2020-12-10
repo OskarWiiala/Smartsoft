@@ -139,6 +139,7 @@
     padding-left: 2px;
     border: 0;
     float: left;
+    height: 80px;
 }
 
 .SiteID, .Tagline {
@@ -488,7 +489,7 @@ card {
 
 /*This simply changes the background color of the create user from*/
 #form-wrapper-add-user, #loginWrapper {
-    background-color: lightgoldenrodyellow;
+    background-color: #fafad2;
 }
 
 #form-wrapper-modify-post {
