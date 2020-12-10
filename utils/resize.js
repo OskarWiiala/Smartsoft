@@ -1,3 +1,5 @@
+// image thumbnail resizing feature using sharp
+
 'use strict';
 
 const sharp = require('sharp');

@@ -1,9 +1,11 @@
 'use strict';
-const url = 'https://localhost:8000'; // change url when uploading to server
+
+// change url when uploading to server
+const url = 'https://localhost:8000';
 
 // select existing html elements
 const ul = document.querySelector('#foodPostCardsList');
-const addForm = document.querySelector('#addFoodPostForm');
+const addFoodPostForm = document.querySelector('#addFoodPostForm');
 const loginForm = document.querySelector('#login-form');
 const logoutButton = document.querySelector('#logoutButton');
 const userInfo = document.querySelector('#user-info');
@@ -44,6 +46,7 @@ const privateSearchResults = document.querySelector('#SearchResultsPrivate');
 const toggleMiddleButton = document.querySelector('#toggleMiddleButton');
 const middle = document.querySelector('.middle');
 
+// variables for currently logged in user's id and status
 let loggedInUserId = null;
 let loggedInUserStatus = null;
 
@@ -212,8 +215,9 @@ const createCardContent = async (foodPost) => {
   }
 };
 
+// function for creating delete and modify buttons to food post cards
 const createDeleteModifyButtons = async (foodPost, card, cardButtonDiv) => {
-  // delete selected foodPost
+  // delete button
   const delButton = document.createElement('button');
   delButton.innerHTML = 'Delete';
   delButton.classList.add('cardButton');
@@ -241,7 +245,7 @@ const createDeleteModifyButtons = async (foodPost, card, cardButtonDiv) => {
 
   cardButtonDiv.appendChild(delButton);
 
-  // modify selected foodPost
+  // modify button
   const modButton = document.createElement('button');
   modButton.innerHTML = 'Modify';
   modButton.classList.add('cardButton');
@@ -249,16 +253,16 @@ const createDeleteModifyButtons = async (foodPost, card, cardButtonDiv) => {
   modButton.addEventListener('click', () => {
     const inputs = modifyFoodPostForm.querySelectorAll('input');
     inputs[0].value = foodPost.title;
-    // inputs[1].value = foodPost.text;
     modifyTextarea.innerHTML = foodPost.text;
     inputs[1].value = foodPost.food_post_id;
     inputs[2].value = foodPost.status;
     if (foodPost.status === 'private') {
       modifyPostCheckBox.checked = true;
     }
+    // certain elements are hidden/displayed according to what button was clicked
     modifyContainer.style.display = 'flex';
     postContainer.style.display = 'none';
-    addForm.reset();
+    addFoodPostForm.reset();
 
     //This scrolls the page to the top
     window.scroll({
@@ -291,6 +295,7 @@ const buttonDisabler = async () => {
   };
 };
 
+// function for fetching the food posts from server
 const getFoodPost = async () => {
   console.log('getFoodPost token ', sessionStorage.getItem('token'));
   try {
@@ -306,9 +311,6 @@ const getFoodPost = async () => {
     console.log(e.message);
   }
 };
-
-// at first the foodPosts will be fetched
-getFoodPost();
 
 // login event listener
 loginForm.addEventListener('submit', async (evt) => {
@@ -335,6 +337,7 @@ const login = async () => {
   } else {
     // save token
     sessionStorage.setItem('token', json.token);
+    // certain elements are hidden/displayed according to what button was clicked
     loginFormContainer.style.display = 'none';
     logoutButton.style.display = 'block';
     profilePageButton.style.display = 'block';
@@ -353,7 +356,7 @@ const login = async () => {
   loginForm.reset();
 };
 
-// logout
+// logout function
 logoutButton.addEventListener('click', async () => {
   try {
     const options = {
@@ -367,8 +370,9 @@ logoutButton.addEventListener('click', async () => {
     // remove token
     sessionStorage.removeItem('token');
     alert('You have logged out');
-    logoutButton.style.display = 'none';
     userInfo.innerHTML = ``;
+    // certain elements are hidden/displayed according to what button was clicked
+    logoutButton.style.display = 'none';
     profilePageButton.style.display = 'none';
     registerButton.style.display = 'block';
     loginButton.style.display = 'block';
@@ -380,7 +384,7 @@ logoutButton.addEventListener('click', async () => {
     modifyContainer.style.display = 'none';
     loggedInUserId = null;
     loggedInUserStatus = null;
-    addForm.reset();
+    addFoodPostForm.reset();
     modifyFoodPostForm.reset();
     await getFoodPost();
   } catch (e) {
@@ -388,8 +392,9 @@ logoutButton.addEventListener('click', async () => {
   }
 });
 
-//When non-logged in user clicks on "create new user", the form for submitting new users shows up
+// when non-logged in user clicks on "create new user", the form for submitting new users shows up
 registerButton.addEventListener('click', async () => {
+  // certain elements are hidden/displayed according to what button was clicked
   addUserContainer.style.display = 'flex';
   registerButton.style.display = 'none';
   loginButton.style.display = 'none';
@@ -406,6 +411,7 @@ registerButton.addEventListener('click', async () => {
 
 //Used to hide add-user-form-container when clicking "cancel" button in the "create new user" card
 cancelUser.addEventListener('click', async () => {
+  // certain elements are hidden/displayed according to what button was clicked
   addUserContainer.style.display = 'none';
   registerButton.style.display = 'block';
   loginButton.style.display = 'block';
@@ -416,6 +422,7 @@ cancelUser.addEventListener('click', async () => {
 
 //Used to hide login-form-container when clicking "cancel" button in the "Log in" card
 loginCancel.addEventListener('click', async () => {
+  // certain elements are hidden/displayed according to what button was clicked
   loginFormContainer.style.display = 'none';
   loginButton.style.display = 'block';
   registerButton.style.display = 'block';
@@ -461,18 +468,19 @@ addUserForm.addEventListener('submit', async (evt) => {
       console.log('user add response', json);
       // save token
       sessionStorage.setItem('token', json.token);
+      // certain elements are hidden/displayed according to what button was clicked
       addUserContainer.style.display = 'none';
       registerButton.style.display = 'block';
       loginButton.style.display = 'block';
+      loginButton.style.display = 'none';
+      addPostButton.style.display = 'block';
+      top10Button.style.display = 'block';
       // login with the newly registered user
       const loginInputs = loginForm.querySelectorAll('input');
       const registerInputs = addUserForm.querySelectorAll('input');
       loginInputs[0].value = registerInputs[1].value;
       loginInputs[1].value = registerInputs[2].value;
       await login();
-      loginButton.style.display = 'none';
-      addPostButton.style.display = 'block';
-      top10Button.style.display = 'block';
       addUserForm.reset();
     }
   }
@@ -480,6 +488,7 @@ addUserForm.addEventListener('submit', async (evt) => {
 
 // when the my profile button is pressed, the my profile content appears
 profilePageButton.addEventListener('click', async () => {
+  // certain elements are hidden/displayed according to what button was clicked
   profilePageButton.style.display = 'none';
   homePageButton.style.display = 'block';
   myPostsHeader.style.display = 'block';
@@ -504,13 +513,14 @@ homePageButton.addEventListener('click', async () => {
   if (loggedInUserId != null) {
     profilePageButton.style.display = 'block';
   }
+  // certain elements are hidden/displayed according to what button was clicked
   addPostButton.style.display = 'block';
   myPostsHeader.style.display = 'none';
   searchResultsHeader.style.display = 'none';
   postContainer.style.display = 'none';
   modifyContainer.style.display = 'none';
   top10Button.style.display = 'block';
-  addForm.reset();
+  addFoodPostForm.reset();
   modifyFoodPostForm.reset();
   await getFoodPost();
 
@@ -551,6 +561,7 @@ newPostText.addEventListener('input', async (evt) => {
 
 //Used to display login-form-container when clicking "Log in" button in the navigation
 loginButton.addEventListener('click', async () => {
+  // certain elements are hidden/displayed according to what button was clicked
   loginFormContainer.style.display = 'flex';
   loginButton.style.display = 'none';
   registerButton.style.display = 'none';
@@ -569,24 +580,24 @@ loginButton.addEventListener('click', async () => {
 cancelPost.addEventListener('click', async () => {
   postContainer.style.display = 'none';
   addPostButton.style.display = 'block';
-  addForm.reset();
+  addFoodPostForm.reset();
 });
 
 // This is for the hide menu/show menu button in the sticky navigation section on top of the page
 toggleMiddleButton.addEventListener('click', async () => {
   if (middle.style.display !== 'none') {
     middle.style.display = 'none';
-    toggleMiddleButton.innerHTML = 'show menu';
+    toggleMiddleButton.innerHTML = 'Show menu';
   } else {
     middle.style.display = 'flex';
-    toggleMiddleButton.innerHTML = 'hide menu';
+    toggleMiddleButton.innerHTML = 'Hide menu';
   }
 });
 
 // submit add foodPost form
-addForm.addEventListener('submit', async (evt) => {
+addFoodPostForm.addEventListener('submit', async (evt) => {
   evt.preventDefault();
-  const fd = new FormData(addForm);
+  const fd = new FormData(addFoodPostForm);
   // if the private checkbox in the add food post form is unchecked, the status
   // value is public
   if (fd.get('status') == null) {
@@ -602,11 +613,12 @@ addForm.addEventListener('submit', async (evt) => {
   const response = await fetch(url + '/foodPost', fetchOptions);
   const json = await response.json();
   console.log('add response', json);
+  // certain elements are hidden/displayed according to what button was clicked
   postContainer.style.display = 'none';
   addPostButton.style.display = 'block';
   await addRating(json.food_post_id);
   await getFoodPost();
-  addForm.reset();
+  addFoodPostForm.reset();
 });
 
 // creates new ratings row to ss_ratings when user creates new post
@@ -694,6 +706,7 @@ searchForm.addEventListener('submit', async (evt) => {
         searchResultsHeader.style.display = 'none';
         await getFoodPost();
       } else {
+        // certain elements are hidden/displayed according to what button was clicked
         myPostsHeader.style.display = 'none';
         searchResultsHeader.style.display = 'block';
         homePageButton.style.display = 'block';
@@ -727,6 +740,7 @@ searchForm.addEventListener('submit', async (evt) => {
         searchResultsHeader.style.display = 'none';
         await getFoodPost();
       } else {
+        // certain elements are hidden/displayed according to what button was clicked
         myPostsHeader.style.display = 'none';
         searchResultsHeader.style.display = 'block';
         homePageButton.style.display = 'block';
@@ -760,13 +774,14 @@ top10Button.addEventListener('click', async () => {
       searchResultsHeader.style.display = 'none';
       await getFoodPost();
     } else {
+      // certain elements are hidden/displayed according to what button was clicked
       myPostsHeader.style.display = 'none';
       searchResultsHeader.style.display = 'block';
       homePageButton.style.display = 'block';
       top10Button.style.display = 'none';
       modifyContainer.style.display = 'none';
       postContainer.style.display = 'none';
-      addForm.reset();
+      addFoodPostForm.reset();
     }
 
     // Checks each post, so that if they have a private status, user gets info that some results are hidden.
@@ -781,3 +796,6 @@ top10Button.addEventListener('click', async () => {
     console.log(e.message);
   }
 });
+
+// when loading the page the foodPosts will be fetched
+getFoodPost();

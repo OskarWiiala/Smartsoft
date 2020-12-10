@@ -1,3 +1,5 @@
+// controller for authentication
+
 'use strict';
 
 const jwt = require('jsonwebtoken');
@@ -6,6 +8,7 @@ const {validationResult} = require('express-validator');
 const userModel = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 
+// authentication function for logging in
 const login = (req, res) => {
   passport.authenticate('local', {session: false}, (err, user, info) => {
     console.log('login', info);
@@ -29,6 +32,7 @@ const login = (req, res) => {
   })(req, res);
 };
 
+// authentication for creating a user
 const user_create_post = async (req, res, next) => {
   // Extract the validation errors from a request.
   const errors = validationResult(req);
@@ -38,6 +42,7 @@ const user_create_post = async (req, res, next) => {
     return res.status(400).json({errors: errors.array()});
   }
 
+  // password is salted and hashed
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(req.body.password, salt);
   req.body.password = hash;
@@ -51,6 +56,7 @@ const user_create_post = async (req, res, next) => {
   }
 };
 
+// authentication for logging out
 const logout = (req, res) => {
   req.logout();
   res.json({message: 'logout'});
@@ -59,5 +65,5 @@ const logout = (req, res) => {
 module.exports = {
   login,
   user_create_post,
-  logout,
+  logout
 };

@@ -1,3 +1,5 @@
+// model for users
+
 'use strict';
 
 const pool = require('../database/db');
