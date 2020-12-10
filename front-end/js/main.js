@@ -741,6 +741,7 @@ searchForm.addEventListener('submit', async (evt) => {
   }
 });
 
+// shows posts in most liked order
 top10Button.addEventListener('click', async () => {
   try {
     const response = await fetch(

@@ -23,7 +23,6 @@
     }
 }
 
-
 * {
     margin: 0;
     padding: 0;
@@ -371,7 +370,7 @@ card {
     background-color: lavender;
 }
 
-#MyPostsHeading, #SearchResultsHeading, #SearchResultsPrivate{
+#MyPostsHeading, #SearchResultsHeading, #SearchResultsPrivate {
     width: fit-content;
     margin: auto;
     font-family: "Arial", serif;
@@ -394,7 +393,6 @@ card {
     font-family: "Architects Daughter", serif;
     font-size: large;
 }
-
 
 #character-count-add-post, #character-count-modify-post {
     display: flex;
@@ -450,7 +448,6 @@ card {
     bottom: 10px;
     font-family: "Architects Daughter", serif;
     font-weight: bold;
-
 }
 
 .add-user-form-container {
@@ -563,7 +560,6 @@ input[type="file" i] {
 .filler {
     height: 5px;
 }
-
 
 .fa {
     font-size: 50px;
