@@ -6,7 +6,7 @@ Installation instructions:
 
 2. Run npm install.
 
-3. Export the [SQL file](Smartsoft_db.sql) into your Metropolia MySQL phpMyAdmin to create the database tables.
+3. Run the SQL commands in [this SQL file](Smartsoft_db.sql) in your Metropolia MySQL phpMyAdmin to create the database tables.
 
 4. Create an .env file including:
 

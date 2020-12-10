@@ -690,12 +690,11 @@ input[type="file" i] {
 @media (max-width: 600px) {
     .top {
         flex-direction: column;
-        /*height: 19vh;*/
         min-height: 150px;
     }
 
-    .SiteID {
-        display: none
+    #foodRecipesHeader {
+        font-size: 100%;
     }
 }
 
