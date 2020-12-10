@@ -58,7 +58,7 @@ const getFoodPostUsername = async (username) => {
 
 const getFoodPostEmail = async (email) => {
   try {
-    console.log('foodPostModel getFoodPostUsername', email);
+    console.log('foodPostModel getFoodPostEmail', email);
     const query = `SELECT food_post_id, user, title, text, filename, ss_food_post.status, user_id, username, likes, dislikes
                   FROM ss_food_post
                   LEFT JOIN ss_rating ON food_post_id = fk_food_post_id
