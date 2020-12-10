@@ -272,7 +272,6 @@ const createDeleteModifyButtons = async (foodPost, card, cardButtonDiv) => {
 
 // returns disabled icon buttons back to operational
 const buttonDisabler = async () => {
-
   // this undo button disables
   const unDis = async () => {
     iconU.disabled = false;
@@ -610,8 +609,9 @@ addForm.addEventListener('submit', async (evt) => {
   addForm.reset();
 });
 
-// creates new ratings row to ss_ratings
+// creates new ratings row to ss_ratings when user creates new post
 const addRating = async (post_id) => {
+  // this checks food_post_id and adds it in ss_rating to connect right posts and ratings
   const inputs = addLikesForm.querySelectorAll('input');
   inputs[0].value = post_id;
   const fd = new FormData(addLikesForm);
@@ -676,7 +676,7 @@ close.addEventListener('click', (evt) => {
   imageModal.classList.toggle('hide');
 });
 
-// search title or username equal to users input
+// search title or username equal or partly equal to users input
 searchForm.addEventListener('submit', async (evt) => {
   evt.preventDefault();
 
