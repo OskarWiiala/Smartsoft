@@ -573,6 +573,7 @@ cancelPost.addEventListener('click', async () => {
   addForm.reset();
 });
 
+// This is for the hide menu/show menu button in the sticky navigation section on top of the page
 toggleMiddleButton.addEventListener('click', async () => {
   if (middle.style.display !== 'none') {
     middle.style.display = 'none';
