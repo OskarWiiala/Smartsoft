@@ -91,6 +91,6 @@ module.exports = {
   insertRatingPost,
   deleteRatingPost,
   getRatingPost,
-  getTopRatedPosts
+  getTopRatedPosts,
 
 };

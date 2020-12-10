@@ -59,5 +59,5 @@ const logout = (req, res) => {
 module.exports = {
   login,
   user_create_post,
-  logout
+  logout,
 };
