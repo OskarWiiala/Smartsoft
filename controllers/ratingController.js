@@ -1,8 +1,9 @@
+// controller for food post ratings
+
 'use strict';
 
 const ratingModel = require('../models/ratingModel');
 const {validationResult} = require('express-validator');
-
 
 const ratings = ratingModel.ratings;
 

@@ -1,3 +1,5 @@
+// model for food posts
+
 'use strict';
 
 const pool = require('../database/db');
@@ -28,9 +30,11 @@ const getFoodPost = async (id) => {
   }
 };
 
+// used in search feature to get food posts based on the title
 const getFoodPostTitle = async (title) => {
   try {
     console.log('foodPostModel getFoodPostTitle', title);
+    // SQL query for selecting all food posts whose title includes the search word (case insensitive)
     const query = `SELECT food_post_id, user, title, text, filename, ss_food_post.status, user_id, username, likes, dislikes
                   FROM ss_food_post
                   LEFT JOIN ss_rating ON food_post_id = fk_food_post_id
@@ -42,9 +46,11 @@ const getFoodPostTitle = async (title) => {
   }
 };
 
+// used in search feature to get food posts based on the username
 const getFoodPostUsername = async (username) => {
   try {
     console.log('foodPostModel getFoodPostUsername', username);
+    // SQL query for selecting all food posts whose username includes the search word (case insensitive)
     const query = `SELECT food_post_id, user, title, text, filename, ss_food_post.status, user_id, username, likes, dislikes
                   FROM ss_food_post
                   LEFT JOIN ss_rating ON food_post_id = fk_food_post_id
@@ -59,6 +65,7 @@ const getFoodPostUsername = async (username) => {
 const getFoodPostEmail = async (email) => {
   try {
     console.log('foodPostModel getFoodPostUsername', email);
+    // SQL query for selecting all food posts whose email includes the search word (case insensitive)
     const query = `SELECT food_post_id, user, title, text, filename, ss_food_post.status, user_id, username, likes, dislikes
                   FROM ss_food_post
                   LEFT JOIN ss_rating ON food_post_id = fk_food_post_id
@@ -126,5 +133,5 @@ module.exports = {
   deleteFoodPost,
   getFoodPostTitle,
   getFoodPostUsername,
-  getFoodPostEmail,
+  getFoodPostEmail
 };

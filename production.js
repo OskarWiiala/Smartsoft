@@ -1,3 +1,5 @@
+// https features for production/server environment
+
 'use strict';
 
 module.exports = (app, port) => {
@@ -8,6 +10,7 @@ module.exports = (app, port) => {
       next();
     } else {
       const proxypath = process.env.PROXY_PASS || ''
+      // redirecting to https
       res.redirect(301, `https://${req.headers.host}${proxypath}${req.url}`);
     }
   });

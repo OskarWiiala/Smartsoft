@@ -1,3 +1,5 @@
+// controller for food posts
+
 'use strict';
 
 const foodPostModel = require('../models/foodPostModel');
@@ -35,6 +37,7 @@ const foodPost_get_by_email = async (req, res) => {
   res.json(foodPost);
 };
 
+// function for making a thumbnail
 const make_thumbnail = async(req, res, next) => {
   try {
     const ready = await makeThumbnail({width: 500, height: 300}, req.file.path,
@@ -87,5 +90,5 @@ module.exports = {
   make_thumbnail,
   foodPost_get_by_title,
   foodPost_get_by_username,
-  foodPost_get_by_email,
+  foodPost_get_by_email
 };

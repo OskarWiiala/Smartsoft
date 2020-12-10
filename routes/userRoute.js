@@ -1,5 +1,7 @@
+// route for the users
+
 'use strict';
-// userRoute
+
 const express = require('express');
 const {body} = require('express-validator');
 const userController = require('../controllers/userController');
@@ -8,9 +10,11 @@ const router = express.Router();
 router.get('/', userController.user_list_get);
 router.post('/',
     [
+      // the fields are validated
       body('username', 'minimum length 3 characters').isLength({min: 3}),
       body('email', 'is not valid email').isEmail(),
-      body('password', 'minimum length 3 characters').isLength({min: 3}),
+      body('password', 'minimum length 8 characters, at least one capital letter')
+      .matches(/^(?=.*[A-Z]){8,}$/, "i"),
     ],
     userController.user_create);
 
