@@ -129,10 +129,6 @@ const createCardContent = async (foodPost) => {
   card.appendChild(figure);
   card.appendChild(p1);
   card.appendChild(btnDiv);
-  // card.appendChild(clnU);
-  // card.appendChild(likes);
-  // card.appendChild(clnD);
-  // card.appendChild(dislikes);
   btnDiv.appendChild(clnU);
   btnDiv.appendChild(likes);
   btnDiv.appendChild(clnD);
