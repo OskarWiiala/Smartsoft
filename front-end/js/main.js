@@ -138,7 +138,7 @@ const createCardContent = async (foodPost) => {
 
   // Adds one like to ss_rating
   if (loggedInUserId != null) {
-    clnU.addEventListener('click', async (evt) => {
+    clnU.addEventListener('click', async () => {
 
       // This disables button
       iconU.disabled = true;
@@ -166,13 +166,14 @@ const createCardContent = async (foodPost) => {
       console.log('add 1 like rating response', json);
       await getFoodPost();
       addLikesForm.reset();
+      // buttonDisabler creates 3 second delay, then button is operational again
       await buttonDisabler();
     });
   }
 
   // Adds one dislike to ss_rating
   if (loggedInUserId != null) {
-    clnD.addEventListener('click', async (evt) => {
+    clnD.addEventListener('click', async () => {
 
       // This disables button
       iconD.disabled = true;
@@ -200,6 +201,7 @@ const createCardContent = async (foodPost) => {
       console.log('add 1 like rating response', json);
       await getFoodPost();
       addLikesForm.reset();
+      // buttonDisabler creates 3 second delay, then button is operational again
       await buttonDisabler();
     });
   }
@@ -268,7 +270,7 @@ const createDeleteModifyButtons = async (foodPost, card, cardButtonDiv) => {
   cardButtonDiv.appendChild(modButton);
 };
 
-// returns disabled icon buttons back to work
+// returns disabled icon buttons back to operational
 const buttonDisabler = async () => {
 
   // this undo button disables
@@ -608,7 +610,7 @@ addForm.addEventListener('submit', async (evt) => {
   addForm.reset();
 });
 
-// Creates new ratings row to ss_ratings
+// creates new ratings row to ss_ratings
 const addRating = async (post_id) => {
   const inputs = addLikesForm.querySelectorAll('input');
   inputs[0].value = post_id;
@@ -660,7 +662,7 @@ cancelModifyPost.addEventListener('click', async () => {
 });
 
 // when private checkbox is clicked in modify food post form, its value changes
-modifyPostCheckBox.addEventListener('click', async (evt) => {
+modifyPostCheckBox.addEventListener('click', async () => {
   if (modifyPostCheckBox.checked) {
     modifyPostCheckBox.value = 'private';
   } else {
@@ -674,7 +676,7 @@ close.addEventListener('click', (evt) => {
   imageModal.classList.toggle('hide');
 });
 
-// search title or username equal to input
+// search title or username equal to users input
 searchForm.addEventListener('submit', async (evt) => {
   evt.preventDefault();
 
@@ -688,13 +690,13 @@ searchForm.addEventListener('submit', async (evt) => {
       if (recipes.length === 0) {
         alert('Sorry, no results');
         searchResultsHeader.style.display = 'none';
-        getFoodPost();
+        await getFoodPost();
       } else {
         myPostsHeader.style.display = 'none';
         searchResultsHeader.style.display = 'block';
         homePageButton.style.display = 'block';
         if (loggedInUserId != null) {
-        profilePageButton.style.display = 'block'};
+        profilePageButton.style.display = 'block'}
       }
 
       recipes.forEach((foodPost) => {
@@ -718,7 +720,7 @@ searchForm.addEventListener('submit', async (evt) => {
       if (recipes.length === 0) {
         alert('Sorry, no results');
         searchResultsHeader.style.display = 'none';
-        getFoodPost();
+        await getFoodPost();
       } else {
         myPostsHeader.style.display = 'none';
         searchResultsHeader.style.display = 'block';
@@ -739,7 +741,7 @@ searchForm.addEventListener('submit', async (evt) => {
   }
 });
 
-// shows posts in most liked order
+// button that shows posts in most liked order
 top10Button.addEventListener('click', async () => {
   try {
     const response = await fetch(
@@ -761,6 +763,7 @@ top10Button.addEventListener('click', async () => {
       addForm.reset();
     }
 
+    // Checks each post, so that if they have private status, user gets info that some results are hidden.
     recipes.forEach((rating) => {
       if (rating.status === 'private') {
         privateSearchResults.style.display = 'block';
