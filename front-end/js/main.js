@@ -428,7 +428,7 @@ loginCancel.addEventListener('click', async () => {
 addUserForm.addEventListener('submit', async (evt) => {
   evt.preventDefault();
 
-  // check if username is already in use
+  // checks if username that new user is trying to give is already in use
   const response = await fetch(
       url + '/foodpost/username/' + nameInput.value);
   const json = await response.json();
@@ -438,7 +438,7 @@ addUserForm.addEventListener('submit', async (evt) => {
     alert('Name already in use! Try a another one');
   } else {
 
-    // check if email already in use
+    // checks if email that new user is trying to give is already in use
     const response = await fetch(
         url + '/foodpost/email/' + emailInput.value);
     const json = await response.json();
@@ -611,7 +611,7 @@ addForm.addEventListener('submit', async (evt) => {
 
 // creates new ratings row to ss_ratings when user creates new post
 const addRating = async (post_id) => {
-  // this checks food_post_id and adds it in ss_rating to connect right posts and ratings
+  // this checks food_post_id and adds it in ss_rating, to connect right posts and ratings
   const inputs = addLikesForm.querySelectorAll('input');
   inputs[0].value = post_id;
   const fd = new FormData(addLikesForm);
@@ -701,7 +701,7 @@ searchForm.addEventListener('submit', async (evt) => {
         profilePageButton.style.display = 'block'}
       }
 
-      // Checks each post, so that if they have private status, user gets info that some results are hidden.
+      // Checks each post, so that if they have a private status, user gets info that some results are hidden.
       recipes.forEach((foodPost) => {
         if (foodPost.status === 'private') {
           privateSearchResults.style.display = 'block';
@@ -733,7 +733,7 @@ searchForm.addEventListener('submit', async (evt) => {
         profilePageButton.style.display = 'block';
       }
 
-      // Checks each post, so that if they have private status, user gets info that some results are hidden.
+      // Checks each post, so that if they have a private status, user gets info that some results are hidden.
       recipes.forEach((foodPost) => {
         if (foodPost.status === 'private') {
           privateSearchResults.style.display = 'block';
@@ -769,7 +769,7 @@ top10Button.addEventListener('click', async () => {
       addForm.reset();
     }
 
-    // Checks each post, so that if they have private status, user gets info that some results are hidden.
+    // Checks each post, so that if they have a private status, user gets info that some results are hidden.
     recipes.forEach((rating) => {
       if (rating.status === 'private') {
         privateSearchResults.style.display = 'block';
