@@ -682,11 +682,13 @@ searchForm.addEventListener('submit', async (evt) => {
 
   if (searchSelect.value === 'title') {
     try {
+      // this gets array of titles that match users search
       const response = await fetch(
           url + '/foodpost/title/' + searchInput.value);
       const json = await response.json();
       const recipes = await json;
 
+      // if title array is empty, user is notified
       if (recipes.length === 0) {
         alert('Sorry, no results');
         searchResultsHeader.style.display = 'none';
@@ -699,6 +701,7 @@ searchForm.addEventListener('submit', async (evt) => {
         profilePageButton.style.display = 'block'}
       }
 
+      // Checks each post, so that if they have private status, user gets info that some results are hidden.
       recipes.forEach((foodPost) => {
         if (foodPost.status === 'private') {
           privateSearchResults.style.display = 'block';
@@ -712,11 +715,13 @@ searchForm.addEventListener('submit', async (evt) => {
   } else {
 
     try {
+      // this gets array of usernames that match users search
       const response = await fetch(
           url + '/foodpost/username/' + searchInput.value);
       const json = await response.json();
       const recipes = await json;
 
+      // if username array is empty, user is notified
       if (recipes.length === 0) {
         alert('Sorry, no results');
         searchResultsHeader.style.display = 'none';
@@ -728,6 +733,7 @@ searchForm.addEventListener('submit', async (evt) => {
         profilePageButton.style.display = 'block';
       }
 
+      // Checks each post, so that if they have private status, user gets info that some results are hidden.
       recipes.forEach((foodPost) => {
         if (foodPost.status === 'private') {
           privateSearchResults.style.display = 'block';
