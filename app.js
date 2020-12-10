@@ -19,6 +19,7 @@ app.use(express.urlencoded({extended: true})); // for parsing application/x-www-
 
 app.use(express.static('uploads'));
 app.use('/thumbnails', express.static('thumbnails'));
+app.use(express.static('front-end'));
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 if (process.env.NODE_ENV === 'production') {
