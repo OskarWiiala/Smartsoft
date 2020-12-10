@@ -1,0 +1,31 @@
+CREATE TABLE `ss_food_post` (
+  `food_post_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user` INT(11) NOT NULL,
+  `title` TEXT NOT NULL,
+  `text` TEXT NOT NULL,
+  `filename` TEXT NOT NULL,
+  `status` VARCHAR(15) DEFAULT 'public',
+  PRIMARY KEY (`food_post_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ss_user` (
+  `user_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `username` TEXT NOT NULL,
+  `email` TEXT NOT NULL,
+  `password` TEXT NOT NULL,
+  `status` VARCHAR(15) DEFAULT 'user',
+  PRIMARY KEY (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+INSERT INTO `ss_user` (`username`, `email`, `password`, `status`) VALUES
+('Admin User 1', 'adminuser1@metropolia.fi', '$2a$10$5RzpyimIeuzNqW7G8seBiOzBiWBvrSWroDomxMa0HzU6K2ddSgixS', 'admin'),
+('Admin User 2', 'adminuser2@metropolia.fi', '$2a$10$H7bXhRqd68DjwFIVkw3G1OpfIdRWIRb735GvvzCBeuMhac/ZniGba', 'admin');
+
+CREATE TABLE `ss_rating` (
+	`id` INT(11) UNIQUE NOT NULL AUTO_INCREMENT,
+	`fk_food_post_id` INT(11),
+	`likes` INT(100) NOT NULL DEFAULT 0,
+	`dislikes` INT(100) NOT NULL DEFAULT 0,
+	PRIMARY KEY (id),
+	FOREIGN KEY (`fk_food_post_id`) REFERENCES `ss_food_post` (`food_post_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
